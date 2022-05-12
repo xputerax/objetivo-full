@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
     <main>
         <div class="container">
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -79,16 +78,22 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword" required>
+                                            <label for="confirmPassword" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control" id="confirmPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" class="form-control" id="yourPassword" required>
+                                            <div class="invalid-feedback">Please re-enter your password!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                                <label class="form-check-label" for="acceptTerms">I accept the <a href="#">Terms and
-                                                    Conditions</a></label>
+                                                <label class="form-check-label" for="acceptTerms">
+                                                    I accept the <a href="#">Terms and Conditions</a></label>
                                                     <div class="invalid-feedback">You must accept the terms and conditions before submitting.</div>
                                                 </div>
                                             </div>
@@ -98,7 +103,9 @@
                                                 </button>
                                             </div>
                                             <div class="col-12">
-                                                <p class="small mb-0 text-center">Already have an account? <a href="{{ route('login') }}">Log in</a></p>
+                                                <p class="small mb-0 text-center">
+                                                    Already have an account? <a href="{{ route('login') }}">Log in</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </form>
@@ -111,21 +118,21 @@
         </div> <!-- End .container -->
     </main><!-- End #main -->
 
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-            <i class="bi bi-arrow-up-short"></i>
-        </a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-        <!-- Vendor JS Files -->
-        <script src="{{ asset('/vendor/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('/vendor/chart.js/chart.min.js') }}"></script>
-        <script src="{{ asset('/vendor/echarts/echarts.min.js') }}"></script>
-        <script src="{{ asset('/vendor/quill/quill.min.js') }}"></script>
-        <script src="{{ asset('/vendor/simple-datatables/simple-datatables.js') }}"></script>
-        <script src="{{ asset('/vendor/tinymce/tinymce.min.js') }}"></script>
-        <script src="{{ asset('/vendor/php-email-form/validate.js') }}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/vendor/chart.js/chart.min.js') }}"></script>
+    <script src="{{ asset('/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('/vendor/php-email-form/validate.js') }}"></script>
 
-        <!-- Template Main JS File -->
-        <script src="{{ asset('/js/app.js') }}"></script>
-    </body>
+    <!-- Template Main JS File -->
+    <script src="{{ asset('/js/app.js') }}"></script>
+</body>
 </html>
