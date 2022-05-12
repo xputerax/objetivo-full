@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/add_task1.js', 'public/js')
+    .js('resources/js/add_actions.js', 'public/js')
     .js('resources/js/add_activity.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
