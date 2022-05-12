@@ -2,6 +2,10 @@
 
 @section('title', 'Goals')
 
+@php
+    $highlighted_page = 'goals';
+@endphp
+
 @section('content')
 <main id="main" class="main">
     @include('goals._page-title')

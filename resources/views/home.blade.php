@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
+@php
+    $highlighted_page = 'dashboard';
+@endphp
+
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">

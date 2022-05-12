@@ -2,6 +2,10 @@
 
 @section('title', 'My Profile')
 
+@php
+    $highlighted_page = 'profile';
+@endphp
+
 @section('content')
 <main id="main" class="main">
     @include('profile._page-title')
