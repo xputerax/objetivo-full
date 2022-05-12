@@ -1,5 +1,10 @@
 <?php
 
+use App\Contracts\DashboardServiceInterface;
+use App\Http\Controllers\GoalController;
+use App\Http\Controllers\MenteeController;
+use App\Http\Controllers\MentorController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +29,13 @@ Route::group(['middleware' => ['caffeinated']], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/goals', [GoalController::class, 'index'])->name('goals.index');
+
+    Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
+
+    Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 });
