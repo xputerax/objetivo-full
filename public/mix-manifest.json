@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/add_task1.js": "/js/add_task1.js",
+    "/js/add_activity.js": "/js/add_activity.js",
     "/css/app.css": "/css/app.css",
     "/img/apple-touch-icon.png": "/img/apple-touch-icon.png",
     "/img/card.jpg": "/img/card.jpg",
