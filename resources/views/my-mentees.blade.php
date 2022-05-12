@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Mentors')
+@section('title', 'My Mentees')
 
 @php
     $highlighted_page = 'my_mentees';
