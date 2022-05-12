@@ -28,14 +28,14 @@
         </li><!-- End Goals Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $highlighted_page == 'mentors' ? '': 'collapsed' }}" href="{{ route('mentors.index') }}">
+            <a class="nav-link {{ $highlighted_page == 'my_mentors' ? '': 'collapsed' }}" href="{{ route('mentors.index') }}">
                 <i class="bi bi-people"></i>
                 <span>My Mentors</span>
             </a>
         </li><!-- End My Mentors Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $highlighted_page == 'mentees' ? '': 'collapsed' }}" href="{{ route('mentees.index') }}">
+            <a class="nav-link {{ $highlighted_page == 'my_mentees' ? '': 'collapsed' }}" href="{{ route('mentees.index') }}">
                 <i class="bi bi-people"></i>
                 <span>My Mentees</span>
             </a>
