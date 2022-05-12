@@ -6,7 +6,7 @@
                 Recently Opened Goals <span>| Today</span>
             </h5>
 
-            @include('home._recently-opened-goals')
+            @include('home._recently-opened-goals-table')
         </div> <!-- / .card-body -->
     </div> <!-- / .card -->
 </div> <!-- / .col -->
