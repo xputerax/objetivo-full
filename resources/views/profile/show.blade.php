@@ -33,7 +33,4 @@
         </div> <!-- .row -->
     </section> <!-- / profile section -->
 </main><!-- End #main -->
-
-@include('layouts._footer')
-@include('layouts._scripts')
 @endsection
