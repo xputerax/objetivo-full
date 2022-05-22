@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -59,5 +61,18 @@ class User extends Authenticatable
     public function goals()
     {
         return $this->hasMany(Goal::class);
+    }
+
+    /**
+     * Interact with the user's password
+     *
+     * @return Attribute
+     */
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            get: fn($hashed_pass) => $hashed_pass,
+            set: fn($plain_pass) => Hash::make($plain_pass)
+        );
     }
 }
