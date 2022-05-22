@@ -1,4 +1,4 @@
-<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+<div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
     <!-- Profile Edit Form -->
     <form>
         <div class="row mb-3">
