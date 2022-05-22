@@ -16,8 +16,18 @@ class ActionPlanFactory extends Factory
      */
     public function definition()
     {
+        $start_at = now()->addDays(
+            $this->faker->numberBetween(0, 10)
+        );
+
+        $end_at = (clone $start_at)->addDays(
+            $this->faker->numberBetween(0, 10)
+        );
+
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'start_at' => $start_at,
+            'end_at' => $end_at,
         ];
     }
 }

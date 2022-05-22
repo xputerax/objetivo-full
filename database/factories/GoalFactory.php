@@ -17,7 +17,10 @@ class GoalFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(),
+            'smart_goal' => $this->faker->sentence(),
+            'due_at' => now()->addDays($this->faker->numberBetween(0, 10))
         ];
     }
 }

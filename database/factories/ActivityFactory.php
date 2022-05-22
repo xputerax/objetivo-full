@@ -17,7 +17,8 @@ class ActivityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'status' => \APp\Models\Activity::ACTIVITY_NOT_STARTED,
         ];
     }
 }
