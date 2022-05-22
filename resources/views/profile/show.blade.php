@@ -24,7 +24,6 @@
                         <div class="tab-content pt-2">
                             @include('profile.tabs._overview')
                             @include('profile.tabs._edit')
-                            @include('profile.tabs._settings')
                             @include('profile.tabs._change-password')
                         </div><!-- / .tab-content -->
                     </div> <!-- / .card-body -->
