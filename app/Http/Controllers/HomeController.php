@@ -28,12 +28,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $this->dashboardService->forUser($request->user());
+        $this->dashboardService->forUser($user = $request->user());
 
         $data = [
             'not_started_count' => $this->dashboardService->getNotStartedCount(),
             'in_progress_count' => $this->dashboardService->getInProgressCount(),
             'completed_count' => $this->dashboardService->getCompletedCount(),
+            'user' => $user,
         ];
 
         return view('home', $data);
