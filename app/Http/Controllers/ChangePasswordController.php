@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\Request;
 
 class ChangePasswordController extends Controller
 {
-    public function __construct()
+    private $hasher;
+
+    public function __construct(Hasher $hasher)
     {
+        $this->hasher = $hasher;
         $this->middleware('auth');
     }
 
@@ -17,7 +21,7 @@ class ChangePasswordController extends Controller
         $data = $request->validated();
 
         $user = $request->user();
-        $user->password = $data['new_password'];
+        $user->password = $this->hasher->make($data['new_password']);
         $user->save();
 
         return back()
