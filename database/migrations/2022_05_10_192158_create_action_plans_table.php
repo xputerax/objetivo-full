@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Goal::class)->index();
             $table->string('title');
-            $table->timestamp('start_at');
-            $table->timestamp('end_at');
+            $table->timestamp('start_at')->nullable()->default(null);
+            $table->timestamp('end_at')->nullable()->default(null);
             $table->timestamps();
         });
     }
