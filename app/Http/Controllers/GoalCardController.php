@@ -11,9 +11,10 @@ class GoalCardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+        return view('goal-card', ['user' => $user]);
     }
 
     /**
