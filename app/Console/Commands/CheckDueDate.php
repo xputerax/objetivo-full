@@ -11,14 +11,14 @@ class CheckDueDate extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'checkduedate:hourly';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Artisan command to check goals due date hourly';
 
     /**
      * Execute the console command.
@@ -27,6 +27,6 @@ class CheckDueDate extends Command
      */
     public function handle()
     {
-        return 0;
+        echo 'This is my first basic scheduler';
     }
 }
