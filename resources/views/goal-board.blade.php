@@ -2,38 +2,169 @@
 
 @section('title', 'Goal Board')
 
+@php
+    $highlighted_page = 'goals';
+@endphp
+
 @section('content')
 <main id="main" class="main">
     @include('goal-board._page-title')
-    @include('goal-board._progress-bar')
-    @include('goal-board._goal-description')
 
-    @include('goal-board._action-plan-list')
+    <section class="section dashboard">
+        @include('goal-board._add-goal')
 
-    @include('goal-board._comment-section')
-
-    @include('goal-board._mentor-modal')
-    @include('goal-board._action-plan-modal')
+        <div class="row">
+            @include('goal-board._goal-card-1')
+            @include('goal-board._goal-card-2')
+            @include('goal-board._goal-card-3')
+            @include('goal-board._goal-card-4')
+        </div> <!-- / .row -->
+    </section>
 </main>
 
-<!-- Script to make progress bar respond dynamically -->
 <script>
-    $(document).ready(function () {
-        var $checkboxes = $('.checkbox');
-        var $progress = $('#CheckProgress');
-        var total = $checkboxes.length;
-        progressBar = document.getElementById('progress-bar-id');
+    document.addEventListener("DOMContentLoaded", () => {
+        echarts.init(document.querySelector("#pieChart1")).setOption({
+            tooltip: {
+                trigger: 'item'
+            },
 
-        $checkboxes.on('change', function () {
-            var checked = $checkboxes.filter(':checked').length;
-            var progressWidth = Math.floor((checked / total) * 100);
-            $('.progress-bar').css('width', progressWidth + '%').attr('aria-valuenow', progressWidth);
-            progressBar.innerHTML = progressWidth + "%";
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '70%',
+
+                data: [{
+                    value: 10,
+                    name: 'Not started'
+
+                },
+                {
+                    value: 50,
+                    name: 'Completed'
+
+                },
+                {
+                    value: 40,
+                    name: 'In Progress'
+                }
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+        echarts.init(document.querySelector("#pieChart2")).setOption({
+            tooltip: {
+                trigger: 'item'
+            },
+
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '70%',
+
+                data: [{
+                    value: 20,
+                    name: 'Not started'
+
+                },
+                {
+                    value: 70,
+                    name: 'Completed'
+
+                },
+                {
+                    value: 10,
+                    name: 'In Progress'
+                }
+                ],
+
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+        echarts.init(document.querySelector("#pieChart3")).setOption({
+            tooltip: {
+                trigger: 'item'
+            },
+
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '70%',
+
+                data: [{
+                    value: 20,
+                    name: 'Not started'
+
+                },
+                {
+                    value: 40,
+                    name: 'Completed'
+
+                },
+                {
+                    value: 40,
+                    name: 'In Progress'
+                }
+                ],
+
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+        echarts.init(document.querySelector("#pieChart4")).setOption({
+            tooltip: {
+                trigger: 'item'
+            },
+
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '70%',
+
+                data: [{
+                    value: 20,
+                    name: 'Not started'
+
+                },
+                {
+                    value: 30,
+                    name: 'Completed'
+
+                },
+                {
+                    value: 50,
+                    name: 'In Progress'
+                }
+                ],
+
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
         });
     });
 </script>
 
-<!-- Template Main JS File -->
-<script src="{{ asset('/js/add_task1.js') }}"></script>
-<script src="{{ asset('/js/add_activity.js') }}"></script>
+<script src="{{ asset('/js/add_actions.js') }}"></script>
 @endsection

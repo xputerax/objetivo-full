@@ -17,7 +17,7 @@ class GoalController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return view('goals', ['user' => $user]);
+        return view('goal-board', ['user' => $user]);
     }
 
     /**

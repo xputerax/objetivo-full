@@ -3,5 +3,5 @@
         Add Goal
     </button>
 
-    @include('goals._add-goal-modal')
+    @include('goal-board._add-goal-modal')
 </div> <!-- / .d-grid -->

@@ -21,9 +21,9 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $highlighted_page == 'goals' ? '': 'collapsed' }}" href="{{ route('goals.index') }}">
+            <a class="nav-link {{ $highlighted_page == 'goals' ? '': 'collapsed' }}" href="{{ route('goal-board.index') }}">
                 <i class="bi bi-clipboard-data"></i>
-                <span>Goals</span>
+                <span>Goal Board</span>
             </a>
         </li><!-- End Goals Page Nav -->
 
