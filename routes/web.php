@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
-    Route::get('/goals', [GoalController::class, 'index'])->name('goals.index');
+    Route::get('/goals', [GoalController::class, 'index'])->name('goal-board.index');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
