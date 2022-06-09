@@ -2,7 +2,7 @@
 <div class="col-md-4 col-sm-6 col-lg-3">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <a class="card-title" href="{{ route('goals.show') }}">
+            <a class="card-title" href="{{ route('goals.index') }}">
                 <p class="fs-7 fw-bold"></p>
                 <p class="fs-7 fw-bold">Learn guitar in 4 months</p> <br>
             </a>
