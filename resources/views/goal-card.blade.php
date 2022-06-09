@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Goal Board')
+@section('title', 'Goal Card')
 
 @section('content')
 <main id="main" class="main">
