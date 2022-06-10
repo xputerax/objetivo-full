@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GoalCardController extends Controller
+class GoalController extends Controller
 {
     /**
      * Display a listing of the resource.

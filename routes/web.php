@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenteeController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GoalCardController;
+use App\Http\Controllers\GoalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,5 +43,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 
-    Route::get('/goal-card', [GoalCardController::class, 'index'])->name('goal-card.index');
+    Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 });
