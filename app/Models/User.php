@@ -61,8 +61,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Goal::class);
     }
-
-    public function getIDAttribute() {
-        return $this->id;
-    }
 }
