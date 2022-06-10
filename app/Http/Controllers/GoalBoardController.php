@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateGoalRequest;
 use App\Models\Goal;
 use Illuminate\Http\Request;
 
-class GoalController extends Controller
+class GoalBoardController extends Controller
 {
     /**
      * Display a listing of the resource.

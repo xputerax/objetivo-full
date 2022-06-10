@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\GoalController;
+use App\Http\Controllers\GoalBoardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenteeController;
 use App\Http\Controllers\MentorController;
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
-    Route::get('/goal-board', [GoalController::class, 'index'])->name('goal-board.index');
+    Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
