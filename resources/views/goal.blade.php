@@ -1,6 +1,8 @@
+{{-- Includes files in views/goal --}}
+
 @extends('layouts.app')
 
-@section('title', 'Goal Card')
+@section('title', 'Goal')
 
 @section('content')
 <main id="main" class="main">

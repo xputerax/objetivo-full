@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class GoalController extends Controller
 {
@@ -13,8 +16,9 @@ class GoalController extends Controller
      */
     public function index(Request $request)
     {
+        $users = DB::select('select * from users');
         $user = $request->user();
-        return view('goal-card', ['user' => $user]);
+        return view('goal', ['user' => $user, 'users' => $users]);
     }
 
     /**

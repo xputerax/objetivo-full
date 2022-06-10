@@ -38,10 +38,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
     Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
+    
+    Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 
-    Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 });
