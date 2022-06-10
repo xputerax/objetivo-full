@@ -4,16 +4,16 @@
 
 @section('content')
 <main id="main" class="main">
-    @include('goal-card._page-title')
-    @include('goal-card._progress-bar')
-    @include('goal-card._goal-description')
+    @include('goal._page-title')
+    @include('goal._progress-bar')
+    @include('goal._goal-description')
 
-    @include('goal-card._action-plan-list')
+    @include('goal._action-plan-list')
 
-    @include('goal-card._comment-section')
+    @include('goal._comment-section')
 
-    @include('goal-card._mentor-modal')
-    @include('goal-card._action-plan-modal')
+    @include('goal._mentor-modal')
+    @include('goal._action-plan-modal')
 </main>
 
 <!-- Script to make progress bar respond dynamically -->
