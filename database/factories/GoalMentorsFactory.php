@@ -17,8 +17,10 @@ class GoalMentorsFactory extends Factory
      */
     public function definition()
     {
+        $date = $this->faker->dateTimeBetween('-1 day' );
         return [ 
-            
+            'goal_id' => \App\Models\Goal::inRandomOrder()->first()->id,
+            'mentor_id' => \App\Models\User::inRandomOrder()->first()->id,
         ];
     }
 }
