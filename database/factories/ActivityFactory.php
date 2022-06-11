@@ -18,7 +18,7 @@ class ActivityFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'status' => \APp\Models\Activity::ACTIVITY_NOT_STARTED,
+            'a_status' => \App\Models\Activity::ACTIVITY_PENDING,
         ];
     }
 }

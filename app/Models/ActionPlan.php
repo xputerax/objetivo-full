@@ -24,9 +24,9 @@ class ActionPlan extends Model
 {
     use HasFactory;
 
-    const ACTIVITY_NOT_STARTED = 'not started';
-    const ACTIVITY_IN_PROGRESS = 'in_progress';
-    const ACTIVITY_COMPLETED = 'completed';
+    const ACTIONPLAN_NOT_STARTED = 'not started';
+    const ACTIONPLAN_IN_PROGRESS = 'in_progress';
+    const ACTIONPLAN_COMPLETED = 'completed';
 
     protected $fillable = [
         'title',

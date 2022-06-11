@@ -26,6 +26,7 @@ class ActionPlanFactory extends Factory
 
         return [
             'title' => $this->faker->sentence(),
+            'ap_status' => \App\Models\ActionPlan::ACTIONPLAN_NOT_STARTED,
             'start_at' => $start_at,
             'end_at' => $end_at,
         ];

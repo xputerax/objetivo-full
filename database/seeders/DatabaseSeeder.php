@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
                         \App\Models\ActionPlan::factory(5)
                             ->has(
                                 \App\Models\Activity::factory(10)->state(new Sequence(
-                                    ['status' => \App\Models\Activity::ACTIVITY_NOT_STARTED],
-                                    ['status' => \App\Models\Activity::ACTIVITY_IN_PROGRESS],
-                                    ['status' => \App\Models\Activity::ACTIVITY_COMPLETED],
+                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_NOT_STARTED],
+                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_IN_PROGRESS],
+                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_COMPLETED],
                                 )),
                                 'activities'
                             ),

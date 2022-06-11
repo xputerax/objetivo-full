@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\ActionPlan::class)->index();
             $table->string('title');
-            $table->string('status');
+            $table->string('a_status');
             $table->timestamps();
         });
     }
