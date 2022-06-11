@@ -3,7 +3,7 @@
 @section('title', 'My Mentees')
 
 @php
-    $highlighted_page = 'my_mentees';
+$highlighted_page = 'my_mentees';
 @endphp
 
 @section('content')
@@ -17,7 +17,7 @@
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                    
+
                     @foreach ($mentees as $mentee)
                     <!-- Goal Card -->
                     <div class="col-12">

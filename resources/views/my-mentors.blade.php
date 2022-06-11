@@ -3,7 +3,7 @@
 @section('title', 'My Mentors')
 
 @php
-    $highlighted_page = 'my_mentors';
+$highlighted_page = 'my_mentors';
 @endphp
 
 @section('content')

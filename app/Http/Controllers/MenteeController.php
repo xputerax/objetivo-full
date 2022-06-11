@@ -11,11 +11,11 @@ class MenteeController extends Controller
     {
         $user = $request->user();
         $goals = DB::table('goals')
-                    ->select('goals.user_id', 'goals.title', 'goals.description', 'goals.created_at')
-                    ->get();
+            ->select('goals.user_id', 'goals.title', 'goals.description', 'goals.created_at')
+            ->get();
         $mentees = DB::table('users')
-                    ->select('users.id', 'users.username')
-                    ->get();
+            ->select('users.id', 'users.username')
+            ->get();
         return view('my-mentees', ['user' => $user, 'mentees' => $mentees, 'goals' => $goals]);
     }
 }
