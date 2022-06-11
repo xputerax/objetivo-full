@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\GoalController;
+use App\Http\Controllers\GoalBoardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenteeController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GoalController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,9 +37,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
-    Route::get('/goals', [GoalController::class, 'index'])->name('goal-board.index');
+    Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
+    
+    Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
+
 });

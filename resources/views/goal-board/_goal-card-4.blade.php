@@ -2,7 +2,7 @@
 <div class="col-md-4 col-sm-6 col-lg-3">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <a class="card-title" href="goal-board.html">
+            <a class="card-title" href="goal.html">
                 <p class="fs-7 fw-bold"></p>
                 <p class="fs-7 fw-bold">Read 2 books in 1 month</p><br>
             </a>

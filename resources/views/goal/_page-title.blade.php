@@ -5,7 +5,9 @@
             <button type="button" class="btn btn-primary-outline" onclick="history.back()">
                 <i class="bi bi-chevron-double-left"></i>
             </button>
-            <h1>Goal Board: </h1>
+            <h1>Goal: </h1>
+
+            {{-- Make it dynamic --}}
             <h2>Learn Guitar</h2>
             <nav>
                 <ol class="breadcrumb">

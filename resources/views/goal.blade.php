@@ -1,19 +1,21 @@
+{{-- Includes files in views/goal --}}
+
 @extends('layouts.app')
 
-@section('title', 'Goal Board')
+@section('title', 'Goal')
 
 @section('content')
 <main id="main" class="main">
-    @include('goal-board._page-title')
-    @include('goal-board._progress-bar')
-    @include('goal-board._goal-description')
+    @include('goal._page-title')
+    @include('goal._progress-bar')
+    @include('goal._goal-description')
 
-    @include('goal-board._action-plan-list')
+    @include('goal._action-plan-list')
 
-    @include('goal-board._comment-section')
+    @include('goal._comment-section')
 
-    @include('goal-board._mentor-modal')
-    @include('goal-board._action-plan-modal')
+    @include('goal._mentor-modal')
+    @include('goal._action-plan-modal')
 </main>
 
 <!-- Script to make progress bar respond dynamically -->

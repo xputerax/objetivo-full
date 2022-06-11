@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGoalRequest;
+use App\Http\Requests\UpdateGoalRequest;
+use App\Models\Goal;
 use Illuminate\Http\Request;
-use DB;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-class GoalController extends Controller
+class GoalBoardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +16,8 @@ class GoalController extends Controller
      */
     public function index(Request $request)
     {
-        // $actionPlans = DB::table('action_plans')
-        //     ->select('action_plans.id', 'action_plans.goal_id', 'action_plans.title')
-        //     ->get();
-        // $activities = DB::table('activities')
-        //     ->select('activities.id', 'activities.action_plan_id', 'activities.title')
-        //     ->get();
-
-        $actionPlans = DB::select('SELECT * FROM action_plans WHERE goal_id < 6');
-        $activities = DB::select('SELECT * FROM activities');
         $user = $request->user();
-        return view('goal', [
-            'user' => $user,
-            'actionPlans' => $actionPlans,
-            'activities' => $activities
-        ]);
+        return view('goal-board', ['user' => $user]);
     }
 
     /**
@@ -46,10 +33,10 @@ class GoalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGoalRequest $request)
     {
         //
     }
@@ -57,10 +44,10 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Goal $goal)
     {
         //
     }
@@ -68,10 +55,10 @@ class GoalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Goal $goal)
     {
         //
     }
@@ -79,11 +66,11 @@ class GoalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateGoalRequest  $request
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGoalRequest $request, Goal $goal)
     {
         //
     }
@@ -91,10 +78,10 @@ class GoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Goal $goal)
     {
         //
     }

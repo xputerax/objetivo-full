@@ -3,7 +3,7 @@
     <div class="card info-card customers-card">
         <div class="card-body">
             {{-- TODO: change the route dynamically instead of redireecting to goal-board.index --}}
-            <a class="card-title" href="{{ route('goal-board.index') }}"> 
+            <a class="card-title" href="{{ route('goal.index') }}"> 
                 <p class="fs-7 fw-bold"></p>
                 <p class="fs-7 fw-bold">Learn guitar in 4 months</p> <br>
             </a>
