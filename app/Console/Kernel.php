@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('checkduedate:hourly')
-            ->hourly()
+        $schedule->command('checkReminder')
+            ->everyMinute()
             ->appendOutputTo('scheduler.log');
     }
 
