@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property int $goal_id
  * @property string $title
+ * @property string $ap_status
  * @property Carbon $start_at
  * @property Carbon $end_at
  * @property Carbon $created_at
@@ -23,8 +24,13 @@ class ActionPlan extends Model
 {
     use HasFactory;
 
+    const ACTIVITY_NOT_STARTED = 'not started';
+    const ACTIVITY_IN_PROGRESS = 'in_progress';
+    const ACTIVITY_COMPLETED = 'completed';
+
     protected $fillable = [
         'title',
+        'ap_status',
         'start_at',
         'end_at',
         'created_at',
