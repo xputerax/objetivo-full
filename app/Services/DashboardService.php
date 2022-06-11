@@ -52,7 +52,7 @@ class DashboardService implements DashboardServiceInterface
             ->join('action_plans', 'action_plans.goal_id', '=', 'goals.id')
             ->join('activities', 'activities.action_plan_id', '=', 'action_plans.id')
             ->where('goals.user_id', '=', $this->user->id)
-            ->where('activities.status', '=', $status)
+            ->where('action_plans.ap_status', '=', $status)
             ->selectRaw('COALESCE(count(goals.id), 0) c')
             ->first('c');
 

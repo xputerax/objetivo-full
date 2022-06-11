@@ -24,7 +24,7 @@ class ActionPlan extends Model
 {
     use HasFactory;
 
-    const ACTIONPLAN_NOT_STARTED = 'not started';
+    const ACTIONPLAN_NOT_STARTED = 'not_started';
     const ACTIONPLAN_IN_PROGRESS = 'in_progress';
     const ACTIONPLAN_COMPLETED = 'completed';
 

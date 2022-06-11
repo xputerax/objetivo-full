@@ -15,16 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(50)
+        \App\Models\User::factory(10)
             ->has(
-                \App\Models\Goal::factory(10)
+                \App\Models\Goal::factory(5)
                     ->has(
                         \App\Models\ActionPlan::factory(5)
                             ->has(
-                                \App\Models\Activity::factory(10)->state(new Sequence(
-                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_NOT_STARTED],
-                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_IN_PROGRESS],
-                                    ['status' => \App\Models\ActionPlan::ACTIONPLAN_COMPLETED],
+                                \App\Models\Activity::factory(3)->state(new Sequence(
+                                    ['a_status' => \App\Models\Activity::ACTIVITY_PENDING],
+                                    ['a_status' => \App\Models\Activity::ACTIVITY_COMPLETED],
                                 )),
                                 'activities'
                             ),
