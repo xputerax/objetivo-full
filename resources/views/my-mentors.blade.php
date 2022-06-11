@@ -29,24 +29,25 @@ $highlighted_page = 'my_mentors';
             <div class="col-lg-12">
                 <div class="row">
 
-                    @foreach($mentors as $mentor)
+                    @foreach($goals as $goal1)
+                    @if(auth()->id() == $goal1->user_id)
                     <!-- Goal Card -->
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="mentor-mentee-profile-pic">
-                                    {{ $mentor->username }}
+                                    {{ $goal1->username }}
                                 </h5>
                                 <div class="list-group">
-                                    @foreach($goals as $goal)
-                                    @if($mentor->mentor_id == $goal->mentor_id)
+                                    @foreach($goals as $goal2)
+                                    @if($goal1->mentor_id == $goal2->mentor_id && auth()->id() == $goal2->user_id)
                                     <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="list-title">{{ $goal->title }}</h5>
-                                            <small class="list-date text-muted">{{ $goal->created_at }}</small>
+                                            <h5 class="list-title">{{ $goal2->title }}</h5>
+                                            <small class="list-date text-muted">{{ $goal2->created_at }}</small>
                                         </div>
-                                        <p class="list-content">{{ $goal->description }}</p>
+                                        <p class="list-content">{{ $goal2->description }}</p>
                                     </a>
                                     @endif
                                     @endforeach
@@ -54,6 +55,7 @@ $highlighted_page = 'my_mentors';
                             </div>
                         </div>
                     </div><!-- End Goal Card -->
+                    @endif
                     @endforeach
 
                 </div>
