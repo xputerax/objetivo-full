@@ -31,7 +31,7 @@ class CheckDueDate extends Command
     {
         //Get id, user_id and due date from database for all users
         //Returns json
-        $data = Goal::select('id','user_id','due_at')->get();
+        $data = Goal::select('id','user_id','title','due_at')->get();
 
         //Decode the json file
         $datarr = json_decode($data, true);
