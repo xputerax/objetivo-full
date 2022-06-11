@@ -55,4 +55,9 @@ class Goal extends Model
     {
         return $this->hasManyThrough(Activity::class, ActionPlan::class);
     }
+
+    public function mentor()
+    {
+        return $this->hasMany(GoalMentors::class);
+    }
 }

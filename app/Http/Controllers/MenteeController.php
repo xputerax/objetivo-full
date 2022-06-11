@@ -10,7 +10,6 @@ class MenteeController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // dd($request->user());
         $goals = DB::table('goals')
                     ->select('goals.user_id', 'goals.title', 'goals.description', 'goals.created_at')
                     ->get();

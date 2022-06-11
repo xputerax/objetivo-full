@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
-use DB;
 
 class GoalMentorsSeeder extends Seeder
 {
@@ -15,6 +15,7 @@ class GoalMentorsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\GoalMentors::factory(50)
+                    ->create();
     }
 }
