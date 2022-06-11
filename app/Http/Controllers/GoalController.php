@@ -16,9 +16,21 @@ class GoalController extends Controller
      */
     public function index(Request $request)
     {
-        $users = DB::select('select * from users');
+        // $actionPlans = DB::table('action_plans')
+        //     ->select('action_plans.id', 'action_plans.goal_id', 'action_plans.title')
+        //     ->get();
+        // $activities = DB::table('activities')
+        //     ->select('activities.id', 'activities.action_plan_id', 'activities.title')
+        //     ->get();
+
+        $actionPlans = DB::select('SELECT * FROM action_plans WHERE goal_id < 6');
+        $activities = DB::select('SELECT * FROM activities');
         $user = $request->user();
-        return view('goal', ['user' => $user, 'users' => $users]);
+        return view('goal', [
+            'user' => $user,
+            'actionPlans' => $actionPlans,
+            'activities' => $activities
+        ]);
     }
 
     /**
