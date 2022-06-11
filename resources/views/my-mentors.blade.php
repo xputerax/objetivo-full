@@ -3,7 +3,7 @@
 @section('title', 'My Mentors')
 
 @php
-    $highlighted_page = 'my_mentors';
+$highlighted_page = 'my_mentors';
 @endphp
 
 @section('content')
@@ -29,61 +29,32 @@
             <div class="col-lg-12">
                 <div class="row">
 
+                    @foreach($mentors as $mentor)
                     <!-- Goal Card -->
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="mentor-mentee-profile-pic">
-                                    Ahmad Basir
+                                    {{ $mentor->username }}
                                 </h5>
                                 <div class="list-group">
+                                    @foreach($goals as $goal)
+                                    @if($mentor->mentor_id == $goal->mentor_id)
                                     <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="list-title">Submit Web Programming Assignment</h5>
-                                            <small class="list-date text-muted">1 day ago</small>
+                                            <h5 class="list-title">{{ $goal->title }}</h5>
+                                            <small class="list-date text-muted">{{ $goal->created_at }}</small>
                                         </div>
-                                        <p class="list-content"></p>
+                                        <p class="list-content">{{ $goal->description }}</p>
                                     </a>
-                                    <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="list-title">Get fit</h5>
-                                            <small class="list-date text-muted">5 days ago</small>
-                                        </div>
-                                        <p class="list-content">Go to the gym</p>
-                                    </a>
+                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div><!-- End Goal Card -->
-
-                    <!-- Goal Card -->
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="mentor-mentee-profile-pic">
-                                    Choi Kit Sam
-                                </h5>
-                                <div class="list-group">
-                                    <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="list-title">Practice for upcoming violin competition</h5>
-                                            <small class="list-date text-muted">5 days ago</small>
-                                        </div>
-                                        <p class="list-content"></p>
-                                    </a>
-                                    <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="list-title">Update YouTube content</h5>
-                                            <small class="list-date text-muted">10 days ago</small>
-                                        </div>
-                                        <p class="list-content"></p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Goal Card -->
+                    @endforeach
 
                 </div>
             </div>
