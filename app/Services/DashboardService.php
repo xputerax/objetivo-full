@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\DashboardServiceInterface;
 use App\Models\Activity;
+use App\Models\ActionPlan;
 use Illuminate\Support\Facades\DB;
 
 class DashboardService implements DashboardServiceInterface
@@ -36,7 +37,7 @@ class DashboardService implements DashboardServiceInterface
     protected function isValidStatus($status): bool
     {
         return in_array($status, [
-            Activity::ACTIVITY_COMPLETED, Activity::ACTIVITY_IN_PROGRESS, Activity::ACTIVITY_NOT_STARTED
+            ActionPlan::ACTIONPLAN_COMPLETED, ActionPlan::ACTIONPLAN_IN_PROGRESS, ActionPlan::ACTIONPLAN_NOT_STARTED
         ]);
     }
 
