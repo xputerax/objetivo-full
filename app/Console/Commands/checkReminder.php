@@ -53,7 +53,7 @@ class CheckReminder extends Command
         $datarr = Goal::select('id','user_id','title','due_at')->get()->toArray();
         
         //Calculate the interval(in hours) from current time to due date for each goal in the database
-        date_default_timezone_set('Asia/Kuala_Lumpur');
+        //date_default_timezone_set('Asia/Kuala_Lumpur');
         $timeformat = 'Y-m-d H:i:s';
         $goalarr = array();
         foreach ($datarr as $item) {
@@ -63,7 +63,7 @@ class CheckReminder extends Command
 
             //Calculate difference in hours
             $hours = (strtotime($duedate) - strtotime($currdate))/3600;
-            $hours += 8; //Correct the timezone
+            $hours -= 8; //Correct the timezone
             $hours = (int)$hours; //Convert to integer
 
             //Check if the hours is equals to 24
