@@ -41,8 +41,8 @@ class SendReminder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line("Your goal is due soon")
-                    ->action('Head over to our website now to check.', url('localhost:8000/home'))
+                    ->line("One of your goals is due soon!")
+                    ->action('Head over website', 'http://localhost:8000/home')
                     ->line('Thank you!');
     }
 
