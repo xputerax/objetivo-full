@@ -13,7 +13,7 @@
 <section id="progress-bar-section" class="progress-bar-section">
     <div class="progress-bar-title">Progress Bar</div>
     <div class="progress">
-        <div class="container">
+        {{-- <div class="container">
             <div class="progress progress-striped">
                 <div class="progress-bar">
                 </div>
@@ -25,7 +25,7 @@
                 <div class="progress-bar2">
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container">
             <div class="progress progress-infinite">
