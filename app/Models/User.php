@@ -66,4 +66,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(GoalMentors::class);
     }
+
+    public function comments() {
+        return $this->hasMany(GoalComment::class);
+    }
 }
