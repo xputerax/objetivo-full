@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
                                 'activities'
                             ),
                         'action_plans'
-                    )
+                    )->has(\App\Models\GoalComment::factory(5))
             )
         ->create();
     }

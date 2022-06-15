@@ -17,7 +17,11 @@ class GoalCommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'goal_id' => \App\Models\Goal::inRandomOrder()->first()->id,
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'body' => $this->faker->text(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

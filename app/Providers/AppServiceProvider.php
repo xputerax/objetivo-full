@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\DashboardService;
 use App\Contracts\DashboardServiceInterface;
+use App\Contracts\CommentServiceInterface;
+use App\Services\CommentService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(DashboardServiceInterface::class, function () {
             return new DashboardService();
+        });
+        $this->app->bind(CommentServiceInterface::class, function () {
+            return new CommentService();
         });
     }
 

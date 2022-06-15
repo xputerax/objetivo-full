@@ -60,4 +60,8 @@ class Goal extends Model
     {
         return $this->hasMany(GoalMentors::class);
     }
+
+    public function goalComment() {
+        return $this->hasMany(GoalComment::class);
+    }
 }
