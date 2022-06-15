@@ -2,7 +2,7 @@
     <section class="section action-plan-list-card-section">
         <div class="row">
             <div class="col-lg-4">
-                {{-- Action Plan Card Section --}}
+                {{-- Action Plan Card --}}
                 @foreach ($actionPlans as $actionPlan)
                     <div class="card">
                         <div class="card-header">{{ $actionPlan->title }}</div>
@@ -20,7 +20,7 @@
                                     <ul class=" list-group" id="list">
                                         @foreach ($activities as $activity)
                                             @if ($activity->action_plan_id === $actionPlan->id)
-                                                <!-- Dummy List Item 1 -->
+                                                <!-- Activity -->
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
                                                         <div class="col-1">
@@ -35,7 +35,7 @@
                                                         onClick="deleteList(0)">Delete</button>
                                                     <button class="btn btn-primary btn-sm mt-2"
                                                         onClick="editList(0)">Edit</button>
-                                                    <!-- End Dummy List Item 1 -->
+                                                    <!-- End Activity -->
                                                 </li>
                                             @endif
                                         @endforeach
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- End Action Plan Card Section --}}
+                {{-- End Action Plan Card --}}
             </div>
 
             <div class="col-lg-4">

@@ -73,14 +73,17 @@ class GoalController extends Controller
             ->where('goal_id', $id)
             ->get();
 
-        // Initializes an array
+        // Initializes an array that holds all action_plan_ID for this goal
         $actionPlansIdArray = array();
         foreach ($actionPlans as $actionPlan) {
             array_push($actionPlansIdArray, $actionPlan['id']);
         }
 
+        // Retrieve all activities within the goal
         $activities = Activity::select('id', 'action_plan_id', 'title', 'a_status', 'created_at', 'updated_at')
-            ->where('action_plan_id', $actionPlansIdArray);
+            ->whereIn('action_plan_id', $actionPlansIdArray)
+            ->get();
+        
         return view('goal', [
             'goal' => $goal,
             'user' => $user,
