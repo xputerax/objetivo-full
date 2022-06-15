@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Goal;
+use App\Models\User;
+use App\Models\ActionPlan;
+use App\Models\Activity;
 
 class GoalController extends Controller
 {
@@ -62,7 +66,27 @@ class GoalController extends Controller
      */
     public function show($id)
     {
-        //
+        // Gets ID from table GOALS
+        $goal = Goal::find($id);
+        $user = auth()->user();
+        $actionPlans = ActionPlan::select('id', 'goal_id', 'title', 'ap_status', 'start_at', 'end_at')
+            ->where('goal_id', $id)
+            ->get();
+
+        // Initializes an array
+        $actionPlansIdArray = array();
+        foreach ($actionPlans as $actionPlan) {
+            array_push($actionPlansIdArray, $actionPlan['id']);
+        }
+
+        $activities = Activity::select('id', 'action_plan_id', 'title', 'a_status', 'created_at', 'updated_at')
+            ->where('action_plan_id', $actionPlansIdArray);
+        return view('goal', [
+            'goal' => $goal,
+            'user' => $user,
+            'actionPlans' => $actionPlans,
+            'activities' => $activities
+        ]);
     }
 
     /**
