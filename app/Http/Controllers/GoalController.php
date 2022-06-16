@@ -10,9 +10,23 @@ use App\Models\Goal;
 use App\Models\User;
 use App\Models\ActionPlan;
 use App\Models\Activity;
+use App\Contracts\GoalServiceInterface;
 
 class GoalController extends Controller
 {
+    private $goalService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(GoalServiceInterface $goalService)
+    {
+        $this->middleware('auth');
+        $this->goalService = $goalService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,35 +75,21 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $goalid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($goalid)
     {
-        // Gets ID from table GOALS
-        $goal = Goal::find($id);
         $user = auth()->user();
-        $actionPlans = ActionPlan::select('id', 'goal_id', 'title', 'ap_status', 'start_at', 'end_at')
-            ->where('goal_id', $id)
-            ->get();
 
-        // Initializes an array that holds all action_plan_ID for this goal
-        $actionPlansIdArray = array();
-        foreach ($actionPlans as $actionPlan) {
-            array_push($actionPlansIdArray, $actionPlan['id']);
-        }
-
-        // Retrieve all activities within the goal
-        $activities = Activity::select('id', 'action_plan_id', 'title', 'a_status', 'created_at', 'updated_at')
-            ->whereIn('action_plan_id', $actionPlansIdArray)
-            ->get();
-        
-        return view('goal', [
-            'goal' => $goal,
+        $data = [
+            'goal' => $this->goalService->getGoalByID($goalid),
             'user' => $user,
-            'actionPlans' => $actionPlans,
-            'activities' => $activities
-        ]);
+            'actionPlans' => $this->goalService->getActionPlans($goalid),
+            'activities' => $this->goalService->getActivities(),
+        ];
+        
+        return view('goal', $data);
     }
 
     /**
