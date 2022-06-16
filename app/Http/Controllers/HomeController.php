@@ -31,7 +31,7 @@ class HomeController extends Controller
         $this->dashboardService->forUser($user = $request->user());
 
         $data = [
-            'not_started_count' => $this->dashboardService->getNotStartedCount(),
+            'not_started_count' => $this->dashboardService->getNotStartedAPCount(),
             'in_progress_count' => $this->dashboardService->getInProgressCount(),
             'completed_count' => $this->dashboardService->getCompletedCount(),
             'user' => $user,
