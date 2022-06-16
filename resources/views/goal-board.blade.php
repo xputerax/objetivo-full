@@ -14,10 +14,9 @@
         @include('goal-board._add-goal')
 
         <div class="row">
+            @foreach ($goal as $item)
             @include('goal-board._goal-card-1')
-            @include('goal-board._goal-card-2')
-            @include('goal-board._goal-card-3')
-            @include('goal-board._goal-card-4')
+            @endforeach
         </div> <!-- / .row -->
     </section>
 </main>
