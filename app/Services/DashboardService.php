@@ -58,4 +58,15 @@ class DashboardService implements DashboardServiceInterface
 
         return $ret->c;
     }
+
+    protected function updateGoalStatus($status): void
+    {
+        // If all AP_STATUS == "completed" for current GOAL_ID
+        // Update G_STATUS == "completed for current GOAL_ID
+
+        // If zero AP_STATUS == "completed" OR "in_progress"
+        // Update G_STATUS == "not_started for current GOAL_ID"
+
+        // else update G_STATUS == "not_started" for current GOAL_ID
+    }
 }
