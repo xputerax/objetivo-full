@@ -3,12 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Goal;
+use App\Models\User;
+use App\Models\ActionPlan;
+use App\Models\Activity;
+use App\Contracts\GoalServiceInterface;
 
 class GoalController extends Controller
 {
+    private $goalService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(GoalServiceInterface $goalService)
+    {
+        $this->middleware('auth');
+        $this->goalService = $goalService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,12 +75,22 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $goalid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($goalid)
     {
-        //
+        $user = auth()->user();
+
+        $data = [
+            'goal' => $this->goalService->getGoalByID($goalid),
+            'user' => $user,
+            'actionPlans' => $this->goalService->getActionPlans($goalid),
+            'activities' => $this->goalService->getActivities(),
+            'comments' => $this->goalService->getComments($goalid),
+        ];
+        
+        return view('goal', $data);
     }
 
     /**

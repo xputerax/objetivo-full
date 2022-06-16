@@ -6,9 +6,24 @@ use App\Http\Requests\StoreGoalRequest;
 use App\Http\Requests\UpdateGoalRequest;
 use App\Models\Goal;
 use Illuminate\Http\Request;
+use App\Contracts\GoalServiceInterface;
 
 class GoalBoardController extends Controller
 {
+
+    private $GoalService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(GoalServiceInterface $GoalService)
+    {
+        $this->middleware('auth');
+        $this->GoalService = $GoalService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +31,14 @@ class GoalBoardController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
-        return view('goal-board', ['user' => $user]);
+        $this->GoalService->forUser($user = $request->user());
+
+        $data = [
+            'user' => $user,
+            'goal' => $this->GoalService->getGoals(),
+        ];
+
+        return view('goal-board', $data);
     }
 
     /**

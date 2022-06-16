@@ -2,7 +2,7 @@
 <div class="col-md-4 col-sm-6 col-lg-3">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <a class="card-title" href="goal.index">
+            <a class="card-title" href="goal.show">
                 <p class="fs-7 fw-bold"></p>
                 <p class="fs-7 fw-bold">Design website in 2 months</p><br>
             </a>

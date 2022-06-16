@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('goal_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\GoalMentors::class)->index('goal_comment_mentor_idx');
+            $table->foreignIdFor(\App\Models\Goal::class)->index('goal_idx');
+            $table->foreignIdFor(\App\Models\User::class)->index('commenter_id_idx');
             $table->text('body');
             $table->timestamps();
         });

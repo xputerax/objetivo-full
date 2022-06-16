@@ -65,4 +65,8 @@ class Goal extends Model
     {
         return $this->belongsToMany(User::class, 'goal_mentors', 'goal_id', 'mentor_id');
     }
+
+    public function goalComment() {
+        return $this->hasMany(GoalComment::class);
+    }
 }
