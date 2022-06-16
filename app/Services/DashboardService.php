@@ -33,21 +33,6 @@ class DashboardService implements DashboardServiceInterface
         $status = 'completed';
         return $this->getCountForStatus($status);
     }
-    
-    // Test function to return number of Not Started APs
-    public function getNotStartedAPCount(): int
-    {
-        $apList = ActionPlan::select('ap_status')
-            ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
-            ->join('users', 'goals.user_id', '=', 'users.id')
-            ->where('ap_status', '=', "not_started")
-            ->where('users.id', '=', auth()->id())
-            ->get();
-        
-        $apCount = $apList->count();
-
-        return $apCount;
-    }
 
     protected function isValidStatus($status): bool
     {
@@ -73,7 +58,7 @@ class DashboardService implements DashboardServiceInterface
         return $ret->c;
     }
 
-    protected function updateGoalStatus($status): void
+    protected function queryUpdateGoalStatus($status): void
     {
         // If all AP_STATUS == "completed" for current GOAL_ID
         // Update G_STATUS == "completed for current GOAL_ID
@@ -104,5 +89,20 @@ class DashboardService implements DashboardServiceInterface
         // Update G_STATUS == "not_started for current GOAL_ID"
 
         // else update G_STATUS == "not_started" for current GOAL_ID
+    }
+
+    // Test function to return number of Not Started APs
+    public function getNotStartedAPCount(): int
+    {
+        $apList = ActionPlan::select('ap_status')
+            ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
+            ->join('users', 'goals.user_id', '=', 'users.id')
+            ->where('ap_status', '=', "not_started")
+            ->where('users.id', '=', auth()->id())
+            ->get();
+
+        $apCount = $apList->count();
+
+        return $apCount;
     }
 }
