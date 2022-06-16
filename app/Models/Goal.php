@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
  * @property int $user_id
  * @property string $title
  * @property string $description
+ * @property string $g_status
  * @property string $smart_goal
  * @property Carbon $due_at
  * @property Carbon $created_at
@@ -25,9 +26,14 @@ class Goal extends Model
 {
     use HasFactory;
 
+    const GOAL_NOT_STARTED = 'not_started';
+    const GOAL_IN_PROGRESS = 'in_progress';
+    const GOAL_COMPLETED = 'completed';
+
     protected $fillable = [
         'title',
         'description',
+        'g_status',
         'smart_goal',
         'due_at',
     ];
@@ -46,7 +52,7 @@ class Goal extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function action_plans()
+    public function actionPlan()
     {
         return $this->hasMany(ActionPlan::class);
     }
