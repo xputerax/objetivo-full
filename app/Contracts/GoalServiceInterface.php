@@ -6,6 +6,7 @@ interface GoalServiceInterface
 {
     public function forUser($user);
     public function getGoals();
-    public function getActionPlans();
+    public function getGoalByID($goalid);
+    public function getActionPlans($goalid);
     public function getActivities();
 }
