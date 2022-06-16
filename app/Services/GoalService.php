@@ -7,6 +7,7 @@ use App\Models\Goal;
 use App\Models\ActionPlan;
 use App\Models\Activity;
 use App\Models\GoalComment;
+use App\Models\User;
 
 class GoalService implements GoalServiceInterface
 {
@@ -92,6 +93,35 @@ class GoalService implements GoalServiceInterface
             ->latest()
             ->get();
 
+        //Append name to an individual model
+        $users = User::all();
+        foreach($comments as $comment) 
+        {
+            foreach($users as $user) 
+            {
+                if($comment['user_id'] == $user['id']) 
+                {
+                    $comment['username'] = $user['name'];
+                    $comment['timeinterval'] = $this->getInterval($comment['created_at']);
+                    break;
+                }
+            }
+        }
+
         return $comments;
+    }
+
+    public function getInterval($from_date) {
+        $timeformat = 'Y-m-d H:i:s';
+        //Date in Date object
+        $duedate = date($timeformat,strtotime($from_date));
+        $currdate = date($timeformat);
+
+        //Calculate difference in hours
+        $hours = (strtotime($duedate) - strtotime($currdate))/3600;
+        $hours -= 8; //Correct the timezone
+        $hours = (int)$hours; //Convert to integer
+
+        return abs($hours);
     }
 }

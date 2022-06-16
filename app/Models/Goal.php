@@ -62,9 +62,14 @@ class Goal extends Model
         return $this->hasManyThrough(Activity::class, ActionPlan::class);
     }
 
-    public function mentor()
+    // public function mentor()
+    // {
+    //     return $this->hasMany(GoalMentors::class);
+    // }
+
+    public function mentors()
     {
-        return $this->hasMany(GoalMentors::class);
+        return $this->belongsToMany(User::class, 'goal_mentors', 'goal_id', 'mentor_id');
     }
 
     public function goalComment() {
