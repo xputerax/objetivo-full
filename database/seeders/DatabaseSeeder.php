@@ -17,9 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)
             ->has(
-                \App\Models\Goal::factory(5)
+                \App\Models\Goal::factory(5)->state(new Sequence(
+                    ['g_status' => \App\Models\Goal::GOAL_NOT_STARTED],
+                    ['g_status' => \App\Models\Goal::GOAL_IN_PROGRESS],
+                    ['g_status' => \App\Models\Goal::GOAL_COMPLETED],
+                ))
                     ->has(
-                        \App\Models\ActionPlan::factory(5)
+                        \App\Models\ActionPlan::factory(5)->state(new Sequence(
+                            ['ap_status' => \App\Models\ActionPlan::ACTIONPLAN_NOT_STARTED],
+                            ['ap_status' => \App\Models\ActionPlan::ACTIONPLAN_IN_PROGRESS],
+                            ['ap_status' => \App\Models\ActionPlan::ACTIONPLAN_COMPLETED],
+                        ))
                             ->has(
                                 \App\Models\Activity::factory(3)->state(new Sequence(
                                     ['a_status' => \App\Models\Activity::ACTIVITY_PENDING],
@@ -30,6 +38,6 @@ class DatabaseSeeder extends Seeder
                         'action_plans'
                     )->has(\App\Models\GoalComment::factory(5))
             )
-        ->create();
+            ->create();
     }
 }
