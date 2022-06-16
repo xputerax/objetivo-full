@@ -4,6 +4,7 @@
 
 @php
 $highlighted_page = 'my_mentees';
+$temp = 0;
 @endphp
 
 @section('content')
@@ -19,6 +20,9 @@ $highlighted_page = 'my_mentees';
                 <div class="row">
 
                     @foreach ($goals as $goal1)
+                    @if($goal1->user_id == $temp)
+                    @continue
+                    @endif
                     <!-- Goal Card -->
                     <div class="col-12">
                         <div class="card">
@@ -43,6 +47,9 @@ $highlighted_page = 'my_mentees';
                             </div> <!-- / .card-body -->
                         </div> <!-- / .card -->
                     </div><!-- End Goal Card -->
+                    @php
+                        $temp = $goal1->user_id;
+                    @endphp
                     @endforeach
 
                 </div> <!-- / .row -->

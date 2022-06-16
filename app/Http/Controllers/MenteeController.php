@@ -25,7 +25,7 @@ class MenteeController extends Controller
             ->join('users', 'goals.user_id', '=', 'users.id')
             ->select('goals.user_id', 'goal_mentors.mentor_id', 'users.username', 'goal_mentors.goal_id', 'users.id', 'goals.title', 'goals.description', 'goals.created_at')
             ->where('goal_mentors.mentor_id','=', auth()->id())
-            //->distinct()
+            ->orderBy('goals.user_id', 'asc')
             ->get();
 
         return view('my-mentees', ['user' => $user, 'goals' => $goals]);
