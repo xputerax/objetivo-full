@@ -22,9 +22,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DashboardServiceInterface::class, function () {
             return new DashboardService();
         });
-        $this->app->bind(CommentServiceInterface::class, function () {
-            return new CommentService();
-        });
         $this->app->bind(GoalServiceInterface::class, function () {
             return new GoalService();
         });
