@@ -12,4 +12,5 @@ interface DashboardServiceInterface
     public function getGoalInProgressCount(): int;
     public function getGoalCompletedCount(): int;
     public function queryUpdateGoalStatus(): void;
+    public function getGoals();
 }

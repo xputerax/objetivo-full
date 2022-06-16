@@ -35,6 +35,7 @@ class HomeController extends Controller
             'not_started_count' => $this->dashboardService->getGoalNotStartedCount(),
             'in_progress_count' => $this->dashboardService->getGoalInProgressCount(),
             'completed_count' => $this->dashboardService->getGoalCompletedCount(),
+            'goals' => $this->dashboardService->getGoals(),
             'user' => $user,
         ];
 

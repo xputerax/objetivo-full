@@ -8,82 +8,26 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Goal 1 -->
-        <tr>
-            <td>
-                <a href="goal-board.html" class="text-primary">Learn guitar in 4 months
-            </td>
-            <td>27/08/2022</td>
-            <td>Kanye Barat</td>
-            <td>
-                <span class="badge bg-warning">In Progress</span>
-            </td>
-        </tr>
-        <!-- End Goal 1 -->
-
-        <!-- Goal 2 -->
-        <tr>
-            <td>
-                <a href="#" class="text-primary">Design website in 2 months</a>
-            </td>
-            <td>24/06/2022</td>
-            <td>Frank Laut</td>
-            <td>
-                <span class="badge bg-warning">In Progress</span>
-            </td>
-        </tr>
-        <!-- End Goal 2 -->
-
-        <!-- Goal 3 -->
-        <tr>
-            <td>
-                <a href="#" class="text-primary">Learn Korean language within 3 months</a>
-            </td>
-            <td>28/07/2022</td>
-            <td>Kim JU</td>
-            <td>
-                <span class="badge bg-warning">In Progress</span>
-            </td>
-        </tr>
-        <!-- End Goal 3 -->
-
-        <!-- Goal 4 -->
-        <tr>
-            <td>
-                <a href="#" class="text-primary">Learn JavaScript</a>
-            </td>
-            <td>06/10/2022</td>
-            <td>Ben Awad</td>
-            <td>
-                <span class="badge bg-danger">Not Started</span>
-            </td>
-        </tr>
-        <!-- End Goal 4 -->
-
-        <!-- Goal 5 -->
-        <tr>
-            <td>
-                <a href="#" class="text-primary">Lose 5kg</a>
-            </td>
-            <td>15/02/2022</td>
-            <td>Joe Rogan</td>
-            <td>
-                <span class="badge bg-success">Completed</span>
-            </td>
-        </tr>
-        <!-- End Goal 5 -->
-
-        <!-- Goal 6 -->
-        <tr>
-            <td>
-                <a href="#" class="text-primary">Read 2 books in 1 month</a>
-            </td>
-            <td>25/05/2022</td>
-            <td>Tai Lopez</td>
-            <td>
-                <span class="badge bg-warning">In Progress</span>
-            </td>
-        </tr>
-        <!-- End Goal 6 -->
+        @foreach ($goals as $goal)
+            <!-- Goal -->
+            <tr>
+                <td>
+                    <a href="#" class="text-primary">
+                        {{ $goal->title }}
+                </td>
+                <td>{{ $goal->due_at }}</td>
+                <td>{{ $goal->name }}</td>
+                <td>
+                    @if ($goal->g_status == 'in_progress')
+                        <span class="badge bg-warning">In Progress</span>
+                    @elseif ($goal->g_status == 'completed')
+                        <span class="badge bg-success">Completed</span>
+                    @elseif ($goal->g_status == 'not_started')
+                        <span class="badge bg-danger">Not Started</span>
+                    @endif
+                </td>
+            </tr>
+            <!-- End Goal -->
+        @endforeach
     </tbody>
 </table>
