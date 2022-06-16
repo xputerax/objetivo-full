@@ -39,5 +39,8 @@ class DatabaseSeeder extends Seeder
                     )->has(\App\Models\GoalComment::factory(5))
             )
             ->create();
+
+        \App\Models\GoalMentors::factory(50)
+            ->create();
     }
 }
