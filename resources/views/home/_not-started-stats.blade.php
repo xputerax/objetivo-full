@@ -16,7 +16,7 @@
 
         <div class="card-body">
             <h5 class="card-title">
-                Not Started<br /><span>This Month</span>
+                Not Started<br />
             </h5>
 
             <div class="d-flex align-items-center">

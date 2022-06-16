@@ -16,7 +16,7 @@
 
         <div class="card-body">
             <h5 class="card-title">
-                Completed<br /><span>All Time</span>
+                Completed<br />
             </h5>
 
             <div class="d-flex align-items-center">
