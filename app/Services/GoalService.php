@@ -6,6 +6,7 @@ use App\Contracts\GoalServiceInterface;
 use App\Models\Goal;
 use App\Models\ActionPlan;
 use App\Models\Activity;
+use App\Models\GoalComment;
 
 class GoalService implements GoalServiceInterface
 {
@@ -76,5 +77,21 @@ class GoalService implements GoalServiceInterface
             ->get();
 
         return $activities;
+    }
+
+    /**
+     * Get all comments for the specified goal id
+     * 
+     * @param $goalid
+     * @return Collection
+     */
+    public function getComments($goalid) 
+    {
+        $comments = GoalComment::select('id','goal_id','user_id','body','created_at','updated_at')
+            ->where('goal_id',$goalid)
+            ->latest()
+            ->get();
+
+        return $comments;
     }
 }

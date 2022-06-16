@@ -9,4 +9,5 @@ interface GoalServiceInterface
     public function getGoalByID($goalid);
     public function getActionPlans($goalid);
     public function getActivities();
+    public function getComments($goalid);
 }

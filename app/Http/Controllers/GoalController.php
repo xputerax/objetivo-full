@@ -87,6 +87,7 @@ class GoalController extends Controller
             'user' => $user,
             'actionPlans' => $this->goalService->getActionPlans($goalid),
             'activities' => $this->goalService->getActivities(),
+            'comments' => $this->goalService->getComments($goalid),
         ];
         
         return view('goal', $data);
