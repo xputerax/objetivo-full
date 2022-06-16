@@ -61,48 +61,54 @@ class DashboardService implements DashboardServiceInterface
     protected function queryUpdateGoalStatus($status): void
     {
         // If all AP_STATUS == "completed" for current GOAL_ID
-        // Update G_STATUS == "completed for current GOAL_ID
+        // Update G_STATUS == "completed" for current GOAL_ID
         $apStatusCompletedCount = ActionPlan::select('count(ap_status')
             ->where('ap_status', '=', "completed")
             ->get();
 
-        $goalCount = Goal::select('count(goal)')
-            /*
-                CHANGE AP_STATUS TO G_STATUS ONCE ADDED INTO GOAL MODEL
-            */
-            ->where('ap_status', '=', "completed")
+        $gStatusCompletedCount = Goal::select('count(goal)')
+            ->where('g_status', '=', "completed")
             ->get();
 
         $goals = Goal::all();
 
         foreach ($goals as $goal) {
-            if ($apStatusCompletedCount == $goalCount) {
+            if ($apStatusCompletedCount == $gStatusCompletedCount) {
                 // Query to update database
-                $goal_id = $goal->id;
-                Goal::where('id', $goal_id)
+                Goal::where('id', $goal->id)
                     ->update(['g_status' => 'completed']);
+            }
+            // If zero AP_STATUS == "completed" OR "in_progress"
+            // Update G_STATUS == "not_started" for current GOAL_ID"
+            else if ($apStatusCompletedCount == 0 || $apStatusCompletedCount == 0) {
+                Goal::where('id', $goal->id)
+                    ->update(['g_status' => 'not_started']);
+            } else {
+                Goal::where('id', $goal->id)
+                    ->update(['g_status' => 'in_progress']);                
             }
         }
 
 
-        // If zero AP_STATUS == "completed" OR "in_progress"
-        // Update G_STATUS == "not_started for current GOAL_ID"
 
-        // else update G_STATUS == "not_started" for current GOAL_ID
+        // else update G_STATUS == "in_progress" for current GOAL_ID
     }
 
     // Test function to return number of Not Started APs
-    public function getNotStartedAPCount(): int
+    public function getGoalNotStartedCount(): int
     {
-        $apList = ActionPlan::select('ap_status')
-            ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
-            ->join('users', 'goals.user_id', '=', 'users.id')
-            ->where('ap_status', '=', "not_started")
-            ->where('users.id', '=', auth()->id())
-            ->get();
+        // $apList = ActionPlan::select('ap_status')
+        //     ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
+        //     ->join('users', 'goals.user_id', '=', 'users.id')
+        //     ->where('ap_status', '=', "not_started")
+        //     ->where('users.id', '=', auth()->id())
+        //     ->get();
 
-        $apCount = $apList->count();
+        $goalNotStartedList = Goal::select('g_status')
+            ->where('g_status', '=', 'not_started')
+            ->where('user_id', '=', auth()->id())
+            ->count();
 
-        return $apCount;
+        return $goalNotStartedList;
     }
 }

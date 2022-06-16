@@ -8,5 +8,5 @@ interface DashboardServiceInterface
     public function getInProgressCount(): int;
     public function getNotStartedCount(): int;
     public function getCompletedCount(): int;
-    public function getNotStartedAPCount(): int;
+    public function getGoalNotStartedCount(): int;
 }
