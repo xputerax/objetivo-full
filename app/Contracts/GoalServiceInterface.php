@@ -10,4 +10,5 @@ interface GoalServiceInterface
     public function getActionPlans($goalid);
     public function getActivities();
     public function getComments($goalid);
+    public function getInterval($from_date);
 }

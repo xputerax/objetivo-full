@@ -16,50 +16,26 @@
 
                     <br>
 
+                    @foreach ($comments as $comment)
                     <div class="card">
                         <div class="comment-card-body">
                             <h5 class="comment-title">
-                                <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="comment-profile-pic">
-                                Yor Forger
+                                <img src="{{ asset('/img/blankprofile.png') }}" width="50" height="50" alt="Profile" class="comment-profile-pic">
+                                {{ $comment['username'] }}
+                                @if ($comment['user_id'] == 2)
                                 <span class="badge bg-primary">You</span>
-                                <div style="float: right">
-                                    <button class="btn btn-outline-danger">
-                                        <i class="bx bx-trash"></i>
-                                    </button>
-                                </div>
-                            </h5>
-                            <p class="time-posted">&nbsp; 1 hour ago</p>
-                            <br><br>
-                            <p>Thank you for the tip! I shall work on it.</p>
-                            <div>
-                                <button class="btn btn-light rounded-pill">
-                                    <i class="bx bxs-like"></i>
-                                </button>
-                                <button class="btn btn-light rounded-pill">
-                                    <i class="bx bxs-dislike"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of Previous Comment Div-->
-
-                    <div class="card">
-                        <div class="comment-card-body">
-                            <h5 class="comment-title">
-                                <img src="{{ asset('img/oyen.jpg') }}" width="50" height="50" alt="Profile" class="comment-profile-pic">
-                                John Bin Pablo
+                                @else
                                 <span class="badge bg-success">Mentor</span>
+                                @endif
                                 <div style="float: right">
                                     <button class="btn btn-outline-danger">
                                         <i class="bx bx-trash"></i>
                                     </button>
                                 </div>
                             </h5>
-                            <p class="time-posted">&nbsp; 3 hours ago</p>
+                            <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
                             <br><br>
-                            <p>
-                                You're doing great so far! I suggest that you set 2 hours a day everyday to practice learn Javascript!
-                            </p>
+                            <p>{{ $comment['body'] }}</p>
                             <div>
                                 <button class="btn btn-light rounded-pill">
                                     <i class="bx bxs-like"></i>
@@ -71,6 +47,7 @@
                         </div>
                     </div>
                     <!--End of Previous Comment Div-->
+                    @endforeach
                 </div> <!-- / .card-body -->
             </div> <!-- / .card -->
         </div> <!-- / .col -->
