@@ -52,7 +52,7 @@ class Goal extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function actionPlan()
+    public function action_plans()
     {
         return $this->hasMany(ActionPlan::class);
     }
