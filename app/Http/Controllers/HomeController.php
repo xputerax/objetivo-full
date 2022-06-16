@@ -28,12 +28,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $this->dashboardService->queryUpdateGoalStatus();
         $this->dashboardService->forUser($user = $request->user());
 
         $data = [
             'not_started_count' => $this->dashboardService->getGoalNotStartedCount(),
-            'in_progress_count' => $this->dashboardService->getInProgressCount(),
-            'completed_count' => $this->dashboardService->getCompletedCount(),
+            'in_progress_count' => $this->dashboardService->getGoalInProgressCount(),
+            'completed_count' => $this->dashboardService->getGoalCompletedCount(),
             'user' => $user,
         ];
 
