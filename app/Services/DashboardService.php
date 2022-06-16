@@ -38,7 +38,10 @@ class DashboardService implements DashboardServiceInterface
     public function getNotStartedAPCount(): int
     {
         $apList = ActionPlan::select('ap_status')
+            ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
+            ->join('users', 'goals.user_id', '=', 'users.id')
             ->where('ap_status', '=', "not_started")
+            ->where('users.id', '=', auth()->id())
             ->get();
         
         $apCount = $apList->count();
