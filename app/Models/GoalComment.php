@@ -25,4 +25,9 @@ class GoalComment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function commentVote()
+    {
+        return $this->hasOne(CommentVote::class);
+    }
 }
