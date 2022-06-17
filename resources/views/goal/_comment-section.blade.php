@@ -46,14 +46,44 @@
                             <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
                             <br><br>
                             <p>{{ $comment['body'] }}</p>
-                            <div>
-                                <button class="btn btn-light rounded-pill">
-                                    <i class="bx bxs-like"></i>
-                                </button>
-                                <button class="btn btn-light rounded-pill">
-                                    <i class="bx bxs-dislike"></i>
-                                </button>
+                            @if ($comment['user_id'] != $user->id)
+                            <div style="display:flex;">
+                                <form action="{{ route('vote-comment.update', $comment['commentvoteid']) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-light rounded-pill">
+                                        @if ($comment['commentvote'] == 1)
+                                        <i class="bx bxs-like"> 1 like</i>
+                                        @else
+                                        <i class="bx bxs-like"> 0 likes</i>
+                                        @endif
+                                    </button>
+                                    @if ($comment['commentvote'] == 1)
+                                    <input type="hidden" value=0 name="votetype"/>
+                                    @else
+                                    <input type="hidden" value=1 name="votetype"/>
+                                    @endif
+                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                                    @method('put')
+                                </form>
+                                <form action="{{ route('vote-comment.update', $comment['commentvoteid']) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-light rounded-pill">
+                                        @if ($comment['commentvote'] == 2)
+                                        <i class="bx bxs-dislike"> 1 dislike</i>
+                                        @else
+                                        <i class="bx bxs-dislike"> 0 dislikes</i>
+                                        @endif
+                                    </button>
+                                    @if ($comment['commentvote'] == 2)
+                                    <input type="hidden" value=0 name="votetype"/>
+                                    @else
+                                    <input type="hidden" value=2 name="votetype"/>
+                                    @endif
+                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                                    @method('put')
+                                </form>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <!--End of Previous Comment Div-->
