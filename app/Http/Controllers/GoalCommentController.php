@@ -36,7 +36,15 @@ class GoalCommentController extends Controller
      */
     public function store(StoreGoalCommentRequest $request)
     {
-        //
+        $goalComment = new GoalComment;
+        $goalComment->goal_id = $request->goalid;
+        $goalComment->user_id = $request->userid;
+        $goalComment->body = $request->comment;
+        $goalComment->created_at = now();
+        $goalComment->updated_at = now();
+        $goalComment->save();
+
+        return redirect()->route('goal.show',$request->goalid);
     }
 
     /**
