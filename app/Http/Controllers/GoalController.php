@@ -75,21 +75,21 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $goalid
+     * @param  int  $goalId
      * @return \Illuminate\Http\Response
      */
-    public function show($goalid)
+    public function show($goalId)
     {
         $user = auth()->user();
 
         $data = [
-            'goal' => $this->goalService->getGoalByID($goalid),
+            'goal' => $this->goalService->getGoalByID($goalId),
             'user' => $user,
-            'actionPlans' => $this->goalService->getActionPlans($goalid),
+            'actionPlans' => $this->goalService->getActionPlans($goalId),
             'activities' => $this->goalService->getActivities(),
-            'comments' => $this->goalService->getComments($goalid),
+            'comments' => $this->goalService->getComments($goalId),
         ];
-        
+
         return view('goal', $data);
     }
 
