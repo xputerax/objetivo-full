@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CommentVoteController;
 use App\Http\Controllers\GoalBoardController;
 use App\Http\Controllers\GoalCommentController;
 use App\Http\Controllers\HomeController;
@@ -51,4 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/submit-comment', [GoalCommentController::class, 'store'])->name('submit-comment.store');
 
     Route::delete('/delete-comment/{goalComment}', [GoalCommentController::class, 'destroy'])->name('delete-comment.destroy');
+
+    Route::put('/vote-comment/{commentVoteID}', [CommentVoteController::class, 'update'])->name('vote-comment.update');
 });
