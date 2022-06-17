@@ -89,6 +89,8 @@ class GoalCommentController extends Controller
      */
     public function destroy(GoalComment $goalComment)
     {
-        //
+        GoalComment::destroy($goalComment['id']);
+
+        return redirect()->route('goal.show',$goalComment['goal_id']);
     }
 }

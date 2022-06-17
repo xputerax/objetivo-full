@@ -49,4 +49,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 
     Route::post('/submit-comment', [GoalCommentController::class, 'store'])->name('submit-comment.store');
+
+    Route::delete('/delete-comment/{goalComment}', [GoalCommentController::class, 'destroy'])->name('delete-comment.destroy');
 });

@@ -31,9 +31,13 @@
                                 <span class="badge bg-success">Mentor</span>
                                 @endif
                                 <div style="float: right">
-                                    <button class="btn btn-outline-danger">
-                                        <i class="bx bx-trash"></i>
-                                    </button>
+                                    <form action="{{ route('delete-comment.destroy', $comment) }}" method="post">
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                        @method('delete')
+                                        @csrf
+                                    </form>
                                 </div>
                             </h5>
                             <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
