@@ -30,6 +30,8 @@
                                 @else
                                 <span class="badge bg-success">Mentor</span>
                                 @endif
+
+                                @if ($comment['user_id'] == $user->id)
                                 <div style="float: right">
                                     <form action="{{ route('delete-comment.destroy', $comment) }}" method="post">
                                         <button type="submit" class="btn btn-outline-danger">
@@ -39,6 +41,7 @@
                                         @csrf
                                     </form>
                                 </div>
+                                @endif
                             </h5>
                             <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
                             <br><br>
