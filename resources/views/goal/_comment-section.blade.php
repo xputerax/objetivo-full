@@ -12,6 +12,7 @@
                             <textarea type="text" name="comment" class="form-control" style="height: 100px" placeholder="Type your comment..."></textarea>
                             <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
                             <input type="hidden" value="{{ $user->id }} " name="userid"/>
+                            <input type="hidden" value=0 name="votetype"/>
                             <br>
                             <button type="submit" class="btn btn-outline-primary">Submit comment</button>
                         </form>
