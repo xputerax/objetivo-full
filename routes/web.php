@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\GoalBoardController;
+use App\Http\Controllers\GoalCommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenteeController;
 use App\Http\Controllers\MentorController;
@@ -47,4 +48,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 
+    Route::post('/submit-comment', [GoalCommentController::class, 'store'])->name('submit-comment.store');
 });

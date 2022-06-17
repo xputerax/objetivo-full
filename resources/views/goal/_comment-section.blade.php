@@ -7,8 +7,11 @@
                     <h5 class="card-title">Comments Section</h5>
 
                     <div>
-                        <form>
-                            <textarea name="comment" class="form-control" style="height: 100px" placeholder="Type your comment..."></textarea>
+                        <form action="{{ route('submit-comment.store') }}" method="post">
+                        @csrf
+                            <textarea type="text" name="comment" class="form-control" style="height: 100px" placeholder="Type your comment..."></textarea>
+                            <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                            <input type="hidden" value="{{ $user->id }} " name="userid"/>
                             <br>
                             <button type="submit" class="btn btn-outline-primary">Submit comment</button>
                         </form>
