@@ -22,7 +22,7 @@
                             <h5 class="comment-title">
                                 <img src="{{ asset('/img/blankprofile.png') }}" width="50" height="50" alt="Profile" class="comment-profile-pic">
                                 {{ $comment['username'] }}
-                                @if ($comment['user_id'] == 2)
+                                @if ($comment['user_id'] == $user->id)
                                 <span class="badge bg-primary">You</span>
                                 @else
                                 <span class="badge bg-success">Mentor</span>
