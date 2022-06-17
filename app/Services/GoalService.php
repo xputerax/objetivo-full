@@ -119,7 +119,7 @@ class GoalService implements GoalServiceInterface
 
         //Calculate difference in hours
         $hours = (strtotime($duedate) - strtotime($currdate))/3600;
-        $hours -= 8; //Correct the timezone
+        //$hours -= 8; //Correct the timezone
         $hours = (int)$hours; //Convert to integer
 
         return abs($hours);

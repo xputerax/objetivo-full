@@ -63,7 +63,7 @@ class CheckReminder extends Command
 
             //Calculate difference in hours
             $hours = (strtotime($duedate) - strtotime($currdate))/3600;
-            $hours -= 8; //Correct the timezone
+            //$hours -= 8; //Correct the timezone
             $hours = (int)$hours; //Convert to integer
 
             //Check if the hours is equals to 24
