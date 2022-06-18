@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+    
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
     Route::get('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
+
+    Route::post('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
 
     Route::get('/action-plan/{id}', [ActionPlanController::class, 'show'])->name('action-plan.show');
 

@@ -12,4 +12,5 @@ interface GoalServiceInterface
     public function getComments($goalid);
     public function getInterval($from_date);
     public function queryUpdateActivityStatus();
+    public function getPercentageCompleted($goalId);
 }

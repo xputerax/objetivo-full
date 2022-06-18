@@ -89,6 +89,7 @@ class GoalController extends Controller
             'actionPlans' => $this->goalService->getActionPlans($goalId),
             'activities' => $this->goalService->getActivities(),
             'comments' => $this->goalService->getComments($goalId),
+            'percentageCompleted' => $this->goalService->getPercentageCompleted($goalId),
         ];
 
         return view('goal', $data);

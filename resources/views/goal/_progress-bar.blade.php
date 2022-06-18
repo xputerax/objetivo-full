@@ -29,7 +29,8 @@
 
         $checkboxes.on('change', function() {
             var checked = $checkboxes.filter(':checked').length;
-            var progressWidth = Math.floor((checked / total) * 100);
+            // var progressWidth = Math.floor((checked / total) * 100);
+            var progressWidth = {{ $percentageCompleted }}
             $('.progress-bar').css('width', progressWidth + '%').attr('aria-valuenow', progressWidth);
             progressBar.innerHTML = progressWidth + "%";
         });
