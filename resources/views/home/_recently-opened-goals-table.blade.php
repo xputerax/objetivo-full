@@ -12,7 +12,8 @@
             <!-- Goal -->
             <tr>
                 <td>
-                    <a href="#" class="text-primary">
+                    <a href="{{ route('goal.show', [$goal->id]) }}" class="text-primary">
+                    {{-- <a href="{{ url('/goal/'.$goal->id) }}" class="text-primary"> --}}
                         {{ $goal->title }}
                 </td>
                 <td>{{ $goal->due_at }}</td>
