@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('g_status');
             $table->string('smart_goal');
             $table->timestamp('due_at');
+            $table->timestamp('last_viewed_at');
             $table->timestamps();
         });
     }

@@ -36,6 +36,7 @@ class Goal extends Model
         'g_status',
         'smart_goal',
         'due_at',
+        'last_viewed_at',
     ];
 
     /**

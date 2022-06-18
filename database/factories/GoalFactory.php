@@ -21,7 +21,8 @@ class GoalFactory extends Factory
             'description' => $this->faker->sentence(),
             'g_status' => \App\Models\Goal::GOAL_NOT_STARTED,
             'smart_goal' => $this->faker->sentence(),
-            'due_at' => now()->addDays($this->faker->numberBetween(0, 10))
+            'due_at' => now()->addDays($this->faker->numberBetween(0, 10)),
+            'last_viewed_at' => now()
         ];
     }
 }
