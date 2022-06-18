@@ -1,9 +1,9 @@
 <!-- Action Plan Modal -->
-<div class="modal fade" id="actionPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="actionPlanModal" tabindex="-1" aria-labelledby="actionPlanModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">
+                <h4 class="modal-title" id="actionPlanModal">
                     Eat 2000 calories daily
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

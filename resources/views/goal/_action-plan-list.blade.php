@@ -1,6 +1,8 @@
     <!-- Action Plan List Cards -->
     <section class="section action-plan-list-card-section">
         <div class="row">
+
+            <!-- 1st card -->
             <div class="col-lg-4">
                 {{-- Action Plan Card --}}
                 @foreach ($actionPlans as $actionPlan)
@@ -48,7 +50,8 @@
                 {{-- End Action Plan Card --}}
             </div>
 
-            <div class="col-lg-4">
+            <!-- 2nd card -->
+            <!-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">Strum practice</div>
                     <div class="card-body">
@@ -90,9 +93,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4">
+            <!-- 3rd card -->
+            <!-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">Perform at concert</div>
                     <div class="card-body">
@@ -111,10 +115,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
+
+            <!-- action plan modal -->
             <div class="col-4" style="padding-left: 0px;">
-                <!-- Add action plan -->
+                <!-- Add action plan button -->
                 <div class="d-grid gap-2" style="padding-bottom: 30px;">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#verticalycentered1">
@@ -125,19 +131,19 @@
                 <div class="modal fade" id="verticalycentered1" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div> <!-- / .modal-header -->
+                            <form action="{{ route('submit-action-plan.store') }}" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div> <!-- / .modal-header -->
 
-                            <div class="modal-body">
-                                <form>
+                                <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="inputNanme4" class="form-label">
                                             <strong>Action Plan Title</strong>
                                         </label>
-                                        <input type="text" class="form-control" id="inputNanme4">
+                                        <input type="text" class="form-control" name="title">
                                     </div>
 
                                     <div class="row">
@@ -145,43 +151,44 @@
                                             <label for="message-text" class="col-form-label">
                                                 <strong>Start Date</strong>
                                             </label>
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" name="start_at">
                                         </div>
                                         <div class="col-6">
                                             <label for="message-text" class="col-form-label">
                                                 <strong>Due Date</strong>
                                             </label>
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" name="end_at">
                                         </div>
                                     </div>
-                                </form>
+                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                                    <input type="hidden" value="{{ $user->id }} " name="userid"/>
 
-                                <hr>
+                                    <hr>
 
-                                <!--Action Plan & Action Plan List Cards-->
-                                <section class="action-plan-section">
-                                    <strong>Activities</strong> <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <input class="form-control mb-2" placeholder="Activity" type="text"
-                                                id="inputAction">
-                                            <ul id="actionPlans"></ul>
-                                            <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
-                                                + Add New Activity
-                                            </button>
+                                    <!--Action Plan & Action Plan List Cards-->
+                                    <!-- <section class="action-plan-section">
+                                        <strong>Activities</strong> <br>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <input class="form-control mb-2" placeholder="Activity" type="text"
+                                                    id="inputAction">
+                                                <ul id="actionPlans"></ul>
+                                                <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
+                                                    + Add New Activity
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
-                            </div> <!-- / .modal-body -->
+                                    </section> -->
+                                </div> <!-- / .modal-body -->
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                    Save changes
-                                </button>
-                            </div> <!-- / .modal-footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+                                </div> <!-- / .modal-footer -->
+
+                            </form>
                         </div> <!-- / .modal-content -->
                     </div> <!-- / .modal-dialog -->
                 </div> <!-- / .modal -->
