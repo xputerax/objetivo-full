@@ -10,12 +10,16 @@
                         <div class="card-header">{{ $actionPlan->title }}</div>
                         <div class="card-body">
                             <div class="row align-items-center mt-3 mb-2">
-                                <div class="col-9">
-                                    <input class="form-control" placeholder="Add activity" type="text" id="inputText">
-                                </div>
-                                <div class="col-1">
-                                    <button onclick="addList()" class="btn btn-primary btn-sm">Add</button>
-                                </div>
+                                <form>
+                                    <div class="col-9">
+                                        <input class="form-control" placeholder="Add activity" type="text" name="a_title">
+                                        <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
+                                        <input type="hidden" value="pending" name="a_status"/>
+                                    </div>
+                                    <div class="col-1">
+                                    <button type="submit" class="btn btn-outline-primary">Submit activity</button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -160,8 +164,7 @@
                                             <input type="date" class="form-control" name="end_at">
                                         </div>
                                     </div>
-                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
-                                    <input type="hidden" value="{{ $user->id }} " name="userid"/>
+                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
 
                                     <hr>
 
