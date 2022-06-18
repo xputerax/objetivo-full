@@ -139,6 +139,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <form action="{{ route('submit-action-plan.store') }}" method="post">
+                                @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
