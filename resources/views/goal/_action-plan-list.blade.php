@@ -1,6 +1,6 @@
-    <!-- Action Plan List Cards -->
-    <section class="section action-plan-list-card-section">
-        <div class="row">
+  <!-- Action Plan List Cards -->
+  <section class="section action-plan-list-card-section">
+      <div class="row">
 
             <!-- 1st card -->
             <div class="col-lg-4">
@@ -56,8 +56,8 @@
                 {{-- End Action Plan Card --}}
             </div>
 
-            <!-- 2nd card -->
-            <!-- <div class="col-lg-4">
+          <!-- 2nd card -->
+          <!-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">Strum practice</div>
                     <div class="card-body">
@@ -102,8 +102,8 @@
                 </div>
             </div> -->
 
-            <!-- 3rd card -->
-            <!-- <div class="col-lg-4">
+          <!-- 3rd card -->
+          <!-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">Perform at concert</div>
                     <div class="card-body">
@@ -125,34 +125,33 @@
             </div> -->
 
 
-            <!-- action plan modal -->
-            <div class="col-4" style="padding-left: 0px;">
-                <!-- Add action plan button -->
-                <div class="d-grid gap-2" style="padding-bottom: 30px;">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#verticalycentered1">
-                        Add Action Plan
-                    </button>
-                </div>
+          <!-- action plan modal -->
+          <div class="col-4" style="padding-left: 0px;">
+              <!-- Add action plan button -->
+              <div class="d-grid gap-2" style="padding-bottom: 30px;">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      data-bs-target="#verticalycentered1">
+                      Add Action Plan
+                  </button>
+              </div>
 
-                <div class="modal fade" id="verticalycentered1" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content">
-                            <form action="{{ route('submit-action-plan.store') }}" method="post">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div> <!-- / .modal-header -->
+              <div class="modal fade" id="verticalycentered1" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                          <form action="{{ route('submit-action-plan.store') }}" method="post">
+                              <div class="modal-header">
+                                  <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                              </div> <!-- / .modal-header -->
 
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="inputNanme4" class="form-label">
-                                            <strong>Action Plan Title</strong>
-                                        </label>
-                                        <input type="text" class="form-control" name="title">
-                                    </div>
+                              <div class="modal-body">
+                                  <div class="mb-3">
+                                      <label for="inputNanme4" class="form-label">
+                                          <strong>Action Plan Title</strong>
+                                      </label>
+                                      <input type="text" class="form-control" name="title">
+                                  </div>
 
                                     <div class="row">
                                         <div class="col-6">
@@ -170,10 +169,10 @@
                                     </div>
                                     <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
 
-                                    <hr>
+                                  <hr>
 
-                                    <!--Action Plan & Action Plan List Cards-->
-                                    <!-- <section class="action-plan-section">
+                                  <!--Action Plan & Action Plan List Cards-->
+                                  <!-- <section class="action-plan-section">
                                         <strong>Activities</strong> <br>
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -186,19 +185,19 @@
                                             </div>
                                         </div>
                                     </section> -->
-                                </div> <!-- / .modal-body -->
+                              </div> <!-- / .modal-body -->
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                        Close
-                                    </button>
-                                    <button type="submit" class="btn btn-outline-primary">Save Changes</button>
-                                </div> <!-- / .modal-footer -->
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                      Close
+                                  </button>
+                                  <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+                              </div> <!-- / .modal-footer -->
 
-                            </form>
-                        </div> <!-- / .modal-content -->
-                    </div> <!-- / .modal-dialog -->
-                </div> <!-- / .modal -->
-            </div> <!-- / .col -->
-        </div> <!-- / .row -->
-    </section>
+                          </form>
+                      </div> <!-- / .modal-content -->
+                  </div> <!-- / .modal-dialog -->
+              </div> <!-- / .modal -->
+          </div> <!-- / .col -->
+      </div> <!-- / .row -->
+  </section>

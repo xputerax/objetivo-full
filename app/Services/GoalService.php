@@ -75,7 +75,9 @@ class GoalService implements GoalServiceInterface
         }
 
         // Retrieve all activities within the goal
-        $activities = Activity::select('id', 'action_plan_id', 'title', 'a_status', 'created_at', 'updated_at')
+        $activities = Activity::select('activities.id', 'action_plan_id', 'activities.title', 'a_status', 'activities.created_at', 'activities.updated_at', 'goals.id')
+            ->join('action_plans', 'action_plan_id', '=', 'action_plans.id')
+            ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
             ->whereIn('action_plan_id', $actionPlansIdArray)
             ->get();
 
@@ -138,5 +140,44 @@ class GoalService implements GoalServiceInterface
     // To update db in case user checks/unchecks any box
     public function queryUpdateActivityStatus()
     {
+        $activities = Activity::select('id', 'a_status')
+            ->get();
+
+        foreach ($activities as $activity) {
+            if (Request::get('a_checkbox')) {
+                // Query to update db
+                Activity::select('id', 'a_status')
+                    ->where('id', '=', $activity->id)
+                    ->update(['a_status' => "completed"]);
+            } else {
+                Activity::select('id', 'a_status')
+                    ->where('id', '=', $activity->id)
+                    ->update(['a_status' => "completed"]); // Change back to 'pending' after test
+            }
+        }
+    }
+
+    public function getPercentageCompleted($goalId)
+    {
+        // Get activitiesCount
+        $activitiesCount = Activity::select('id')
+            ->join('action_plans', 'action_plans.id', '=', 'activities.action_plan_id')
+            ->join('goals', 'goals.id', '=', 'action_plans.goal_id',)
+            ->where('goals.id', '=', $goalId)
+            ->count();
+
+        // Get completedActivitiesCount
+        $completedActivitiesCount = Activity::select('id')
+            ->join('action_plans', 'action_plans.id', '=', 'activities.action_plan_id')
+            ->join('goals', 'goals.id', '=', 'action_plans.goal_id',)
+            ->where('goals.id', '=', $goalId)
+            ->where('a_status', '=', 'completed')
+            ->count();
+
+        // Compute percentage of completion
+        $percentageCompleted = ceil($completedActivitiesCount / $activitiesCount) * 100;
+
+        // Update progress bar
+        return $percentageCompleted;
     }
 }
