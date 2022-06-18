@@ -11,4 +11,5 @@ interface GoalServiceInterface
     public function getActivities();
     public function getComments($goalid);
     public function getInterval($from_date);
+    public function queryUpdateActivityStatus();
 }
