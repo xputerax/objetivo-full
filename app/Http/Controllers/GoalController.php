@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -79,7 +79,8 @@ class GoalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($goalId)
-    {
+    {   
+        $this->goalService->queryUpdateActivityStatus();
         $user = auth()->user();
 
         $data = [

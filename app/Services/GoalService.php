@@ -9,6 +9,7 @@ use App\Models\Activity;
 use App\Models\GoalComment;
 use App\Models\User;
 use App\Models\CommentVote;
+use Request;
 
 class GoalService implements GoalServiceInterface
 {
@@ -25,10 +26,10 @@ class GoalService implements GoalServiceInterface
      */
     public function getGoals()
     {
-        $goals = Goal::select('id','user_id','title','description','smart_goal','due_at','created_at','updated_at')
-            ->where('user_id',$this->user->id)
+        $goals = Goal::select('id', 'user_id', 'title', 'description', 'smart_goal', 'due_at', 'created_at', 'updated_at')
+            ->where('user_id', $this->user->id)
             ->get();
-        
+
         return $goals;
     }
 
@@ -49,14 +50,14 @@ class GoalService implements GoalServiceInterface
      * @param $goalid
      * @return Collection
      */
-    public function getActionPlans($goalid) 
+    public function getActionPlans($goalid)
     {
         $actionPlans = ActionPlan::select('id', 'goal_id', 'title', 'ap_status', 'start_at', 'end_at')
             ->where('goal_id', $goalid)
             ->get();
 
         $this->actionPlans = $actionPlans;
-        
+
         return $actionPlans;
     }
 
@@ -87,34 +88,30 @@ class GoalService implements GoalServiceInterface
      * @param $goalid
      * @return Collection
      */
-    public function getComments($goalid) 
+    public function getComments($goalid)
     {
-        $comments = GoalComment::select('id','goal_id','user_id','body','created_at','updated_at')
-            ->where('goal_id',$goalid)
+        $comments = GoalComment::select('id', 'goal_id', 'user_id', 'body', 'created_at', 'updated_at')
+            ->where('goal_id', $goalid)
             ->latest()
             ->get();
 
         //Append name to each comment
         $users = User::all();
-        foreach($comments as $comment) 
-        {
-            foreach($users as $user) 
-            {
-                if($comment['user_id'] == $user['id']) 
-                {
+        foreach ($comments as $comment) {
+            foreach ($users as $user) {
+                if ($comment['user_id'] == $user['id']) {
                     $comment['username'] = $user['name'];
                     $comment['timeinterval'] = $this->getInterval($comment['created_at']);
                     break;
                 }
             }
-            
+
             //Append votetype to the each comment
             $vote = CommentVote::find($comment['id']);
-            if($vote!=null) {
+            if ($vote != null) {
                 $comment['commentvote'] = $vote['vote_type'];
                 $comment['commentvoteid'] = $vote['id'];
-            }
-            else {
+            } else {
                 $comment['commentvote'] = 0;
                 $comment['commentvoteid'] = null;
             }
@@ -123,17 +120,23 @@ class GoalService implements GoalServiceInterface
         return $comments;
     }
 
-    public function getInterval($from_date) {
+    public function getInterval($from_date)
+    {
         $timeformat = 'Y-m-d H:i:s';
         //Date in Date object
-        $duedate = date($timeformat,strtotime($from_date));
+        $duedate = date($timeformat, strtotime($from_date));
         $currdate = date($timeformat);
 
         //Calculate difference in hours
-        $hours = (strtotime($duedate) - strtotime($currdate))/3600;
+        $hours = (strtotime($duedate) - strtotime($currdate)) / 3600;
         //$hours -= 8; //Correct the timezone
         $hours = (int)$hours; //Convert to integer
 
         return abs($hours);
+    }
+
+    // To update db in case user checks/unchecks any box
+    public function queryUpdateActivityStatus()
+    {
     }
 }

@@ -24,7 +24,9 @@
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
                                                         <div class="col-1">
-                                                            <input class="checkbox" type="checkbox">
+                                                            <input class="checkbox" name="checkbox" type="checkbox"
+                                                                value="checked"
+                                                                @if ($activity->a_status === 'completed') checked @endif>
                                                         </div>
                                                         <div class="col-10">
                                                             <span class="p"
@@ -68,8 +70,9 @@
                                     role="tablist">
                                     <li class="nav-item flex-fill" role="presentation">
                                         <button id="all" class="nav-link w-100 active" id="home-tab"
-                                            data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button"
-                                            role="tab" aria-controls="home" aria-selected="true">All</button>
+                                            data-bs-toggle="tab" data-bs-target="#bordered-justified-home"
+                                            type="button" role="tab" aria-controls="home"
+                                            aria-selected="true">All</button>
                                     </li>
                                     <li class="nav-item flex-fill" role="presentation">
                                         <button id="pending" class="nav-link w-100" id="profile-tab"
