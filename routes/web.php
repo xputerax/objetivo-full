@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CommentVoteController;
 use App\Http\Controllers\GoalBoardController;
+use App\Http\Controllers\GoalCommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenteeController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoalController;
+use App\Http\Controllers\ActionPlanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +46,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
 
+    Route::get('/action-plan/{id}', [ActionPlanController::class, 'show'])->name('action-plan.show');
+
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
 
+    Route::post('/submit-comment', [GoalCommentController::class, 'store'])->name('submit-comment.store');
+
+    Route::delete('/delete-comment/{goalComment}', [GoalCommentController::class, 'destroy'])->name('delete-comment.destroy');
+
+    Route::put('/vote-comment/{commentVoteID}', [CommentVoteController::class, 'update'])->name('vote-comment.update');
 });

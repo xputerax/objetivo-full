@@ -17,7 +17,10 @@ class CommentVoteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'goal_comment_id' => \App\Models\GoalComment::inRandomOrder()->first()->id,
+            'vote_type' => $this->faker->numberBetween(0,2),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

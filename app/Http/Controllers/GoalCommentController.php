@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreGoalCommentRequest;
 use App\Http\Requests\UpdateGoalCommentRequest;
 use App\Models\GoalComment;
+use App\Models\CommentVote;
 
 class GoalCommentController extends Controller
 {
@@ -36,7 +37,22 @@ class GoalCommentController extends Controller
      */
     public function store(StoreGoalCommentRequest $request)
     {
-        //
+        $goalComment = new GoalComment;
+        $goalComment->goal_id = $request->goalid;
+        $goalComment->user_id = $request->userid;
+        $goalComment->body = $request->comment;
+        $goalComment->created_at = now();
+        $goalComment->updated_at = now();
+        $goalComment->save();
+        
+        $commentVote = new CommentVote;
+        $commentVote->goal_comment_id = $goalComment->id;
+        $commentVote->vote_type = $request->votetype;
+        $commentVote->created_at = now();
+        $commentVote->updated_at = now();
+        $commentVote->save();
+
+        return redirect()->route('goal.show',$request->goalid);
     }
 
     /**
@@ -81,6 +97,8 @@ class GoalCommentController extends Controller
      */
     public function destroy(GoalComment $goalComment)
     {
-        //
+        GoalComment::destroy($goalComment['id']);
+
+        return redirect()->route('goal.show',$goalComment['goal_id']);
     }
 }

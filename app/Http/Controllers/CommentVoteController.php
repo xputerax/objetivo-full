@@ -65,12 +65,16 @@ class CommentVoteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateCommentVoteRequest  $request
-     * @param  \App\Models\CommentVote  $commentVote
+     * @param  int $commentVoteID
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCommentVoteRequest $request, CommentVote $commentVote)
+    public function update(UpdateCommentVoteRequest $request, $commentVoteID)
     {
-        //
+        $commentVote = CommentVote::find($commentVoteID);
+        $commentVote->vote_type = $request->votetype;
+        $commentVote->save();
+
+        return redirect()->route('goal.show',$request->goalid);
     }
 
     /**

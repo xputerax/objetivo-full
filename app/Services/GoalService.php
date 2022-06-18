@@ -8,6 +8,7 @@ use App\Models\ActionPlan;
 use App\Models\Activity;
 use App\Models\GoalComment;
 use App\Models\User;
+use App\Models\CommentVote;
 
 class GoalService implements GoalServiceInterface
 {
@@ -25,7 +26,7 @@ class GoalService implements GoalServiceInterface
     public function getGoals()
     {
         $goals = Goal::select('id','user_id','title','description','smart_goal','due_at','created_at','updated_at')
-            ->where('user_id',2)  //Use $this->user->id for current user
+            ->where('user_id',$this->user->id)
             ->get();
         
         return $goals;
@@ -93,7 +94,7 @@ class GoalService implements GoalServiceInterface
             ->latest()
             ->get();
 
-        //Append name to an individual model
+        //Append name to each comment
         $users = User::all();
         foreach($comments as $comment) 
         {
@@ -105,6 +106,17 @@ class GoalService implements GoalServiceInterface
                     $comment['timeinterval'] = $this->getInterval($comment['created_at']);
                     break;
                 }
+            }
+            
+            //Append votetype to the each comment
+            $vote = CommentVote::find($comment['id']);
+            if($vote!=null) {
+                $comment['commentvote'] = $vote['vote_type'];
+                $comment['commentvoteid'] = $vote['id'];
+            }
+            else {
+                $comment['commentvote'] = 0;
+                $comment['commentvoteid'] = null;
             }
         }
 
@@ -119,7 +131,7 @@ class GoalService implements GoalServiceInterface
 
         //Calculate difference in hours
         $hours = (strtotime($duedate) - strtotime($currdate))/3600;
-        $hours -= 8; //Correct the timezone
+        //$hours -= 8; //Correct the timezone
         $hours = (int)$hours; //Convert to integer
 
         return abs($hours);
