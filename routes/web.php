@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
 
+    Route::post('/submit-activity', [ActivityController::class, 'store'])->name('submit-activity.store');
+
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');

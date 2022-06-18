@@ -36,7 +36,17 @@ class ActionPlanController extends Controller
      */
     public function store(StoreActionPlanRequest $request)
     {
-        //
+        $goalActionPlan = new GoalActionPlan;
+        $goalActionPlan->goal_id = $request->goal_id;
+        $goalActionPlan->title = $request->title;
+        $goalActionPlan->ap_status = "not_started";
+        $goalActionPlan->start_at = $request->start_at;
+        $goalActionPlan->end_at = $request->end_at;
+        $goalActionPlan->created_at = now();
+        $goalActionPlan->updated_at = now();
+        $goalActionPlan->save();
+        
+        return redirect()->route('goal.show',$request->goal_id);
     }
 
     /**

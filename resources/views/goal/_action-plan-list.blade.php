@@ -2,59 +2,59 @@
   <section class="section action-plan-list-card-section">
       <div class="row">
 
-          <!-- 1st card -->
-          <div class="col-lg-4">
-              {{-- Action Plan Card --}}
-              @foreach ($actionPlans as $actionPlan)
-                  <div class="card">
-                      <div class="card-header">{{ $actionPlan->title }}</div>
-                      <div class="card-body">
-                          <div class="row align-items-center mt-3 mb-2">
-                              <div class="col-9">
-                                  <input class="form-control" placeholder="Add activity" type="text" id="inputText">
-                              </div>
-                              <div class="col-1">
-                                  <button onclick="addList()" class="btn btn-primary btn-sm">Add</button>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-12">
-                                  <ul class=" list-group" id="list">
-                                      @foreach ($activities as $activity)
-                                          @if ($activity->action_plan_id === $actionPlan->id)
-                                              <!-- Activity -->
-                                              <li class="list-group-item " id="list0">
-                                                  <div class="row">
-                                                      <div class="col-1">
-                                                          <form action="#" method="post"
-                                                              id="checkbox-{{ $activity->id }}">
-                                                              <input class="checkbox" name="a_checkbox" type="checkbox"
-                                                                  value="checked"
-                                                                  @if ($activity->a_status === 'completed') checked @endif
-                                                                  onChange="">
-                                                          </form>
-                                                      </div>
-                                                      <div class="col-10">
-                                                          <span class="p"
-                                                              id="text0">{{ $activity->title }}</span>
-                                                      </div>
-                                                  </div>
-                                                  <button class="btn btn-danger btn-sm mt-2"
-                                                      onClick="deleteList(0)">Delete</button>
-                                                  <button class="btn btn-primary btn-sm mt-2"
-                                                      onClick="editList(0)">Edit</button>
-                                                  <!-- End Activity -->
-                                              </li>
-                                          @endif
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              @endforeach
-              {{-- End Action Plan Card --}}
-          </div>
+            <!-- 1st card -->
+            <div class="col-lg-4">
+                {{-- Action Plan Card --}}
+                @foreach ($actionPlans as $actionPlan)
+                    <div class="card">
+                        <div class="card-header">{{ $actionPlan->title }}</div>
+                        <div class="card-body">
+                            <div class="row align-items-center mt-3 mb-2">
+                                <form>
+                                    <div class="col-9">
+                                        <input class="form-control" placeholder="Add activity" type="text" name="a_title">
+                                        <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
+                                        <input type="hidden" value="pending" name="a_status"/>
+                                    </div>
+                                    <div class="col-1">
+                                    <button type="submit" class="btn btn-outline-primary">Submit activity</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class=" list-group" id="list">
+                                        @foreach ($activities as $activity)
+                                            @if ($activity->action_plan_id === $actionPlan->id)
+                                                <!-- Activity -->
+                                                <li class="list-group-item " id="list0">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input class="checkbox" name="checkbox" type="checkbox"
+                                                                value="checked"
+                                                                @if ($activity->a_status === 'completed') checked @endif>
+                                                        </div>
+                                                        <div class="col-10">
+                                                            <span class="p"
+                                                                id="text0">{{ $activity->title }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-danger btn-sm mt-2"
+                                                        onClick="deleteList(0)">Delete</button>
+                                                    <button class="btn btn-primary btn-sm mt-2"
+                                                        onClick="editList(0)">Edit</button>
+                                                    <!-- End Activity -->
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- End Action Plan Card --}}
+            </div>
 
           <!-- 2nd card -->
           <!-- <div class="col-lg-4">
@@ -153,6 +153,7 @@
                                       <input type="text" class="form-control" name="title">
                                   </div>
 
+<<<<<<< HEAD
                                   <div class="row">
                                       <div class="col-6">
                                           <label for="message-text" class="col-form-label">
@@ -169,6 +170,23 @@
                                   </div>
                                   <input type="hidden" value="{{ $goal->id }} " name="goalid" />
                                   <input type="hidden" value="{{ $user->id }} " name="userid" />
+=======
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="message-text" class="col-form-label">
+                                                <strong>Start Date</strong>
+                                            </label>
+                                            <input type="date" class="form-control" name="start_at">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="message-text" class="col-form-label">
+                                                <strong>Due Date</strong>
+                                            </label>
+                                            <input type="date" class="form-control" name="end_at">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+>>>>>>> fe22b413ab9db3d4e22a01e76abca655aa9239d6
 
                                   <hr>
 
