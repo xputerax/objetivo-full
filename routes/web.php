@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/action-plan/{id}', [ActionPlanController::class, 'show'])->name('action-plan.show');
 
+    Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
+
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 
     Route::get('/mentees', [MenteeController::class, 'index'])->name('mentees.index');
