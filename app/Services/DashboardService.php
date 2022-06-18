@@ -6,6 +6,7 @@ use App\Contracts\DashboardServiceInterface;
 use App\Models\Goal;
 use App\Models\ActionPlan;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardService implements DashboardServiceInterface
 {
@@ -165,10 +166,12 @@ class DashboardService implements DashboardServiceInterface
 
     public function getGoals()
     {
-        return $goals = Goal::select('goals.id', 'title', 'due_at', 'users.name', 'g_status', 'user_id')
+        $goals = Goal::select('goals.id', 'title', 'due_at', 'users.name', 'g_status', 'user_id')
             ->join('goal_mentors', 'goal_mentors.goal_id', '=', 'goals.id')
             ->join('users', 'users.id', '=', 'goal_mentors.mentor_id')
             ->where('goals.user_id', '=', auth()->id())
             ->get();
+
+        return $goals;
     }
 }

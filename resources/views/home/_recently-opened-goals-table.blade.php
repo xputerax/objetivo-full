@@ -1,3 +1,6 @@
+<?php use Carbon\Carbon;
+?>
+
 <table class="table table-borderless datatable">
     <thead>
         <tr>
@@ -13,10 +16,14 @@
             <tr>
                 <td>
                     <a href="{{ route('goal.show', [$goal->id]) }}" class="text-primary">
-                    {{-- <a href="{{ url('/goal/'.$goal->id) }}" class="text-primary"> --}}
+                        {{-- <a href="{{ url('/goal/'.$goal->id) }}" class="text-primary"> --}}
                         {{ $goal->title }}
                 </td>
-                <td>{{ $goal->due_at }}</td>
+                <td>
+                    <?php
+                    $dueAt = Carbon::parse($goal->due_at);
+                    ?>
+                    {{ $dueAt->toFormattedDateString() }}</td>
                 <td>{{ $goal->name }}</td>
                 <td>
                     @if ($goal->g_status == 'in_progress')
