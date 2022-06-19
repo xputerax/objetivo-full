@@ -13,4 +13,5 @@ interface GoalServiceInterface
     public function getInterval($from_date);
     public function queryUpdateActivityStatus();
     public function getPercentageCompleted($goalId);
+    public function queryUpdateLastViewedAt($goalId);
 }

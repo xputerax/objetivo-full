@@ -81,6 +81,8 @@ class GoalController extends Controller
     public function show($goalId)
     {   
         $this->goalService->queryUpdateActivityStatus();
+        $this->goalService->queryUpdateLastViewedAt($goalId);
+
         $user = auth()->user();
 
         $data = [
