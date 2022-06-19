@@ -157,7 +157,7 @@ class GoalService implements GoalServiceInterface
         }
     }
 
-    public function getPercentageCompleted($goalId)
+    public static function getPercentageCompleted($goalId)
     {
         // Get activitiesCount
         $activitiesCount = Activity::select('id')
