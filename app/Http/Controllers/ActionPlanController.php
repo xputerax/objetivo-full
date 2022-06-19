@@ -91,6 +91,8 @@ class ActionPlanController extends Controller
      */
     public function destroy(ActionPlan $actionPlan)
     {
-        //
+        ActionPlan::destroy($actionPlan['id']);
+
+        return redirect()->route('goal.show',$actionPlan['goal_id']);
     }
 }

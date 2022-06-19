@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
 
+    Route::delete('/delete-action-plan/{actionPlan}', [ActionPlanController::class, 'destroy'])->name('delete-action-plan.destroy');
+
     Route::post('/submit-activity', [ActivityController::class, 'store'])->name('submit-activity.store');
 
     Route::post('/delete-activity', [ActivityController::class, 'destroy'])->name('delete-activity.destroy');
