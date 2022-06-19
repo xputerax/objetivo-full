@@ -180,4 +180,11 @@ class GoalService implements GoalServiceInterface
         // Update progress bar
         return $percentageCompleted;
     }
+
+    // To update last_viewed_at field in table GOALS whenever user enters a goal page
+    public function queryUpdateLastViewedAt($goalId) {
+        Goal::select('id', 'last_viewed_at')
+            ->where('id', '=', $goalId)
+            ->update(['last_viewed_at' => now()]);
+    }
 }

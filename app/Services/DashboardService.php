@@ -170,6 +170,7 @@ class DashboardService implements DashboardServiceInterface
             ->join('goal_mentors', 'goal_mentors.goal_id', '=', 'goals.id')
             ->join('users', 'users.id', '=', 'goal_mentors.mentor_id')
             ->where('goals.user_id', '=', auth()->id())
+            ->orderBy('last_viewed_at', 'DESC')
             ->get();
 
         return $goals;
