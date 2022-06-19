@@ -21,6 +21,7 @@
                                     </div>
                                 </form>
                             </div>
+                            <!-- Activity List -->
                             <div class="row">
                                 <div class="col-12">
                                     <ul class=" list-group" id="list">
@@ -35,10 +36,11 @@
                                                                 @if ($activity->a_status === 'completed') checked @endif>
                                                         </div>
                                                         <div class="col-10">
-                                                            <span class="p"
-                                                                id="text0">{{ $activity->title }}</span>
+                                                            <p>{{ $activity->title }}</p>
+                                                            @if ($activity->a_status === 'completed')  <p><s>{{ $activity->title }}</s></p> @endif
                                                         </div>
                                                     </div>
+                                                    <!-- Edit and Delete Activity -->
                                                     <button class="btn btn-danger btn-sm mt-2"
                                                         onClick="deleteList(0)">Delete</button>
                                                     <button class="btn btn-primary btn-sm mt-2"
