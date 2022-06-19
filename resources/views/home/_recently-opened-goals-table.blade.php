@@ -1,5 +1,5 @@
-<?php use Carbon\Carbon;
-?>
+@php use Carbon\Carbon;
+@endphp
 
 <table class="table table-borderless datatable">
     <thead>
@@ -20,9 +20,9 @@
                         {{ $goal->title }}
                 </td>
                 <td>
-                    <?php
+                    @php
                     $dueAt = Carbon::parse($goal->due_at);
-                    ?>
+                    @endphp
                     {{ $dueAt->toFormattedDateString() }}</td>
                 <td>{{ $goal->name }}</td>
                 <td>
