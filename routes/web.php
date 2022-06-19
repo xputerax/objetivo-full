@@ -10,6 +10,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ActionPlanController;
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -47,8 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
 
     Route::post('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
-
-    Route::get('/action-plan/{id}', [ActionPlanController::class, 'show'])->name('action-plan.show');
 
     Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
 

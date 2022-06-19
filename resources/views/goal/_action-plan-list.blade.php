@@ -10,15 +10,17 @@
                         <div class="card-header">{{ $actionPlan->title }}</div>
                         <div class="card-body">
                             <div class="row align-items-center mt-3 mb-2">
-                                <form>
+                                <form action="{{ route('submit-activity.store') }}" method="post">
+                                @csrf
                                     <div class="col-9">
                                         <input class="form-control" placeholder="Add activity" type="text" name="a_title">
                                         <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
-                                        <input type="hidden" value="pending" name="a_status"/>
+                                        <input type="hidden" value="pending" name="astatus"/>
                                     </div>
                                     <div class="col-1">
                                     <button type="submit" class="btn btn-outline-primary">Add</button>
                                     </div>
+                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
                                 </form>
                             </div>
                             <!-- Activity List -->

@@ -37,11 +37,14 @@ class ActivityController extends Controller
     public function store(StoreActivityRequest $request)
     {
         $activity = new Activity;
-        $goalComment->action_plan_id = $request->a_title;
-        $goalComment->title = $request->a_title;
-        $goalComment->created_at = now();
-        $goalComment->updated_at = now();
-        $goalComment->save();
+        $activity->action_plan_id = $request->ap_id;
+        $activity->title = $request->a_title;
+        $activity->a_status = $request->astatus;
+        $activity->created_at = now();
+        $activity->updated_at = now();
+        $activity->save();
+
+        return redirect()->route('goal.show',$request->goal_id);
     }
 
     /**
