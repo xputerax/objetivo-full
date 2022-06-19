@@ -35,7 +35,7 @@ class GoalBoardController extends Controller
 
         $data = [
             'user' => $user,
-            'goal' => $this->GoalService->getGoals(),
+            'goals' => $this->GoalService->getGoals(),
         ];
 
         return view('goal-board', $data);
