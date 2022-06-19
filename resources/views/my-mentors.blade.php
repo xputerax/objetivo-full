@@ -45,7 +45,7 @@ $temp = 0;
                                 <div class="list-group">
                                     @foreach($goals as $goal2)
                                     @if($goal1->mentor_id == $goal2->mentor_id)
-                                    <a href="goal-board-mentor.html" class="list-group-item list-group-item-action">
+                                    <a href="{{ route('goal.show', [$goal2->id]) }}" class="list-group-item list-group-item-action">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="list-title">{{ $goal2->title }}</h5>
                                             <small class="list-date text-muted">{{ $goal2->created_at }}</small>
