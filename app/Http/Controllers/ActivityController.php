@@ -91,6 +91,6 @@ class ActivityController extends Controller
     {
         Activity::destroy($activity['id']);
 
-        return redirect()->route('goal.show',$activity['goal_id']);
+        return redirect()->route('goal.show',$activity['action_plan_id']);
     }
 }

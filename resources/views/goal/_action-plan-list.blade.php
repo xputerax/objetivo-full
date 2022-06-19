@@ -48,7 +48,7 @@
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
                                                         <div class="col-1">
-                                                            <input class="checkbox" name="checkbox" type="checkbox"
+                                                            <input class="checkbox" name="a_checkbox" type="checkbox"
                                                                 @if ($activity->a_status === 'completed') checked @endif>
                                                         </div>
                                                         <div class="col-10">
@@ -60,11 +60,10 @@
                                                         </div>
                                                     </div>
                                                     <!-- Edit and Delete Activity -->
-                                                    <!-- <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
-                                                        <button class="btn btn-danger btn-sm mt-2"
-                                                            onClick="deleteList(0)">Delete</button>
-                                                            @method('delete')
-                                                    </form> -->
+                                                    <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
+                                                        <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
+                                                        @method('delete')
+                                                    </form>
                                                     <button class="btn btn-primary btn-sm mt-2"
                                                             onClick="editList(0)">Edit</button>
                                                     <!-- End Activity -->
