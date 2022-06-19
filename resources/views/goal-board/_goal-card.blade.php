@@ -17,7 +17,7 @@
                         <div id="pieChart1" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        <p class="fs-7 fw-bold">Mentor Email: oyen@gmail.com</p>
+                        {{-- <p class="fs-7 fw-bold">Mentor's Email: oyen@gmail.com</p> --}}
                         <div class="d-grid gap-2 d-md-block">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#nonexistentmodal">
