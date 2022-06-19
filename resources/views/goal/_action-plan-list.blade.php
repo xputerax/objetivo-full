@@ -7,21 +7,37 @@
                 {{-- Action Plan Card --}}
                 @foreach ($actionPlans as $actionPlan)
                     <div class="card">
-                        <div class="card-header">{{ $actionPlan->title }}</div>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-9">
+                                    {{ $actionPlan->title }}
+                                </div>
+                                <div class="col-1">
+                                    <button type="submit" class="btn"><i class="bi bi-pencil-square"></i></button>                                </div>
+                                <div class="col-1">
+                                    <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
+                                        <button type="submit" class="btn"><i class="bi bi-trash"></i></button>
+                                        @method('delete')
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                            <p>Due Date: {{ $actionPlan->end_at }}</p>
+                        </div>
                         <div class="card-body">
-                            <div class="row align-items-center mt-3 mb-2">
-                                <form action="{{ route('submit-activity.store') }}" method="post">
+                            <form action="{{ route('submit-activity.store') }}" method="post">
                                 @csrf
-                                    <div class="col-9">
+                                <div class="row justify-content-center mt-3 mb-2">
+                                    <div class="col-10">
                                         <input class="form-control" placeholder="Add activity" type="text" name="a_title">
                                         <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
                                     </div>
-                                    <div class="col-1">
-                                    <button type="submit" class="btn btn-outline-primary">Add</button>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-outline-primary">Add</button>
                                     </div>
                                     <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-                                </form>
-                            </div>
+                               </div>
+                             </form>
                             <!-- Activity List -->
                             <div class="row">
                                 <div class="col-12">
@@ -32,8 +48,8 @@
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
                                                         <div class="col-1">
-                                                            <input class="checkbox" name="checkbox" type="checkbox">
-                                                                @if ($activity->a_status === 'completed') checked @endif
+                                                            <input class="checkbox" name="checkbox" type="checkbox"
+                                                                @if ($activity->a_status === 'completed') checked @endif>
                                                         </div>
                                                         <div class="col-10">
                                                             @if ($activity->a_status === 'completed')
@@ -41,7 +57,6 @@
                                                             @else
                                                                 {{ $activity->title }}
                                                             @endif
-                                                            <!-- @if ($activity->a_status === 'completed')  <p><s>{{ $activity->title }}</s></p> @endif -->
                                                         </div>
                                                     </div>
                                                     <!-- Edit and Delete Activity -->
@@ -111,30 +126,9 @@
                 </div>
             </div> -->
 
-          <!-- 3rd card -->
-          <!-- <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">Perform at concert</div>
-                    <div class="card-body">
-                        <div class="row align-items-center mt-3 mb-2">
-                            <div class="col-9">
-                                <input class="form-control" placeholder="Add activity" type="text" id="inputText">
-                            </div>
-                            <div class="col-1">
-                                <button onclick="addList()" class="btn btn-primary btn-sm">Add</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class=" list-group" id="list"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
-
-          <!-- action plan modal -->
+          
+            <!-- action plan modal -->
           <div class="col-4" style="padding-left: 0px;">
               <!-- Add action plan button -->
               <div class="d-grid gap-2" style="padding-bottom: 30px;">
