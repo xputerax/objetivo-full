@@ -15,7 +15,6 @@
                                     <div class="col-9">
                                         <input class="form-control" placeholder="Add activity" type="text" name="a_title">
                                         <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
-                                        <input type="hidden" value="pending" name="astatus"/>
                                     </div>
                                     <div class="col-1">
                                     <button type="submit" class="btn btn-outline-primary">Add</button>
@@ -33,9 +32,8 @@
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
                                                         <div class="col-1">
-                                                            <input class="checkbox" name="checkbox" type="checkbox"
-                                                                value="checked" 
-                                                                @if ($activity->a_status === 'completed') checked @endif>
+                                                            <input class="checkbox" name="checkbox" type="checkbox">
+                                                                <!-- @if ($activity->a_status === 'completed') checked @endif -->
                                                         </div>
                                                         <div class="col-10">
                                                             @if ($activity->a_status === 'pending')

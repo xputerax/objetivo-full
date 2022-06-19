@@ -39,7 +39,7 @@ class ActivityController extends Controller
         $activity = new Activity;
         $activity->action_plan_id = $request->ap_id;
         $activity->title = $request->a_title;
-        $activity->a_status = $request->astatus;
+        $activity->a_status = 'pending';
         $activity->created_at = now();
         $activity->updated_at = now();
         $activity->save();
