@@ -17,7 +17,7 @@
                                         <input type="hidden" value="pending" name="a_status"/>
                                     </div>
                                     <div class="col-1">
-                                    <button type="submit" class="btn btn-outline-primary">Submit activity</button>
+                                    <button type="submit" class="btn btn-outline-primary">Add</button>
                                     </div>
                                 </form>
                             </div>
@@ -32,12 +32,16 @@
                                                     <div class="row">
                                                         <div class="col-1">
                                                             <input class="checkbox" name="checkbox" type="checkbox"
-                                                                value="checked"
+                                                                value="checked" 
                                                                 @if ($activity->a_status === 'completed') checked @endif>
                                                         </div>
                                                         <div class="col-10">
-                                                            <p>{{ $activity->title }}</p>
-                                                            @if ($activity->a_status === 'completed')  <p><s>{{ $activity->title }}</s></p> @endif
+                                                            @if ($activity->a_status === 'pending')
+                                                                <s>{{ $activity->title }}</s>
+                                                            @else
+                                                                {{ $activity->title }}
+                                                            @endif
+                                                            <!-- @if ($activity->a_status === 'completed')  <p><s>{{ $activity->title }}</s></p> @endif -->
                                                         </div>
                                                     </div>
                                                     <!-- Edit and Delete Activity -->
