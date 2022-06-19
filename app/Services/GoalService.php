@@ -152,7 +152,7 @@ class GoalService implements GoalServiceInterface
             } else {
                 Activity::select('id', 'a_status')
                     ->where('id', '=', $activity->id)
-                    ->update(['a_status' => "completed"]); // Change back to 'pending' after test
+                    ->update(['a_status' => "pending"]); // Change back to 'pending' after test
             }
         }
     }

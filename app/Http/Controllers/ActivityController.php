@@ -89,6 +89,8 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        //
+        Activity::destroy($activity['id']);
+
+        return redirect()->route('goal.show',$activity['goal_id']);
     }
 }

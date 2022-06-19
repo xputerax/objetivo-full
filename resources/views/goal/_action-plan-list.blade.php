@@ -33,10 +33,10 @@
                                                     <div class="row">
                                                         <div class="col-1">
                                                             <input class="checkbox" name="checkbox" type="checkbox">
-                                                                <!-- @if ($activity->a_status === 'completed') checked @endif -->
+                                                                @if ($activity->a_status === 'completed') checked @endif
                                                         </div>
                                                         <div class="col-10">
-                                                            @if ($activity->a_status === 'pending')
+                                                            @if ($activity->a_status === 'completed')
                                                                 <s>{{ $activity->title }}</s>
                                                             @else
                                                                 {{ $activity->title }}
@@ -45,10 +45,13 @@
                                                         </div>
                                                     </div>
                                                     <!-- Edit and Delete Activity -->
-                                                    <button class="btn btn-danger btn-sm mt-2"
-                                                        onClick="deleteList(0)">Delete</button>
+                                                    <!-- <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
+                                                        <button class="btn btn-danger btn-sm mt-2"
+                                                            onClick="deleteList(0)">Delete</button>
+                                                            @method('delete')
+                                                    </form> -->
                                                     <button class="btn btn-primary btn-sm mt-2"
-                                                        onClick="editList(0)">Edit</button>
+                                                            onClick="editList(0)">Edit</button>
                                                     <!-- End Activity -->
                                                 </li>
                                             @endif
