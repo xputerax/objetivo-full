@@ -41,6 +41,8 @@
             </a>
         </li><!-- End My Mentees Page Nav -->
 
+        <img src="https://static.toiimg.com/photo/msid-67586673/67586673.jpg?3918697" alt="cat" width="40" height="auto" />
+
     </ul>
 
 </aside><!-- End Sidebar-->
