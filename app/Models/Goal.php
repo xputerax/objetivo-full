@@ -12,7 +12,6 @@ use Illuminate\Support\Carbon;
  * @property int $user_id
  * @property string $title
  * @property string $description
- * @property string $mentor_email
  * @property string $g_status
  * @property string $smart_goal
  * @property Carbon $due_at
@@ -34,7 +33,6 @@ class Goal extends Model
     protected $fillable = [
         'title',
         'description',
-        'mentor_email',
         'g_status',
         'smart_goal',
         'due_at',

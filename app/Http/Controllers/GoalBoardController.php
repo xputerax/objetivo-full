@@ -98,7 +98,6 @@ class GoalBoardController extends Controller
         $goal = Goal::find($id);
         $goal->title = $request->title;
         $goal->description = $request->description;
-        $goal->mentor_email = $request->mentor_email;
         $goal->smart_goal = $request->smart_goal;
         $goal->due_at = $request->due_at;
         $goal->smart_goal = $request->smart_goal;
