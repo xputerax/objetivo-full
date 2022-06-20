@@ -19,16 +19,12 @@ use App\Services\GoalService;
                         <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>
+                        {{-- <p class="fs-7 fw-bold">Mentor's Email: oyen@gmail.com</p> --}}
                         <div class="d-grid gap-2 d-md-block">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#actionGoalModal">Edit</button>
-
-                            <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
-                                <button type="button" class="btn btn-danger"><i class='fa fa-trash'></i> Delete</button>
-                                    @method('delete')
-                                    @csrf
-                            </form>                        
+                                data-bs-target="#nonexistentmodal">
+                                Edit
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -53,7 +49,6 @@ use App\Services\GoalService;
                     type: 'pie',
                     radius: '70%',
                     color: colorPalette,
-
                     data: [
                         {
                             value: {{ $percentageCompleted }},
