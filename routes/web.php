@@ -42,10 +42,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
     Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
+
+    Route::post('/submit-goal', [GoalController::class, 'store'])->name('submit-goal.store');
     
-    Route::post('/goal-card/{id}', [GoalBoardController::class, 'update'])->name('goal-card.update');
- 
-    Route::delete('/goal-board{id}', [GoalBoardController::class, 'destroy'])->name('goal-board.destroy');
+    Route::put('/goal-card/{id}', [GoalController::class, 'update'])->name('goal-card.update');
+    
+    Route::delete('/delete-goal-card/{goal}', [GoalController::class, 'destroy'])->name('delete-goal-card.destroy');
 
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
@@ -63,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/mark-activity/{activityID}', [ActivityController::class, 'update'])->name('mark-activity.update');
 
-    Route::post('/delete-activity', [ActivityController::class, 'destroy'])->name('delete-activity.destroy');
+    Route::delete('/delete-activity/{activity}', [ActivityController::class, 'destroy'])->name('delete-activity.destroy');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
 

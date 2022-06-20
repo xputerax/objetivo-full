@@ -13,6 +13,8 @@ use App\Models\Activity;
 use App\Contracts\GoalServiceInterface;
 use App\Contracts\MentorServiceInterface;
 use App\Http\Requests\AssignMentorRequest;
+use App\Http\Requests\UpdateGoalRequest;
+use App\Http\Requests\StoreGoalRequest;
 
 class GoalController extends Controller
 {
@@ -67,12 +69,25 @@ class GoalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGoalRequest $request)
     {
-        //
+
+        $goal = new Goal;
+        $goal->user_id = $request->user_id;
+        $goal->title = $request->title;
+        $goal->description = $request->description;
+        $goal->smart_goal = $request->smart_goal;
+        $goal->g_status = "not_started";
+        $goal->due_at = $request->due_at;
+        $goal->last_viewed_at = now();
+        $goal->created_at = now();
+        $goal->updated_at = now();
+        $goal->save();
+        
+        return redirect("/goal-board");
     }
 
     /**
@@ -115,24 +130,36 @@ class GoalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateGoalRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGoalRequest $request, $id)
     {
-        //
+        $goal = Goal::find($id);
+        
+        $goal->title = $request->title;
+        $goal->description = $request->description;
+        // $goal->mentor_email = $request->mentor_email;
+        $goal->smart_goal = $request->smart_goal;
+        $goal->due_at = $request->due_at;
+        $goal->smart_goal = $request->smart_goal;
+        $goal->updated_at = now();
+        $goal->save();
+        return redirect("/goal-board");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Goal $goal)
     {
-        //
+        Goal::destroy($goal['id']);
+
+        return redirect("/goal-board");
     }
 
     public function updateGoalMentor(AssignMentorRequest $request)

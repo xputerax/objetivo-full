@@ -98,11 +98,10 @@ class GoalBoardController extends Controller
         $goal = Goal::find($id);
         $goal->title = $request->title;
         $goal->description = $request->description;
-        $goal->mentor_email = $request->mentor_email;
         $goal->smart_goal = $request->smart_goal;
         $goal->due_at = $request->due_at;
         $goal->smart_goal = $request->smart_goal;
-        $actionPlan->updated_at = now();
+        $goal->updated_at = now();
         $goal->save();
 
         return redirect("/goal-board");
@@ -114,10 +113,10 @@ class GoalBoardController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Goal $goal)
     {
-        $goals = Goal::find($id);
-        $goals->destroy();
+
+        Goal::destroy($goal['id']);
 
         return redirect("/goal-board");
     }
