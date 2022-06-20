@@ -118,7 +118,8 @@ use App\Services\GoalService;
         document.addEventListener("DOMContentLoaded", () => {
             echarts.init(document.querySelector("#pieChart{{ $goal->id }}")).setOption({
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'item',
+                    formatter: '{c}%'
                 },
                 series: [{
                     name: '',
