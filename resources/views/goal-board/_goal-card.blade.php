@@ -21,9 +21,14 @@ use App\Services\GoalService;
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
                         <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>
                         <div class="d-grid gap-2 d-md-block">
-                            <a href="#edit{{$goal->id}}" data-bs-toggle="modal" class="btn btn-success"><i class='fa fa-edit'></i> Edit</a> 
-                            <a href="#delete{{$goal->id}}" data-bs-toggle="modal" class="btn btn-danger"><i class='fa fa-trash'></i> Delete</a>
-                            @include('goal-board._action-goal-modal')
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#actionGoalModal">Edit</button>
+
+                            <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
+                                <button type="button" class="btn btn-danger"><i class='fa fa-trash'></i> Delete</button>
+                                    @method('delete')
+                                    @csrf
+                            </form>                        
                         </div>
                     </div>
                 </div>
