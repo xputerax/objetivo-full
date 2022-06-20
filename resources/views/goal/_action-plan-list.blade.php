@@ -12,8 +12,12 @@
                                 <div class="col-9">
                                     {{ $actionPlan->title }}
                                 </div>
-                                <div class="col-1">
-                                    <button type="submit" class="btn"><i class="bi bi-pencil-square"></i></button>                                </div>
+                                <div class="col-1">   
+                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                        data-bs-target="#editActionPlanModal">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>                            
+                                </div>
                                 <div class="col-1">
                                     <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
                                         <button type="submit" class="btn"><i class="bi bi-trash"></i></button>
@@ -129,15 +133,17 @@
           
             <!-- action plan modal -->
           <div class="col-4" style="padding-left: 0px;">
+              
               <!-- Add action plan button -->
               <div class="d-grid gap-2" style="padding-bottom: 30px;">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                      data-bs-target="#verticalycentered1">
+                      data-bs-target="#addActionPlanModal">
                       Add Action Plan
                   </button>
               </div>
 
-              <div class="modal fade" id="verticalycentered1" tabindex="-1">
+              <!-- Add action plan modal -->
+              <div class="modal fade" id="addActionPlanModal" tabindex="-1">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                           <form action="{{ route('submit-action-plan.store') }}" method="post">
@@ -188,6 +194,57 @@
                                             </div>
                                         </div>
                                     </section> -->
+                              </div> <!-- / .modal-body -->
+
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                      Close
+                                  </button>
+                                  <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+                              </div> <!-- / .modal-footer -->
+
+                          </form>
+                      </div> <!-- / .modal-content -->
+                  </div> <!-- / .modal-dialog -->
+              </div> <!-- / .modal -->
+
+              <!-- Edit action plan modal -->
+              <div class="modal fade" id="editActionPlanModal" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                      <!-- edit route here -->
+                          <form action="{{ route('action-plan.update', $actionPlan['id']) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                              <div class="modal-header">
+                                  <h5 class="modal-title"><strong>Edit Action Plan</strong></h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                              </div> <!-- / .modal-header -->
+                              <div class="modal-body">
+                                  <div class="mb-3">
+                                      <label for="inputNanme4" class="form-label">
+                                          <strong>Action Plan Title</strong>
+                                      </label>
+                                      <input type="text" class="form-control" name="title" value="{{ old('title') ?? $actionPlan->title }}">
+                                  </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="message-text" class="col-form-label">
+                                                <strong>Start Date</strong>
+                                            </label>
+                                            <input type="date" class="form-control" name="start_at" value="{{ old('start_at', date('Y-m-d')) ?? $actionPlan->start_at }}">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="message-text" class="col-form-label">
+                                                <strong>Due Date</strong>
+                                            </label>
+                                            <input type="date" class="form-control" name="end_at" value="{{ old('end_at', date('Y-m-d')) ?? $actionPlan->end_at }}">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
                               </div> <!-- / .modal-body -->
 
                               <div class="modal-footer">

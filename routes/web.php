@@ -55,9 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
 
-    Route::post('/edit-action-plan', [ActionPlanController::class, 'update'])->name('action-plan.update');
-    
-    Route::post('/action-plan/{actionPlan}', [ActionPlanController::class, 'show'])->name('action-plan.show');
+    Route::put('/action-plan/{actionPlanID}', [ActionPlanController::class, 'update'])->name('action-plan.update');
     
     Route::delete('/delete-action-plan/{actionPlan}', [ActionPlanController::class, 'destroy'])->name('delete-action-plan.destroy');
 
