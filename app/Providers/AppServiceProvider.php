@@ -9,6 +9,8 @@ use App\Services\CommentService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\GoalService;
 use App\Contracts\GoalServiceInterface;
+use App\Contracts\MentorServiceInterface;
+use App\Services\MentorService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(GoalServiceInterface::class, function () {
             return new GoalService();
+        });
+        $this->app->bind(MentorServiceInterface::class, function () {
+            return new MentorService();
         });
     }
 
