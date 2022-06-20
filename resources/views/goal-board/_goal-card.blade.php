@@ -19,14 +19,11 @@ use App\Services\GoalService;
                         <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        {{-- <p class="fs-7 fw-bold">Mentor's Email: oyen@gmail.com</p> --}}
+                        <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>
                         <div class="d-grid gap-2 d-md-block">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#nonexistentmodal">
-                                Edit
-                            </button>
-                            <button class="btn btn-danger" type="button"
-                                onclick="confirm('Are you sure you want to delete this goal?')">Delete</button>
+                            <a href="#edit{{$goal->id}}" data-bs-toggle="modal" class="btn btn-success"><i class='fa fa-edit'></i> Edit</a> 
+                            <a href="#delete{{$goal->id}}" data-bs-toggle="modal" class="btn btn-danger"><i class='fa fa-trash'></i> Delete</a>
+                            @include('goal-board._action-goal-modal')
                         </div>
                     </div>
                 </div>

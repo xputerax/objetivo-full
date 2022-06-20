@@ -29,7 +29,7 @@
                         <label for="inputAddress" class="form-label">
                             <strong>Mentor Email</strong>
                         </label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="oyen@gmail.com">
+                        <input type="email" class="form-control" id="inputAddress" placeholder="oyen@gmail.com">
                     </div>
 
                     <div class="mb-3">
