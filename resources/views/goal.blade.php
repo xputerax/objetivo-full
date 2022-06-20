@@ -8,15 +8,12 @@
 <main id="main" class="main">
     @include('goal._page-title')
     @include('goal._progress-bar')
+    @include('goal._load-progress-bar')
     @include('goal._goal-description')
-
     @include('goal._action-plan-list')
-
     @include('goal._comment-section')
-
     @include('goal._mentor-modal')
     @include('goal._action-plan-modal')
-    @include('goal._load-progress-bar')
 </main>
 
 <!-- Template Main JS File -->
