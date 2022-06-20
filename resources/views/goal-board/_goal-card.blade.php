@@ -30,12 +30,13 @@ use App\Services\GoalService;
                         </div>
                         <div class= "col-6">
                             <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                        @method('delete')
-                                        @csrf
-                                    </form>
+                            @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                @method('delete')
+                                
+                            </form>
                             </div>
-</div>
+                        </div>
                         </div>  
                     </div>
                 </div>

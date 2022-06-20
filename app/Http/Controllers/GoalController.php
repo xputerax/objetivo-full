@@ -148,12 +148,13 @@ class GoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
     public function destroy(Goal $goal)
     {
-        Goal::destroy($goal['id']);
+        ActionPlan::destroy($goal['id']);
+
         return redirect("/goal-board");
     }
 }
