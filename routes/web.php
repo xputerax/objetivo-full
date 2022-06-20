@@ -78,4 +78,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/delete-comment/{goalComment}', [GoalCommentController::class, 'destroy'])->name('delete-comment.destroy');
 
     Route::put('/vote-comment/{commentVoteID}', [CommentVoteController::class, 'update'])->name('vote-comment.update');
+
+    Route::post('/submit-mentor', [GoalController::class,'updateGoalMentor'])->name('submit-mentor.updateGoalMentor');
 });
