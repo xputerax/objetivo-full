@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/edit-action-plan', [ActionPlanController::class, 'update'])->name('action-plan.update');
     
+    Route::post('/action-plan/{actionPlan}', [ActionPlanController::class, 'show'])->name('action-plan.show');
+    
     Route::delete('/delete-action-plan/{actionPlan}', [ActionPlanController::class, 'destroy'])->name('delete-action-plan.destroy');
 
     Route::post('/submit-activity', [ActivityController::class, 'store'])->name('submit-activity.store');
