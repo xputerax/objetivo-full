@@ -3,7 +3,7 @@ use Carbon\Carbon;
 use App\Services\GoalService;
 @endphp
 
-<!-- Goal Card 1-->
+<!-- Goal Card -->
 @foreach ($goals as $goal)
     <div class="col-md-4 col-sm-6 col-lg-3">
         <div class="card info-card customers-card">
@@ -19,12 +19,23 @@ use App\Services\GoalService;
                         <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        {{-- <p class="fs-7 fw-bold">Mentor's Email: oyen@gmail.com</p> --}}
+                        <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>
                         <div class="d-grid gap-2 d-md-block">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <div class= "row">
+                                <div class= "col-6">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#editGoal">
                                 Edit
                             </button>
+</div>
+                            <div class= "col-6">
+                            <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        @method('delete')
+                                        @csrf
+                                    </form>
+                            </div>
+</div>
                             
                         </div>
                     </div>
@@ -32,7 +43,7 @@ use App\Services\GoalService;
             </div> <!-- / .card-body -->
         </div> <!-- / .card -->
     </div>
-    <!-- End Goal Card 1 -->
+    <!-- End Goal Card -->
 
     <!-- Edit Goal Modal-->
     <div class="modal fade" id="editGoal" tabindex="-1">
@@ -42,10 +53,10 @@ use App\Services\GoalService;
         @csrf
         @method('put')
         
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                    <strong>Edit Goal</strong>
-                        </h5>
+            <div class="modal-header">
+                <h5 class="modal-title">
+                <strong>Edit Goal</strong>
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div> <!-- / modal-header -->
