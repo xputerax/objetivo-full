@@ -157,14 +157,20 @@ class GoalService implements GoalServiceInterface
         // }
     }
 
+    // Returns -> A goal's percentage of completion
+    // Param -> $goalId
     public static function getPercentageCompleted($goalId)
     {
         // Get activitiesCount
-        $activitiesCount = Activity::select('id')
+        $activitiesCount = Activity::select('id', 'action_plan_id')
             ->join('action_plans', 'action_plans.id', '=', 'activities.action_plan_id')
             ->join('goals', 'goals.id', '=', 'action_plans.goal_id',)
             ->where('goals.id', '=', $goalId)
             ->count();
+        
+        if ($activitiesCount == 0) {
+            return 0;
+        }
 
         // Get completedActivitiesCount
         $completedActivitiesCount = Activity::select('id')
@@ -174,18 +180,8 @@ class GoalService implements GoalServiceInterface
             ->where('a_status', '=', 'completed')
             ->count();
 
-        // Compute percentage of completion
-
-        if ($activitiesCount == 0) {
-            $percentageCompleted = 0;
-        }
-        else{
-            $percentageCompleted = number_format($completedActivitiesCount / $activitiesCount, 2) * 100;
-        }
-        
-
-        // Update progress bar
-        return $percentageCompleted;
+        // Compute and return percentage of completion
+        return number_format($completedActivitiesCount / $activitiesCount, 2) * 100;
     }
 
     // To update last_viewed_at field in table GOALS whenever user enters a goal page

@@ -17,7 +17,6 @@
     @endif
     @include('goal._page-title')
     @include('goal._progress-bar')
-    @include('goal._load-progress-bar')
     @include('goal._goal-description')
     @include('goal._action-plan-list')
     @include('goal._comment-section')
