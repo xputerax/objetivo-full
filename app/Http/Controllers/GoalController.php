@@ -153,7 +153,7 @@ class GoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        ActionPlan::destroy($goal['id']);
+        Goal::destroy($goal['id']);
 
         return redirect("/goal-board");
     }
