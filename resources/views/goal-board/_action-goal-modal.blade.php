@@ -17,6 +17,10 @@
                         {!! Form::text('title', $goal->title, ['class' => 'form-control']) !!}
                     </div>
                     <div class="mb-3">
+                        {!! Form::label('description', 'Description') !!}
+                        {!! Form::textarea('description', $goal->description, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="mb-3">
                         {!! Form::label('due_at', 'Due At') !!}
                         {!! Form::date('due_at', $goal->due_at, ['class' => 'form-control']) !!}
                     </div>
