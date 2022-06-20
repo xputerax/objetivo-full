@@ -26,7 +26,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <p>Due Date: {{ $actionPlan->end_at }}</p>
+                            <p>Due Date: {{ $actionPlan['end_at']->toFormattedDateString() }}</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('submit-activity.store') }}" method="post">
