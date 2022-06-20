@@ -79,7 +79,9 @@
                                                     <!-- Delete Activity -->
                                                     <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
                                                         <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
+                                                        @csrf
                                                         @method('delete')
+
                                                     </form>
                                                     <!-- End Activity -->
                                                 </li>
