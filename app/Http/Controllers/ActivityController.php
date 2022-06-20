@@ -76,9 +76,13 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateActivityRequest $request, Activity $activity)
+    public function update(UpdateActivityRequest $request, $activityID)
     {
-        //
+        $activity = Activity::find($activityID);
+        $activity->a_status = $request->astatus;
+        $activity->save();
+
+        return redirect()->route('goal.show',$request->goal_id);
     }
 
     /**

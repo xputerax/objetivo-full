@@ -51,10 +51,23 @@
                                                 <!-- Activity -->
                                                 <li class="list-group-item " id="list0">
                                                     <div class="row">
-                                                        <div class="col-1">
-                                                            <input class="checkbox" name="a_checkbox" type="checkbox"
-                                                                @if ($activity->a_status === 'completed') checked @endif>
-                                                        </div>
+                                                        <form action="{{ route('mark-activity.update', [ 'activityID' => $activity->id ]) }}" method="post">
+                                                            @csrf
+                                                            @method('put')
+                                                            <div class="col-1">
+                                                                <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+                                                                <input name="a_checkbox" class="checkbox" type="checkbox" onChange="this.form.submit()" 
+                                                                @if ($activity->a_status === 'completed') checked @endif
+                                                                />
+
+                                                                @if ($activity->a_status === 'completed')
+                                                                <input type="hidden" name="astatus" value="pending"/>
+                                                                @else
+                                                                <input type="hidden" name="astatus" value="completed"/>
+                                                                @endif
+
+                                                            </div>
+                                                        </form>
                                                         <div class="col-10">
                                                             @if ($activity->a_status === 'completed')
                                                                 <s>{{ $activity->title }}</s>
@@ -63,13 +76,11 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <!-- Edit and Delete Activity -->
+                                                    <!-- Delete Activity -->
                                                     <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
                                                         <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
                                                         @method('delete')
                                                     </form>
-                                                    <button class="btn btn-primary btn-sm mt-2"
-                                                            onClick="editList(0)">Edit</button>
                                                     <!-- End Activity -->
                                                 </li>
                                             @endif

@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-activity', [ActivityController::class, 'store'])->name('submit-activity.store');
 
+    Route::put('/mark-activity/{activityID}', [ActivityController::class, 'update'])->name('mark-activity.update');
+
     Route::post('/delete-activity', [ActivityController::class, 'destroy'])->name('delete-activity.destroy');
 
     Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
