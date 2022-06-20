@@ -78,9 +78,16 @@ class ActionPlanController extends Controller
      * @param  \App\Models\ActionPlan  $actionPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateActionPlanRequest $request, ActionPlan $actionPlan)
+    public function update(UpdateActionPlanRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        /** @var \App\Models\User */
+        $actionPlan = $request->action_plans();
+
+        $success = $actionPlan->update($data);
+
+        return redirect()->route('goal.show',$request->goal_id);
     }
 
     /**
