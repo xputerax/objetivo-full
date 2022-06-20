@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/change_pw', ChangePasswordController::class)->name('profile.change_pw');
 
     Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
+
+    Route::post('/submit-goal', [GoalController::class, 'store'])->name('submit-goal.store');
     
     Route::post('/goal-card/{id}', [GoalBoardController::class, 'update'])->name('goal-card.update');
     

@@ -27,16 +27,6 @@ use App\Services\GoalService;
                                 data-bs-target="#editGoal">
                                 Edit
                             </button>
-</div>
-                            <div class= "col-6">
-                            <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                        @method('delete')
-                                        @csrf
-                                    </form>
-                            </div>
-</div>
-                            
                         </div>
                     </div>
                 </div>
@@ -47,69 +37,66 @@ use App\Services\GoalService;
 
     <!-- Edit Goal Modal-->
     <div class="modal fade" id="editGoal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-        <form action="{{ route('goal-card.update', $goal['id']) }}" method="post">
-        @csrf
-        @method('put')
-        
-            <div class="modal-header">
-                <h5 class="modal-title">
-                <strong>Edit Goal</strong>
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div> <!-- / modal-header -->
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form action="{{ route('goal-card.update', [$goal->id]) }}" method="post">
+            @csrf
+            @method('put')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Edit Goal</strong></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> <!-- / modal-header -->
 
-            <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="inputNanme4" class="form-label">
-                            <strong>Goal Title</strong>
-                        </label>
-                        <input type="text" class="form-control" id="inputNanme4" value="{{ old('title') ?? $goal->title }}">
-                    </div>
+                    <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">
+                                    <strong>Goal Title</strong>
+                                </label>
+                                <input type="text" class="form-control" id="title" value="{{ old('title') ?? $goal->title }}">
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">
-                            <strong>Goal Description</strong>
-                        </label>
-                        <textarea class="form-control" rows="5" cols="50" id="message-text" value="{{ old('description') ?? $goal->description }}" > </textarea>
-                    </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">
+                                    <strong>Goal Description</strong>
+                                </label>
+                                <textarea class="form-control" rows="5" cols="50" id="message-text" value="{{ old('description') ?? $goal->description }}" > </textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="inputAddress" class="form-label">
-                            <strong>Mentor Email</strong>
-                        </label>
-                        <input type="email" class="form-control" id="inputAddress" value="{{ old('mentor_email') ?? $goal->mentor_email }}">
-                    </div>
+                            <div class="mb-3">
+                                <label for="inputAddress" class="form-label">
+                                    <strong>Mentor Email</strong>
+                                </label>
+                                <input type="email" class="form-control" id="inputAddress" value="{{ old('mentor_email') ?? $goal->mentor_email }}">
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="inputTarget" class="form-label">
-                            <strong>Specific and Measurable Target</strong>
-                        </label>
-                        <input type="text" class="form-control" id="inputTarget" value="{{ old('smart_goal') ?? $goal->smart_goal }}">
-                    </div>
+                            <div class="mb-3">
+                                <label for="inputTarget" class="form-label">
+                                    <strong>Specific and Measurable Target</strong>
+                                </label>
+                                <input type="text" class="form-control" id="inputTarget" value="{{ old('smart_goal') ?? $goal->smart_goal }}">
+                            </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="message-text" class="col-form-label">
-                                <strong>Due Date</strong>
-                            </label>
-                            <input type="date" class="form-control" value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
-                        </div>
-                    </div> <!-- / .row -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="message-text" class="col-form-label">
+                                        <strong>Due Date</strong>
+                                    </label>
+                                    <input type="date" class="form-control" value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
+                                </div>
+                            </div> <!-- / .row -->
 
-                    <hr>
-            </div> <!-- / .modal-body -->
+                            <hr>
+                    </div> <!-- / .modal-body -->
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Changes</button>
-            </div> <!-- / .modal-footer -->
-        </form>
-        </div> <!-- / .modal-content -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div> <!-- / .modal-footer -->
+
+                </div> <!-- / .modal-content -->
+            </form>
+        </div> <!-- / .modal -->
     </div> <!-- / .modal -->
-</div> <!-- / .modal -->
 
     @php
         $percentageCompleted = GoalService::getPercentageCompleted($goal->id);
