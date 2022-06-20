@@ -13,7 +13,7 @@ class UpdateActionPlanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,20 +23,8 @@ class UpdateActionPlanRequest extends FormRequest
      */
     public function rules()
     {
-        $actionPlan = $this->action_plans();
-
         return [
-            'title' => ['required', 'max:255', 'string'],
-            'start_at' => [
-                'required',
-                'max:255',
-                'datetime',
-            ],
-            'end_at' => [
-                'required',
-                'max:255',
-                'datetime',
-            ]
+            //
         ];
     }
 }
