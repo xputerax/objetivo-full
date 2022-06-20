@@ -70,8 +70,8 @@ use App\Services\GoalService;
                                 <label for="message-text" class="col-form-label">
                                     <strong>Goal Description</strong>
                                 </label>
-                                <textarea class="form-control" rows="5" cols="50" id="message-text" name="description" value="{{ old('description') ?? $goal->description }}" > </textarea>
-                            </div>
+                                <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }} </textarea>
+                            </div>                            
 
                             <!-- <div class="mb-3">
                                 <label for="inputAddress" class="form-label">
