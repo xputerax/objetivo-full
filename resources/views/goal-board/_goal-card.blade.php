@@ -19,7 +19,7 @@ use App\Services\GoalService;
                         <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>
+                        {{--<p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>--}}
                         <div class="d-grid gap-2 d-md-block">
                             <div class= "row">
                                 <div class= "col-6">
@@ -91,7 +91,7 @@ use App\Services\GoalService;
                                     <label for="message-text" class="col-form-label">
                                         <strong>Due Date</strong>
                                     </label>
-                                    <input type="date" class="form-control" name="due_at" value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
+                                    <input type="date" class="form-control" id="due_at" name="due_at" value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
                                 </div>
                             </div> <!-- / .row -->
 

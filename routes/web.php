@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::put('/goal-card/{id}', [GoalController::class, 'update'])->name('goal-card.update');
     
-    Route::post('/delete-goal-card', [GoalController::class, 'destroy'])->name('delete-goal-card.destroy');
+    Route::delete('/delete-goal-card/{goalCard}', [GoalController::class, 'destroy'])->name('delete-goal-card.destroy');
 
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
