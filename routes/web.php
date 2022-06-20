@@ -45,9 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/submit-goal', [GoalController::class, 'store'])->name('submit-goal.store');
     
-    Route::post('/goal-card/{id}', [GoalController::class, 'update'])->name('goal-card.update');
+    Route::put('/goal-card/{id}', [GoalController::class, 'update'])->name('goal-card.update');
     
-    Route::post('/delete-goal-card', [GoalBoardController::class, 'destroy'])->name('delete-goal-card.destroy');
+    Route::delete('/delete-goal-card/{goal}', [GoalController::class, 'destroy'])->name('delete-goal-card.destroy');
 
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
@@ -78,4 +78,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/delete-comment/{goalComment}', [GoalCommentController::class, 'destroy'])->name('delete-comment.destroy');
 
     Route::put('/vote-comment/{commentVoteID}', [CommentVoteController::class, 'update'])->name('vote-comment.update');
+
+    Route::post('/submit-mentor', [GoalController::class,'updateGoalMentor'])->name('submit-mentor.updateGoalMentor');
 });

@@ -1,276 +1,281 @@
   <!-- Action Plan List Cards -->
   <section class="section action-plan-list-card-section">
-      <div class="row">
+    <div class="row justify-content-end">
+        <!-- Add action plan button -->
+        <div class="col-4 align-self-end">
+            <div class="d-grid gap-2" style="padding-bottom: 30px;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#addActionPlanModal">
+                    Add Action Plan
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
 
-            <!-- 1st card -->
-            <div class="col-lg-4">
-                {{-- Action Plan Card --}}
-                @foreach ($actionPlans as $actionPlan)
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-9">
-                                    {{ $actionPlan->title }}
-                                </div>
-                                <div class="col-1">   
-                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                        data-bs-target="#editActionPlanModal">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>                            
-                                </div>
-                                <div class="col-1">
-                                    <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
-                                        <button type="submit" class="btn"><i class="bi bi-trash"></i></button>
-                                        @method('delete')
-                                        @csrf
-                                    </form>
-                                </div>
-                            </div>
-                            <p>Due Date: {{ $actionPlan->end_at }}</p>
+        <!-- 1st card -->
+        {{-- Action Plan Card --}}
+        @foreach ($actionPlans as $actionPlan)
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-9">
+                            <h6 class="card-desc-title px-3" style="font-size: 16px;">{{ $actionPlan->title }}</h6>
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('submit-activity.store') }}" method="post">
+                        <div class="col-1">   
+                            <button type="button" class="btn card-desc-title" data-bs-toggle="modal"
+                                data-bs-target="#editActionPlanModal">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>                            
+                        </div>
+                        <div class="col-1">
+                            <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
+                                <button type="submit" class="btn card-desc-title"><i class="bi bi-trash"></i></button>
+                                @method('delete')
                                 @csrf
-                                <div class="row justify-content-center mt-3 mb-2">
-                                    <div class="col-10">
-                                        <input class="form-control" placeholder="Add activity" type="text" name="a_title">
-                                        <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="submit" class="btn btn-outline-primary">Add</button>
-                                    </div>
-                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-                               </div>
-                             </form>
-                            <!-- Activity List -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <ul class=" list-group" id="list">
-                                        @foreach ($activities as $activity)
-                                            @if ($activity->action_plan_id === $actionPlan->id)
-                                                <!-- Activity -->
-                                                <li class="list-group-item " id="list0">
-                                                    <div class="row">
-                                                        <form action="{{ route('mark-activity.update', [ 'activityID' => $activity->id ]) }}" method="post">
-                                                            @csrf
-                                                            @method('put')
-                                                            <div class="col-1">
-                                                                <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-                                                                <input name="a_checkbox" class="checkbox" type="checkbox" onChange="this.form.submit()" 
-                                                                @if ($activity->a_status === 'completed') checked @endif
-                                                                />
-
-                                                                @if ($activity->a_status === 'completed')
-                                                                <input type="hidden" name="astatus" value="pending"/>
-                                                                @else
-                                                                <input type="hidden" name="astatus" value="completed"/>
-                                                                @endif
-
-                                                            </div>
-                                                        </form>
-                                                        <div class="col-10">
-                                                            @if ($activity->a_status === 'completed')
-                                                                <s>{{ $activity->title }}</s>
-                                                            @else
-                                                                {{ $activity->title }}
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <!-- Delete Activity -->
-                                                    <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
-                                                        <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
-                                                        @csrf
-                                                        @method('delete')
-
-                                                    </form>
-                                                    <!-- End Activity -->
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                @endforeach
-                {{-- End Action Plan Card --}}
-            </div>
+                    <p class="px-3">Due Date: {{ $actionPlan['end_at']->toFormattedDateString() }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('submit-activity.store') }}" method="post">
+                        @csrf
+                        <div class="row justify-content-center mt-3 mb-2">
+                            <div class="col-10">
+                                <input class="form-control" placeholder="Add activity" type="text" name="a_title">
+                                <input type="hidden" value="{{ $actionPlan->id }} " name="ap_id"/>
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-outline-primary">Add</button>
+                            </div>
+                            <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+                        </div>
+                        </form>
+                    <!-- Activity List -->
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class=" list-group" id="list">
+                                @foreach ($activities as $activity)
+                                    @if ($activity->action_plan_id === $actionPlan->id)
+                                        <!-- Activity -->
+                                        <li class="list-group-item " id="list0">
+                                            <div class="row">
+                                                <form action="{{ route('mark-activity.update', [ 'activityID' => $activity->id ]) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="col-1">
+                                                        <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+                                                        <input name="a_checkbox" class="checkbox" type="checkbox" onChange="this.form.submit()" 
+                                                        @if ($activity->a_status === 'completed') checked @endif
+                                                        />
 
-          <!-- 2nd card -->
-          <!-- <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">Strum practice</div>
-                    <div class="card-body">
-                        <div class="task-input">
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <i class="bi bi-list"></i>
-                                </div>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" placeholder="Add a new task">
-                                </div>
-                            </div>
+                                                        @if ($activity->a_status === 'completed')
+                                                        <input type="hidden" name="astatus" value="pending"/>
+                                                        @else
+                                                        <input type="hidden" name="astatus" value="completed"/>
+                                                        @endif
+
+                                                    </div>
+                                                </form>
+                                                <div class="col-10">
+                                                    @if ($activity->a_status === 'completed')
+                                                        <s>{{ $activity->title }}</s>
+                                                    @else
+                                                        {{ $activity->title }}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <!-- Delete Activity -->
+                                            <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
+                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
+                                                @csrf
+                                                @method('delete')
+
+                                            </form>
+                                            <!-- End Activity -->
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="controls">
-                            <div class="filters">
-                                <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified"
-                                    role="tablist">
-                                    <li class="nav-item flex-fill" role="presentation">
-                                        <button id="all" class="nav-link w-100 active" id="home-tab"
-                                            data-bs-toggle="tab" data-bs-target="#bordered-justified-home"
-                                            type="button" role="tab" aria-controls="home"
-                                            aria-selected="true">All</button>
-                                    </li>
-                                    <li class="nav-item flex-fill" role="presentation">
-                                        <button id="pending" class="nav-link w-100" id="profile-tab"
-                                            data-bs-toggle="tab" data-bs-target="#bordered-justified-profile"
-                                            type="button" role="tab" aria-controls="profile"
-                                            aria-selected="false">Pending</button>
-                                    </li>
-                                    <li class="nav-item flex-fill" role="presentation">
-                                        <button id="completed" class="nav-link w-100" id="contact-tab"
-                                            data-bs-toggle="tab" data-bs-target="#bordered-justified-contact"
-                                            type="button" role="tab" aria-controls="contact"
-                                            aria-selected="false">Completed</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <ul class="mt-2" id="taskLists">
-                        </ul>
                     </div>
                 </div>
-            </div> -->
+            </div>
+        </div>
+        @endforeach
+        {{-- End Action Plan Card --}}
+
+        <!-- 2nd card -->
+        <!-- <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Strum practice</div>
+                <div class="card-body">
+                    <div class="task-input">
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <i class="bi bi-list"></i>
+                            </div>
+                            <div class="col-10">
+                                <input class="form-control" type="text" placeholder="Add a new task">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <div class="filters">
+                            <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified"
+                                role="tablist">
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button id="all" class="nav-link w-100 active" id="home-tab"
+                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-home"
+                                        type="button" role="tab" aria-controls="home"
+                                        aria-selected="true">All</button>
+                                </li>
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button id="pending" class="nav-link w-100" id="profile-tab"
+                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-profile"
+                                        type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">Pending</button>
+                                </li>
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button id="completed" class="nav-link w-100" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-contact"
+                                        type="button" role="tab" aria-controls="contact"
+                                        aria-selected="false">Completed</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="mt-2" id="taskLists">
+                    </ul>
+                </div>
+            </div>
+        </div> -->
 
 
-          
-            <!-- action plan modal -->
-          <div class="col-4" style="padding-left: 0px;">
-              
-              <!-- Add action plan button -->
-              <div class="d-grid gap-2" style="padding-bottom: 30px;">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                      data-bs-target="#addActionPlanModal">
-                      Add Action Plan
-                  </button>
-              </div>
+        
+        <!-- action plan modal -->
+        <div class="col-4" style="padding-left: 0px;">
+            
+            
 
-              <!-- Add action plan modal -->
-              <div class="modal fade" id="addActionPlanModal" tabindex="-1">
-                  <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                          <form action="{{ route('submit-action-plan.store') }}" method="post">
-                          @csrf
-                              <div class="modal-header">
-                                  <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                      aria-label="Close"></button>
-                              </div> <!-- / .modal-header -->
+            <!-- Add action plan modal -->
+            <div class="modal fade" id="addActionPlanModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <form action="{{ route('submit-action-plan.store') }}" method="post">
+                        @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title"><strong>Add Action Plan</strong></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div> <!-- / .modal-header -->
 
-                              <div class="modal-body">
-                                  <div class="mb-3">
-                                      <label for="inputNanme4" class="form-label">
-                                          <strong>Action Plan Title</strong>
-                                      </label>
-                                      <input type="text" class="form-control" name="title">
-                                  </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="inputNanme4" class="form-label">
+                                        <strong>Action Plan Title</strong>
+                                    </label>
+                                    <input type="text" class="form-control" name="title">
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="message-text" class="col-form-label">
+                                            <strong>Start Date</strong>
+                                        </label>
+                                        <input type="date" class="form-control" name="start_at">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="message-text" class="col-form-label">
+                                            <strong>Due Date</strong>
+                                        </label>
+                                        <input type="date" class="form-control" name="end_at">
+                                    </div>
+                                </div>
+                                <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+
+                                <hr>
+
+                                <!--Action Plan & Action Plan List Cards-->
+                                <!-- <section class="action-plan-section">
+                                    <strong>Activities</strong> <br>
                                     <div class="row">
-                                        <div class="col-6">
-                                            <label for="message-text" class="col-form-label">
-                                                <strong>Start Date</strong>
-                                            </label>
-                                            <input type="date" class="form-control" name="start_at">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="message-text" class="col-form-label">
-                                                <strong>Due Date</strong>
-                                            </label>
-                                            <input type="date" class="form-control" name="end_at">
+                                        <div class="col-lg-12">
+                                            <input class="form-control mb-2" placeholder="Activity" type="text"
+                                                id="inputAction">
+                                            <ul id="actionPlans"></ul>
+                                            <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
+                                                + Add New Activity
+                                            </button>
                                         </div>
                                     </div>
-                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+                                </section> -->
+                            </div> <!-- / .modal-body -->
 
-                                  <hr>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+                            </div> <!-- / .modal-footer -->
 
-                                  <!--Action Plan & Action Plan List Cards-->
-                                  <!-- <section class="action-plan-section">
-                                        <strong>Activities</strong> <br>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <input class="form-control mb-2" placeholder="Activity" type="text"
-                                                    id="inputAction">
-                                                <ul id="actionPlans"></ul>
-                                                <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
-                                                    + Add New Activity
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </section> -->
-                              </div> <!-- / .modal-body -->
+                        </form>
+                    </div> <!-- / .modal-content -->
+                </div> <!-- / .modal-dialog -->
+            </div> <!-- / .modal -->
 
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                      Close
-                                  </button>
-                                  <button type="submit" class="btn btn-outline-primary">Save Changes</button>
-                              </div> <!-- / .modal-footer -->
+            <!-- Edit action plan modal -->
+            <div class="modal fade" id="editActionPlanModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                    <!-- edit route here -->
+                        <form action="{{ route('action-plan.update', $actionPlan['id']) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                            <div class="modal-header">
+                                <h5 class="modal-title"><strong>Edit Action Plan</strong></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div> <!-- / .modal-header -->
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="inputNanme4" class="form-label">
+                                        <strong>Action Plan Title</strong>
+                                    </label>
+                                    <input type="text" class="form-control" name="title" value="{{ old('title') ?? $actionPlan->title }}">
+                                </div>
 
-                          </form>
-                      </div> <!-- / .modal-content -->
-                  </div> <!-- / .modal-dialog -->
-              </div> <!-- / .modal -->
-
-              <!-- Edit action plan modal -->
-              <div class="modal fade" id="editActionPlanModal" tabindex="-1">
-                  <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                      <!-- edit route here -->
-                          <form action="{{ route('action-plan.update', $actionPlan['id']) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
-                              <div class="modal-header">
-                                  <h5 class="modal-title"><strong>Edit Action Plan</strong></h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                      aria-label="Close"></button>
-                              </div> <!-- / .modal-header -->
-                              <div class="modal-body">
-                                  <div class="mb-3">
-                                      <label for="inputNanme4" class="form-label">
-                                          <strong>Action Plan Title</strong>
-                                      </label>
-                                      <input type="text" class="form-control" name="title" value="{{ old('title') ?? $actionPlan->title }}">
-                                  </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="message-text" class="col-form-label">
-                                                <strong>Start Date</strong>
-                                            </label>
-                                            <input type="date" class="form-control" name="start_at" value="{{ old('start_at', date('Y-m-d')) ?? $actionPlan->start_at }}">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="message-text" class="col-form-label">
-                                                <strong>Due Date</strong>
-                                            </label>
-                                            <input type="date" class="form-control" name="end_at" value="{{ old('end_at', date('Y-m-d')) ?? $actionPlan->end_at }}">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="message-text" class="col-form-label">
+                                            <strong>Start Date</strong>
+                                        </label>
+                                        <input type="date" class="form-control" name="start_at" value="{{ old('start_at', date('Y-m-d')) ?? $actionPlan->start_at }}">
                                     </div>
-                                    <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-                              </div> <!-- / .modal-body -->
+                                    <div class="col-6">
+                                        <label for="message-text" class="col-form-label">
+                                            <strong>Due Date</strong>
+                                        </label>
+                                        <input type="date" class="form-control" name="end_at" value="{{ old('end_at', date('Y-m-d')) ?? $actionPlan->end_at }}">
+                                    </div>
+                                </div>
+                                <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
+                            </div> <!-- / .modal-body -->
 
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                      Close
-                                  </button>
-                                  <button type="submit" class="btn btn-outline-primary">Save Changes</button>
-                              </div> <!-- / .modal-footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+                            </div> <!-- / .modal-footer -->
 
-                          </form>
-                      </div> <!-- / .modal-content -->
-                  </div> <!-- / .modal-dialog -->
-              </div> <!-- / .modal -->
-          </div> <!-- / .col -->
-      </div> <!-- / .row -->
+                        </form>
+                    </div> <!-- / .modal-content -->
+                </div> <!-- / .modal-dialog -->
+            </div> <!-- / .modal -->
+        </div> <!-- / .col -->
+    </div> <!-- / .row -->
   </section>

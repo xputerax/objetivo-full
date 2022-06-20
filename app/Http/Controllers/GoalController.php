@@ -11,22 +11,25 @@ use App\Models\User;
 use App\Models\ActionPlan;
 use App\Models\Activity;
 use App\Contracts\GoalServiceInterface;
+use App\Contracts\MentorServiceInterface;
+use App\Http\Requests\AssignMentorRequest;
 use App\Http\Requests\UpdateGoalRequest;
 use App\Http\Requests\StoreGoalRequest;
 
 class GoalController extends Controller
 {
     private $goalService;
-
+    private $mentorService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(GoalServiceInterface $goalService)
+    public function __construct(GoalServiceInterface $goalService, MentorServiceInterface $mentorService) 
     {
         $this->middleware('auth');
         $this->goalService = $goalService;
+        $this->mentorService = $mentorService;
     }
 
     /**
@@ -107,8 +110,9 @@ class GoalController extends Controller
             'activities' => $this->goalService->getActivities(),
             'comments' => $this->goalService->getComments($goalId),
             'percentageCompleted' => $this->goalService->getPercentageCompleted($goalId),
+            'allUsers' => User::all(),
         ];
-
+        
         return view('goal', $data);
     }
 
@@ -148,11 +152,25 @@ class GoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Goal $goal)
     {
-        //
+        Goal::destroy($goal['id']);
+
+        return redirect("/goal-board");
+    }
+
+    public function updateGoalMentor(AssignMentorRequest $request)
+    {
+        // dd($request);
+        $mentor_id = $this->mentorService->getMentorId($request->email);
+        $isValid = $this->mentorService->setMentor($mentor_id, $request->goal_id);
+        if($isValid == true){
+            return redirect()->back()->with('successmessage', 'Mentor assigned successfully!');
+        }else{
+            return redirect()->back()->with('errormessage', "User not found! Please try again with a valid user email.");
+        };
     }
 }
