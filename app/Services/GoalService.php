@@ -180,7 +180,7 @@ class GoalService implements GoalServiceInterface
             $percentageCompleted = 0;
         }
         else{
-            $percentageCompleted = $completedActivitiesCount / $activitiesCount * 100;
+            $percentageCompleted = number_format($completedActivitiesCount / $activitiesCount, 2) * 100;
         }
         
 
