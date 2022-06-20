@@ -91,9 +91,15 @@ class GoalBoardController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateGoalRequest $request, Goal $goal)
+
+
+    public function update(UpdateGoalRequest $request, $id)
     {
-        //
+        $goal = Goal::find($id);
+        $input = $request->all();
+        $goal->fill($input)->save();
+ 
+        return redirect("/goal-board");
     }
 
     /**
@@ -102,8 +108,11 @@ class GoalBoardController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
+    public function destroy($id)
     {
-        //
+        $goals = Goal::find($id);
+        $goals->destroy();
+
+        return redirect("/goal-board");
     }
 }

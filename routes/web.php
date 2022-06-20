@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
     
+    Route::post('/goal-board', [GoalBoardController::class, 'update'])->name('goal-board.update');
+ 
+    Route::delete('/goal-board{id}', [GoalBoardController::class, 'destroy'])->name('goal-board.destroy');
+
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
 
     Route::get('/goal/{id}', [GoalController::class, 'show'])->name('goal.show');
