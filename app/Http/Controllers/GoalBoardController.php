@@ -96,9 +96,15 @@ class GoalBoardController extends Controller
     public function update(UpdateGoalRequest $request, $id)
     {
         $goal = Goal::find($id);
-        $input = $request->all();
-        $goal->fill($input)->save();
- 
+        $goal->title = $request->title;
+        $goal->description = $request->description;
+        $goal->mentor_email = $request->mentor_email;
+        $goal->smart_goal = $request->smart_goal;
+        $goal->due_at = $request->due_at;
+        $goal->smart_goal = $request->smart_goal;
+        $actionPlan->updated_at = now();
+        $goal->save();
+
         return redirect("/goal-board");
     }
 
