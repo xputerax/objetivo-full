@@ -75,7 +75,7 @@ class GoalService implements GoalServiceInterface
         }
 
         // Retrieve all activities within the goal
-        $activities = Activity::select('activities.id', 'action_plan_id', 'activities.title', 'a_status', 'activities.created_at', 'activities.updated_at', 'goals.id')
+        $activities = Activity::select('activities.id', 'action_plan_id', 'activities.title', 'a_status', 'activities.created_at', 'activities.updated_at', 'goals.id as goal_id')
             ->join('action_plans', 'action_plan_id', '=', 'action_plans.id')
             ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
             ->whereIn('action_plan_id', $actionPlansIdArray)
@@ -143,18 +143,18 @@ class GoalService implements GoalServiceInterface
         $activities = Activity::select('id', 'a_status')
             ->get();
 
-        foreach ($activities as $activity) {
-            if (Request::get('a_checkbox')) {
-                // Query to update db
-                Activity::select('id', 'a_status')
-                    ->where('id', '=', $activity->id)
-                    ->update(['a_status' => "completed"]);
-            } else {
-                Activity::select('id', 'a_status')
-                    ->where('id', '=', $activity->id)
-                    ->update(['a_status' => "pending"]); // Change back to 'pending' after test
-            }
-        }
+        // foreach ($activities as $activity) {
+        //     if (Request::get('a_checkbox')) {
+        //         // Query to update db
+        //         Activity::select('id', 'a_status')
+        //             ->where('id', '=', $activity->id)
+        //             ->update(['a_status' => "completed"]);
+        //     } else {
+        //         Activity::select('id', 'a_status')
+        //             ->where('id', '=', $activity->id)
+        //             ->update(['a_status' => "pending"]); // Change back to 'pending' after test
+        //     }
+        // }
     }
 
     public static function getPercentageCompleted($goalId)
