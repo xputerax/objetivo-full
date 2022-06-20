@@ -175,7 +175,14 @@ class GoalService implements GoalServiceInterface
             ->count();
 
         // Compute percentage of completion
-        $percentageCompleted = ceil($completedActivitiesCount / $activitiesCount) * 100;
+
+        if ($activitiesCount == 0) {
+            $percentageCompleted = 0;
+        }
+        else{
+            $percentageCompleted = ceil($completedActivitiesCount / $activitiesCount) * 100;
+        }
+        
 
         // Update progress bar
         return $percentageCompleted;
