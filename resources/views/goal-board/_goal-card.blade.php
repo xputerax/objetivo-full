@@ -25,6 +25,8 @@ use App\Services\GoalService;
                                 data-bs-target="#nonexistentmodal">
                                 Edit
                             </button>
+                            <button class="btn btn-danger" type="button"
+                                onclick="confirm('Are you sure you want to delete this goal?')">Delete</button>
                         </div>
                     </div>
                 </div>
