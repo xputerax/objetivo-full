@@ -32,7 +32,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="auth-body">
     <main>
         @include('auth.background')
         <div class="container">
