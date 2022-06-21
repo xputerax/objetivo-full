@@ -8,6 +8,7 @@
             <th scope="col">Target Date</th>
             <th scope="col">Mentor</th>
             <th scope="col">Status</th>
+            <th scope="col">Last Viewed At</th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +21,7 @@
                         {{ $goal->title }}
                 </td>
                 <td>
-                    @php
-                        $dueAt = Carbon::parse($goal->due_at);
-                    @endphp
-                    {{ $dueAt->toFormattedDateString() }}</td>
+                    {{ Carbon::parse($goal->due_at)->toFormattedDateString() }}</td>
                 <td>{{ $goal->name }}</td>
                 <td>
                     @if ($goal->g_status === 'in_progress')
@@ -33,6 +31,9 @@
                     @else
                         <span class="badge bg-danger">Not Started</span>
                     @endif
+                </td>
+                <td>
+                    {{ Carbon::parse($goal->last_viewed_at)->diffForHumans(now()) }}</td>
                 </td>
             </tr>
             <!-- End Goal -->

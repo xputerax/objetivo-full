@@ -148,7 +148,7 @@ class DashboardService implements DashboardServiceInterface
 
     public function getGoals()
     {
-        $goals = Goal::select('goals.id', 'title', 'due_at', 'users.name', 'g_status', 'user_id')
+        $goals = Goal::select('goals.id', 'title', 'due_at', 'users.name', 'g_status', 'user_id', 'last_viewed_at')
             ->join('goal_mentors', 'goal_mentors.goal_id', '=', 'goals.id')
             ->join('users', 'users.id', '=', 'goal_mentors.mentor_id')
             ->where('goals.user_id', '=', auth()->id())
