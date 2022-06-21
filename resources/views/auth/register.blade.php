@@ -59,34 +59,55 @@
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Your Name</label>
-                                            <input type="text" name="name" class="form-control" id="yourName" required>
+                                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required>
                                             <div class="invalid-feedback">Please, enter your name!</div>
+                                            @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourEmail" class="form-label">Your Email</label>
-                                            <input type="email" name="email" class="form-control" id="yourEmail" required>
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="yourEmail" required>
                                             <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                                            @error('email')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" name="username" class="form-control" id="yourUsername" required>
+                                                <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please choose a username.</div>
+                                                @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="confirmPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="confirmPassword" required>
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
+                                            @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Confirm Password</label>
-                                            <input type="password" name="password_confirmation" class="form-control" id="yourPassword" required>
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" required>
                                             <div class="invalid-feedback">Please re-enter your password!</div>
                                         </div>
 
