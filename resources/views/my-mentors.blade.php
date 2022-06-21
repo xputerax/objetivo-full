@@ -29,7 +29,7 @@ $temp = 0;
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                    
+
                     @foreach($goals as $goal1)
                     @if($goal1->mentor_id == $temp)
                     @continue
@@ -39,7 +39,9 @@ $temp = 0;
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
+                                    {{--
                                     <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="mentor-mentee-profile-pic">
+                                    --}}
                                     {{ $goal1->username }}
                                 </h5>
                                 <div class="list-group">

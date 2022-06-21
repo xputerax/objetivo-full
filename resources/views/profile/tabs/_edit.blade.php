@@ -3,6 +3,7 @@
     <form method="post" action="{{ route('profile.update') }}" novalidate>
         @csrf
 
+        {{--
         <div class="row mb-3">
             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">
                 Profile Image
@@ -20,6 +21,7 @@
                 </div>
             </div> <!-- .col -->
         </div> <!-- .row -->
+        --}}
 
         <div class="row mb-3">
             <label for="name" class="col-md-4 col-lg-3 col-form-label">Full Name</label>

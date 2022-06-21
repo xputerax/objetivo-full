@@ -28,7 +28,9 @@ $temp = 0;
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
+                                    {{--
                                     <img src="{{ asset('/img/yor.jpg') }}" width="50" height="50" alt="Profile" class="mentor-mentee-profile-pic">
+                                    --}}
                                     {{ $goal1->username }}
                                 </h5>
                                 <div class="list-group">
