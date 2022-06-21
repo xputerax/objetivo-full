@@ -14,7 +14,9 @@ $highlighted_page = 'goals';
             @include('goal-board._add-goal')
 
             <div class="row">
-                @include('goal-board._goal-card')
+                @foreach ($goals as $goal)
+                @include('goal-board._goal-card', [ 'goal' => $goal ])
+                @endforeach
             </div> <!-- / .row -->
         </section>
     </main>

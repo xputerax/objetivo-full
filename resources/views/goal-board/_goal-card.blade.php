@@ -4,92 +4,88 @@ use App\Services\GoalService;
 @endphp
 
 <!-- Goal Card -->
-@foreach ($goals as $goal)
-    <div class="col-md-4 col-sm-6 col-lg-3">
-        <div class="card info-card customers-card">
-            <div class="card-body">
-                <a class="card-title" href="{{ route('goal.show', [$goal->id]) }}">
+<div class="col-md-4 col-sm-6 col-lg-3">
+    <div class="card info-card customers-card">
+        <div class="card-body">
+            <a class="card-title" href="{{ route('goal.show', [$goal->id]) }}">
+                <p class="fs-7 fw-bold"></p>
+                <p class="fs-7 fw-bold">{{ $goal->title }}</p> <br>
+            </a>
+
+            <div class="d-flex align-items-center">
+                <div>
+                    <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                     <p class="fs-7 fw-bold"></p>
-                    <p class="fs-7 fw-bold">{{ $goal->title }}</p> <br>
-                </a>
+                    <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
+                    {{-- <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p> --}}
+                    <div class="d-grid gap-2 d-md-block">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#editGoal">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    @method('delete')
 
-                <div class="d-flex align-items-center">
-                    <div>
-                        <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
-                        <p class="fs-7 fw-bold"></p>
-                        <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        {{-- <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p> --}}
-                        <div class="d-grid gap-2 d-md-block">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#editGoal">
-                                        Edit
-                                    </button>
-                                </div>
-                                <div class="col-6">
-                                    <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                        @method('delete')
-
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> <!-- / .card-body -->
-        </div> <!-- / .card -->
-    </div>
-    <!-- End Goal Card -->
+            </div>
+        </div> <!-- / .card-body -->
+    </div> <!-- / .card -->
+</div>
+<!-- End Goal Card -->
 
+@php
+    $percentageCompleted = GoalService::getPercentageCompleted($goal->id);
+@endphp
 
-
-    @php
-        $percentageCompleted = GoalService::getPercentageCompleted($goal->id);
-    @endphp
-
-    <script>
-        var colorPalette = ['#26de81', '#fed330'];
-        document.addEventListener("DOMContentLoaded", () => {
-            echarts.init(document.querySelector("#pieChart{{ $goal->id }}")).setOption({
-                tooltip: {
-                    trigger: 'item',
-                    formatter: '{c}%'
-                },
-                series: [{
-                    name: '',
-                    type: 'pie',
-                    radius: '70%',
-                    color: colorPalette,
-                    data: [{
-                            value: {{ $percentageCompleted }},
-                            name: 'Completed'
-                        },
-                        {
-                            value: {{ 100 - $percentageCompleted }},
-                            name: 'Pending'
-                        }
-                    ],
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
+<script>
+    var colorPalette = ['#26de81', '#fed330'];
+    document.addEventListener("DOMContentLoaded", () => {
+        echarts.init(document.querySelector("#pieChart{{ $goal->id }}")).setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: '{c}%'
+            },
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '70%',
+                color: colorPalette,
+                data: [{
+                        value: {{ $percentageCompleted }},
+                        name: 'Completed'
+                    },
+                    {
+                        value: {{ 100 - $percentageCompleted }},
+                        name: 'Pending'
                     }
-                }]
-            });
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
         });
-    </script>
-@endforeach
+    });
+</script>
 
 <!-- Edit Goal Modal-->
 <div class="modal fade" id="editGoal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <form action="{{ route('goal-card.update', $goal['id']) }}" method="post">
+            <form action="{{ route('goal-card.update', ['id' => $goal->id]) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="modal-header">
