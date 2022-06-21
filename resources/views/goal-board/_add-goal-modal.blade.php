@@ -61,7 +61,7 @@
                         <hr>
 
                         <!--Action Plan & Action Plan List Cards--> 
-                            <section class="action-plan-section"> <strong>Activities</strong> <br>
+                            <section class="action-plan-section"> <strong>Action Plan</strong> <br>
                                 <div class="row">
                                     <div class="col-lg-12" >
                                         <input class="form-control mb-2" placeholder="Action Plan" name="title" type="text" id="inputAction">
