@@ -71,10 +71,12 @@ class GoalController extends Controller
      *
      * @param  \Illuminate\Http\StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
+     * 
      */
     public function store(StoreGoalRequest $request)
     {
 
+        
         $goal = new Goal;
         $goal->user_id = $request->user_id;
         $goal->title = $request->title;
@@ -85,6 +87,7 @@ class GoalController extends Controller
         $goal->last_viewed_at = now();
         $goal->created_at = now();
         $goal->updated_at = now();
+        $goal->action_plans = $request->action_plans;
         $goal->save();
         
         return redirect("/goal-board");
