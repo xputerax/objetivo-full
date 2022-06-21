@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $this->dashboardService->queryUpdateGoalStatus();
+        $this->dashboardService->queryUpdateGoalStatus(auth()->id());
         $this->dashboardService->forUser($user = $request->user());
 
         $data = [

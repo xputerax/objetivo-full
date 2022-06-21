@@ -21,16 +21,16 @@
                 </td>
                 <td>
                     @php
-                    $dueAt = Carbon::parse($goal->due_at);
+                        $dueAt = Carbon::parse($goal->due_at);
                     @endphp
                     {{ $dueAt->toFormattedDateString() }}</td>
                 <td>{{ $goal->name }}</td>
                 <td>
-                    @if ($goal->g_status == 'in_progress')
+                    @if ($goal->g_status === 'in_progress')
                         <span class="badge bg-warning">In Progress</span>
-                    @elseif ($goal->g_status == 'completed')
+                    @elseif ($goal->g_status === 'completed')
                         <span class="badge bg-success">Completed</span>
-                    @elseif ($goal->g_status == 'not_started')
+                    @else
                         <span class="badge bg-danger">Not Started</span>
                     @endif
                 </td>

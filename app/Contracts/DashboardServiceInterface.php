@@ -11,6 +11,6 @@ interface DashboardServiceInterface
     public function getGoalNotStartedCount(): int;
     public function getGoalInProgressCount(): int;
     public function getGoalCompletedCount(): int;
-    public function queryUpdateGoalStatus(): void;
+    public function queryUpdateGoalStatus($userId): void;
     public function getGoals();
 }
