@@ -104,9 +104,15 @@ class GoalService implements GoalServiceInterface
                 if ($comment['user_id'] == $user['id']) {
                     $comment['username'] = $user['name'];
                     $comment['timeinterval'] = $this->getInterval($comment['created_at']);
+
                     $comment['timeintervalDay'] = false;
                     if($comment['timeinterval'] >= 24) {
                         $comment['timeintervalDay'] = ceil($comment['timeinterval']/24);
+                    }
+
+                    $comment['timeintervalMinutes'] = false;
+                    if($comment['timeinterval'] <= 0) {
+                        $comment['timeintervalMinutes'] = $this->getIntervalMinutes($comment['created_at']);
                     }
                     break;
                 }
@@ -139,6 +145,21 @@ class GoalService implements GoalServiceInterface
         $hours = (int)$hours; //Convert to integer
 
         return abs($hours);
+    }
+
+    public function getIntervalMinutes($from_date)
+    {
+        $timeformat = 'Y-m-d H:i:s';
+        //Date in Date object
+        $duedate = date($timeformat, strtotime($from_date));
+        $currdate = date($timeformat);
+
+        //Calculate difference in hours
+        $minutes = (strtotime($duedate) - strtotime($currdate)) / 60;
+        //$hours -= 8; //Correct the timezone
+        $minutes = (int)$minutes; //Convert to integer
+
+        return abs($minutes);
     }
 
     // To update db in case user checks/unchecks any box

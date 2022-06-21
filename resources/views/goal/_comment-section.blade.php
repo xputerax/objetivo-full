@@ -44,10 +44,12 @@
                                 </div>
                                 @endif
                             </h5>
-                            @if ($comment['timeintervalDay'] == false)
-                            <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
-                            @else
+                            @if ($comment['timeintervalMinutes'] != false)
+                            <p class="time-posted">&nbsp; {{ $comment['timeintervalMinutes'] }} minute ago</p>
+                            @elseif ($comment['timeintervalDay'] != false)
                             <p class="time-posted">&nbsp; {{ $comment['timeintervalDay'] }} days ago</p>
+                            @else
+                            <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
                             @endif
                             <br><br>
                             <p>{{ $comment['body'] }}</p>
