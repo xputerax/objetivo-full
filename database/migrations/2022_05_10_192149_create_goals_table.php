@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class)->index();
             $table->string('title');
             $table->text('description');
-            $table->string('mentor_email');
             $table->text('g_status');
             $table->string('smart_goal');
             $table->timestamp('due_at');

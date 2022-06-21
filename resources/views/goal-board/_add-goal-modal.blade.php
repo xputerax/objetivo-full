@@ -60,23 +60,19 @@
 
                         <hr>
 
-                        <!--Action Plan & Action Plan List Cards-->
-                        <!-- <section class="action-plan-section">
-                            <strong>Action Plan</strong> <br>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <input class="form-control mb-2" placeholder="Action Plan" type="text" id="inputAction">
-
-                                    <ul id="actionPlans"></ul>
-
-                                    <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
-                                        + Add New Action Plan
-                                    </button> -->
-                                <!-- </div>
-                            </div> 
-                        </section> -->
-                </div> <!-- / .modal-body -->
+                        <!--Action Plan & Action Plan List Cards--> 
+                            <!-- <section class="action-plan-section"> <strong>Action Plan</strong> <br>
+                                <div class="row">
+                                    <div class="col-lg-12" >
+                                        <input class="form-control mb-2" placeholder="Action Plan" name="title" type="text" id="inputAction">
+                                        <ul id="actionPlans">
+                                        </ul>
+                                        <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">+ Add
+                                            New Action Plan</button>
+                                    </div>
+                                </div>
+                            </section> -->
+                </div> <!-- / .modal-body-->
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
