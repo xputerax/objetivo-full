@@ -104,6 +104,10 @@ class GoalService implements GoalServiceInterface
                 if ($comment['user_id'] == $user['id']) {
                     $comment['username'] = $user['name'];
                     $comment['timeinterval'] = $this->getInterval($comment['created_at']);
+                    $comment['timeintervalDay'] = false;
+                    if($comment['timeinterval'] >= 24) {
+                        $comment['timeintervalDay'] = ceil($comment['timeinterval']/24);
+                    }
                     break;
                 }
             }

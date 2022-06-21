@@ -44,7 +44,11 @@
                                 </div>
                                 @endif
                             </h5>
+                            @if ($comment['timeintervalDay'] == false)
                             <p class="time-posted">&nbsp; {{ $comment['timeinterval'] }} hours ago</p>
+                            @else
+                            <p class="time-posted">&nbsp; {{ $comment['timeintervalDay'] }} days ago</p>
+                            @endif
                             <br><br>
                             <p>{{ $comment['body'] }}</p>
                             @if ($comment['user_id'] != $user->id)
