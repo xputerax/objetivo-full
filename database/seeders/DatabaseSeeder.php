@@ -93,6 +93,8 @@ class DatabaseSeeder extends Seeder
         $goal->user()->associate($user);
         $goal->save();
 
+        app(MentorService::class)->setMentor($mentor->id, $goal->id);
+
         $actionplan1 = new ActionPlan([
             'title' => 'Harry Potter 1',
             'ap_status' => ActionPlan::ACTIONPLAN_NOT_STARTED,
