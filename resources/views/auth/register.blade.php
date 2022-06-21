@@ -32,8 +32,9 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="auth-body">
     <main>
+        @include('auth.background')
         <div class="container">
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
@@ -42,7 +43,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href="{{ route('home') }}" class="logo d-flex align-items-center w-auto">
                                     <img src="{{ asset('img/logo.png') }}" alt="">
-                                    <span class="d-none d-lg-block">Objetivo</span>
+                                    <span id="objetivo" class="d-none d-lg-block">Objetivo</span>
                                 </a>
                             </div><!-- End Logo -->
 
