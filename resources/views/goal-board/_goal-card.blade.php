@@ -8,7 +8,6 @@ use App\Services\GoalService;
     <div class="col-md-4 col-sm-6 col-lg-3">
         <div class="card info-card customers-card">
             <div class="card-body">
-                {{-- TODO: change the route dynamically instead of redireecting to goal-board.index --}}
                 <a class="card-title" href="{{ route('goal.show', [$goal->id]) }}">
                     <p class="fs-7 fw-bold"></p>
                     <p class="fs-7 fw-bold">{{ $goal->title }}</p> <br>
@@ -19,25 +18,25 @@ use App\Services\GoalService;
                         <div id="pieChart{{ $goal->id }}" style="min-height: 200px;" class="echart"></div>
                         <p class="fs-7 fw-bold"></p>
                         <p class="fs-7 fw-bold">Due Date: {{ $goal->due_at->toFormattedDateString() }}</p>
-                        {{--<p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p>--}}
+                        {{-- <p class="fs-7 fw-bold">Mentor's Email: {{ $goal->mentor_email }}</p> --}}
                         <div class="d-grid gap-2 d-md-block">
-                            <div class= "row">
-                                <div class= "col-6">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#editGoal">
-                                Edit
-                            </button>
-                        </div>
-                        <div class= "col-6">
-                            <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
-                            @csrf
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                                @method('delete')
-                                
-                            </form>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#editGoal">
+                                        Edit
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        @method('delete')
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        </div>  
                     </div>
                 </div>
             </div> <!-- / .card-body -->
@@ -45,7 +44,7 @@ use App\Services\GoalService;
     </div>
     <!-- End Goal Card -->
 
-    
+
 
     @php
         $percentageCompleted = GoalService::getPercentageCompleted($goal->id);
@@ -64,8 +63,7 @@ use App\Services\GoalService;
                     type: 'pie',
                     radius: '70%',
                     color: colorPalette,
-                    data: [
-                        {
+                    data: [{
                             value: {{ $percentageCompleted }},
                             name: 'Completed'
                         },
@@ -92,8 +90,8 @@ use App\Services\GoalService;
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="{{ route('goal-card.update', $goal['id']) }}" method="post">
-            @csrf
-            @method('put')
+                @csrf
+                @method('put')
                 <div class="modal-header">
                     <h5 class="modal-title"><strong>Edit Goal</strong></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,17 +100,18 @@ use App\Services\GoalService;
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="title" class="form-label">
-                        <strong>Goal Title</strong>
+                            <strong>Goal Title</strong>
                         </label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') ?? $goal->title }}">
+                        <input type="text" class="form-control" id="title" name="title"
+                            value="{{ old('title') ?? $goal->title }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">
-                        <strong>Goal Description</strong>
+                            <strong>Goal Description</strong>
                         </label>
                         <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }} </textarea>
-                    </div>                            
+                    </div>
 
                     <!-- <div class="mb-3">
                     <label for="inputAddress" class="form-label">
@@ -123,17 +122,19 @@ use App\Services\GoalService;
 
                     <div class="mb-3">
                         <label for="inputTarget" class="form-label">
-                        <strong>Specific and Measurable Target</strong>
+                            <strong>Specific and Measurable Target</strong>
                         </label>
-                        <input type="text" class="form-control" id="inputTarget" name="smart_goal" value="{{ old('smart_goal') ?? $goal->smart_goal }}">
+                        <input type="text" class="form-control" id="inputTarget" name="smart_goal"
+                            value="{{ old('smart_goal') ?? $goal->smart_goal }}">
                     </div>
 
                     <div class="row">
                         <div class="col-6">
                             <label for="message-text" class="col-form-label">
-                            <strong>Due Date</strong>
+                                <strong>Due Date</strong>
                             </label>
-                            <input type="date" class="form-control" id="due_at" name="due_at" value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
+                            <input type="date" class="form-control" id="due_at" name="due_at"
+                                value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
                         </div>
                     </div> <!-- / .row -->
 
@@ -144,7 +145,7 @@ use App\Services\GoalService;
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div> <!-- / .modal-footer -->
-                <input type="hidden" value="{{ $user->id }} " name="user_id"/>
+                <input type="hidden" value="{{ $user->id }} " name="user_id" />
             </form>
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal -->
