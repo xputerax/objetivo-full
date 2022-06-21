@@ -42,7 +42,7 @@ class SendReminder extends Notification
     {
         return (new MailMessage)
                     ->line("One of your goals is due soon!")
-                    ->action('Head over website', 'http://localhost:8000/home')
+                    ->action('Head over website', route('home'))
                     ->line('Thank you!');
     }
 
