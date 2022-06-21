@@ -9,7 +9,7 @@ use App\Models\Activity;
 use App\Models\GoalComment;
 use App\Models\User;
 use App\Models\CommentVote;
-use Request;
+use Illuminate\Http\Request;
 
 class GoalService implements GoalServiceInterface
 {
@@ -26,16 +26,23 @@ class GoalService implements GoalServiceInterface
      */
     public function getGoals()
     {
-        $goals = Goal::select('id', 'user_id', 'title', 'description', 'smart_goal', 'due_at', 'created_at', 'updated_at')
-            ->where('user_id', $this->user->id)
-            ->get();
+        $goals = Goal::select(
+            'id',
+            'user_id',
+            'title',
+            'description',
+            'smart_goal',
+            'due_at',
+            'created_at',
+            'updated_at'
+        )->where('user_id', $this->user->id)->get();
 
         return $goals;
     }
 
     /**
      * Get goals by the goal ID
-     * 
+     *
      * @param $goalid
      * @return App\Models\Goal
      */
@@ -46,7 +53,7 @@ class GoalService implements GoalServiceInterface
 
     /**
      * Get all action plans for a specific goal
-     * 
+     *
      * @param $goalid
      * @return Collection
      */
@@ -63,7 +70,7 @@ class GoalService implements GoalServiceInterface
 
     /**
      * Get all activities for all action plans of the current goal
-     * 
+     *
      * @return Collection
      */
     public function getActivities()
@@ -86,7 +93,7 @@ class GoalService implements GoalServiceInterface
 
     /**
      * Get all comments for the specified goal id
-     * 
+     *
      * @param $goalid
      * @return Collection
      */
@@ -192,7 +199,7 @@ class GoalService implements GoalServiceInterface
             ->join('goals', 'goals.id', '=', 'action_plans.goal_id',)
             ->where('goals.id', '=', $goalId)
             ->count();
-        
+
         if ($activitiesCount == 0) {
             return 0;
         }
@@ -202,7 +209,7 @@ class GoalService implements GoalServiceInterface
             ->join('action_plans', 'action_plans.id', '=', 'activities.action_plan_id')
             ->join('goals', 'goals.id', '=', 'action_plans.goal_id',)
             ->where('goals.id', '=', $goalId)
-            ->where('a_status', '=', 'completed')
+            ->where('a_status', '=', Activity::ACTIVITY_COMPLETED)
             ->count();
 
         // Compute and return percentage of completion

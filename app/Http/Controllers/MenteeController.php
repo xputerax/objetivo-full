@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class MenteeController extends Controller
 {
     public function index(Request $request)
     {
         $user = $request->user();
-        
+
         $goals = DB::table('goal_mentors')
             ->join('goals', 'goal_mentors.goal_id', '=', 'goals.id')
             ->join('users', 'goals.user_id', '=', 'users.id')
@@ -25,7 +25,8 @@ class MenteeController extends Controller
     public function search(Request $request)
     {
         $user = $request->user();
-        $search = $_GET['query'];
+        // $search = $_GET['query'];
+        $search = $request->query('query');
         $goals = DB::table('goal_mentors')
             ->join('goals', 'goal_mentors.goal_id', '=', 'goals.id')
             ->join('users', 'goals.user_id', '=', 'users.id')

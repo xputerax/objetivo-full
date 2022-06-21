@@ -10,18 +10,17 @@ use App\Contracts\GoalServiceInterface;
 
 class GoalBoardController extends Controller
 {
-
-    private $GoalService;
+    private $goalService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(GoalServiceInterface $GoalService)
+    public function __construct(GoalServiceInterface $goalService)
     {
         $this->middleware('auth');
-        $this->GoalService = $GoalService;
+        $this->goalService = $goalService;
     }
 
     /**
@@ -31,68 +30,23 @@ class GoalBoardController extends Controller
      */
     public function index(Request $request)
     {
-        $this->GoalService->forUser($user = $request->user());
+        $this->goalService->forUser($user = $request->user());
 
         $data = [
             'user' => $user,
-            'goals' => $this->GoalService->getGoals(),
+            'goals' => $this->goalService->getGoals(),
         ];
 
         return view('goal-board', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreGoalRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreGoalRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Goal  $goal
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Goal $goal)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Goal  $goal
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Goal $goal)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateGoalRequest  $request
-     * @param  \App\Models\Goal  $goal
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-
-
     public function update(UpdateGoalRequest $request, $id)
     {
         $goal = Goal::find($id);
@@ -115,8 +69,7 @@ class GoalBoardController extends Controller
      */
     public function destroy(Goal $goal)
     {
-
-        Goal::destroy($goal['id']);
+        $goal->delete();
 
         return redirect("/goal-board");
     }

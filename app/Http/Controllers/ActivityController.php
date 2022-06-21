@@ -9,26 +9,6 @@ use App\Models\Activity;
 class ActivityController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreActivityRequest  $request
@@ -45,28 +25,6 @@ class ActivityController extends Controller
         $activity->save();
 
         return redirect()->route('goal.show',$request->goal_id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Activity $activity)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Activity  $activity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Activity $activity)
-    {
-        //
     }
 
     /**
@@ -93,8 +51,8 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        Activity::destroy($activity['id']);
+        $activity->delete();
 
-        return redirect()->route('goal.show',['id'=> $activity->action_plan->goal->id]);
+        return redirect()->route('goal.show', [ 'id'=> $activity->action_plan->goal->id ]);
     }
 }

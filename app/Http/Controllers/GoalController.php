@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Goal;
 use App\Models\User;
-use App\Models\ActionPlan;
-use App\Models\Activity;
 use App\Contracts\GoalServiceInterface;
 use App\Contracts\MentorServiceInterface;
 use App\Http\Requests\AssignMentorRequest;
@@ -20,12 +17,13 @@ class GoalController extends Controller
 {
     private $goalService;
     private $mentorService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(GoalServiceInterface $goalService, MentorServiceInterface $mentorService) 
+    public function __construct(GoalServiceInterface $goalService, MentorServiceInterface $mentorService)
     {
         $this->middleware('auth');
         $this->goalService = $goalService;
@@ -49,6 +47,7 @@ class GoalController extends Controller
         $actionPlans = DB::select('SELECT * FROM action_plans WHERE goal_id < 6');
         $activities = DB::select('SELECT * FROM activities');
         $user = $request->user();
+
         return view('goal', [
             'user' => $user,
             'actionPlans' => $actionPlans,
@@ -57,32 +56,20 @@ class GoalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
-     * 
+     *
      */
     public function store(StoreGoalRequest $request)
     {
-
-        
         $goal = new Goal;
         $goal->user_id = $request->user_id;
         $goal->title = $request->title;
         $goal->description = $request->description;
         $goal->smart_goal = $request->smart_goal;
-        $goal->g_status = "not_started";
+        $goal->g_status = Goal::GOAL_NOT_STARTED;
         $goal->due_at = $request->due_at;
         $goal->last_viewed_at = now();
         $goal->created_at = now();
@@ -93,18 +80,18 @@ class GoalController extends Controller
         // $actionPlan->goal_id = $goal->id;
         // $actionPlan->title = $request->title;
         // $actionPlan->save();
-        
+
         return redirect("/goal-board");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $goalId
+     * @param  string  $goalId
      * @return \Illuminate\Http\Response
      */
     public function show($goalId)
-    {   
+    {
         $this->goalService->queryUpdateActivityStatus();
         $this->goalService->queryUpdateLastViewedAt($goalId);
 
@@ -119,39 +106,29 @@ class GoalController extends Controller
             'percentageCompleted' => $this->goalService->getPercentageCompleted($goalId),
             'allUsers' => User::all(),
         ];
-        
-        return view('goal', $data);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('goal', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateGoalRequest  $request
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateGoalRequest $request, $id)
     {
         $goal = Goal::find($id);
-        
+
         $goal->title = $request->title;
         $goal->description = $request->description;
         $goal->smart_goal = $request->smart_goal;
         $goal->due_at = $request->due_at;
         $goal->smart_goal = $request->smart_goal;
-        $goal->updated_at = now(); 
+        $goal->updated_at = now();
         $goal->save();
+
         return redirect("/goal-board");
     }
 
@@ -163,20 +140,20 @@ class GoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        Goal::destroy($goal['id']);
+        $goal->delete();
 
         return redirect("/goal-board");
     }
 
     public function updateGoalMentor(AssignMentorRequest $request)
     {
-        // dd($request);
         $mentor_id = $this->mentorService->getMentorId($request->email);
         $isValid = $this->mentorService->setMentor($mentor_id, $request->goal_id);
-        if($isValid == true){
+
+        if($isValid) {
             return redirect()->back()->with('successmessage', 'Mentor assigned successfully!');
-        }else{
-            return redirect()->back()->with('errormessage', "User not found! Please try again with a valid user email.");
-        };
+        }
+
+        return redirect()->back()->with('errormessage', "User not found! Please try again with a valid user email.");
     }
 }

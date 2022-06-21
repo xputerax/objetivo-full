@@ -72,11 +72,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Goal::class, 'goal_mentors', 'mentor_id', 'goal_id');
     }
 
-    public function goalComment() {
+    public function goalComment()
+    {
         return $this->hasMany(GoalComment::class);
     }
 
-    public function actionPlan() {
+    public function actionPlan()
+    {
         return $this->hasMany(ActionPlan::class);
     }
 }

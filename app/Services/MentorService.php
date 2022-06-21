@@ -10,7 +10,6 @@ class MentorService implements MentorServiceInterface
 {
     public function setMentor($mentor_id, $goal_id)
     {
-        // dd($mentor_id);
         if($mentor_id == -1){
             return false;
         }else{
