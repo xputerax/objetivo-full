@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CommentVoteController;
 use App\Http\Controllers\GoalBoardController;
@@ -11,8 +14,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ActionPlanController;
 use App\Http\Controllers\ActivityController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('home'));
+    // return view('welcome');
 });
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    
+
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -44,9 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/goal-board', [GoalBoardController::class, 'index'])->name('goal-board.index');
 
     Route::post('/submit-goal', [GoalController::class, 'store'])->name('submit-goal.store');
-    
+
     Route::put('/goal-card/{id}', [GoalController::class, 'update'])->name('goal-card.update');
-    
+
     Route::delete('/delete-goal-card/{goal}', [GoalController::class, 'destroy'])->name('delete-goal-card.destroy');
 
     Route::get('/goal', [GoalController::class, 'index'])->name('goal.index');
@@ -58,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/submit-action-plan', [ActionPlanController::class, 'store'])->name('submit-action-plan.store');
 
     Route::put('/action-plan/{actionPlanID}', [ActionPlanController::class, 'update'])->name('action-plan.update');
-    
+
     Route::delete('/delete-action-plan/{actionPlan}', [ActionPlanController::class, 'destroy'])->name('delete-action-plan.destroy');
 
     Route::post('/submit-activity', [ActivityController::class, 'store'])->name('submit-activity.store');
