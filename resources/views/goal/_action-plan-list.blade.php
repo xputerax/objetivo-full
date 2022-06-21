@@ -23,11 +23,11 @@
                         <div class="col-9">
                             <h6 class="card-desc-title px-3" style="font-size: 16px;">{{ $actionPlan->title }}</h6>
                         </div>
-                        <div class="col-1">   
+                        <div class="col-1">
                             <button type="button" class="btn card-desc-title" data-bs-toggle="modal"
                                 data-bs-target="#editActionPlanModal">
                                 <i class="bi bi-pencil-square"></i>
-                            </button>                            
+                            </button>
                         </div>
                         <div class="col-1">
                             <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
@@ -67,7 +67,7 @@
                                                     @method('put')
                                                     <div class="col-1">
                                                         <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-                                                        <input name="a_checkbox" class="checkbox" type="checkbox" onChange="this.form.submit()" 
+                                                        <input name="a_checkbox" class="checkbox" type="checkbox" onChange="this.form.submit()"
                                                         @if ($activity->a_status === 'completed') checked @endif
                                                         />
 
@@ -154,10 +154,10 @@
         </div> -->
 
 
-        
+
         <!-- action plan modal -->
         <div class="col-4" style="padding-left: 0px;">
-            
+
 
             <!-- Add action plan modal -->
             <div class="modal fade" id="addActionPlanModal" tabindex="-1">
@@ -237,7 +237,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title"><strong>Edit Action Plan</strong></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>-->
+                                    aria-label="Close"></button>
                             </div>  <!-- / .modal-header -->
                             <div class="modal-body">
                                 <div class="mb-3">
@@ -246,7 +246,7 @@
                                     </label>
                                     <input type="text" class="form-control" name="title" value="{{ old('title') ?? $actionPlan->title }}">
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="message-text" class="col-form-label">
@@ -273,10 +273,10 @@
                         </form>
                    </div>  <!-- / .modal-content -->
                 </div> <!-- / .modal-dialog -->
-            </div> 
+            </div>
             <!-- / .modal -->
             @endif
-            
+
         </div> <!-- / .col -->
     </div> <!-- / .row -->
   </section>
