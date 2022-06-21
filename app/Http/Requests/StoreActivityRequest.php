@@ -24,7 +24,8 @@ class StoreActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ap_id' => 'required',
+            'a_title' => 'required',
         ];
     }
 }

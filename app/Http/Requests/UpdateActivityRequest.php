@@ -24,7 +24,7 @@ class UpdateActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'astatus' => 'required',
         ];
     }
 }
