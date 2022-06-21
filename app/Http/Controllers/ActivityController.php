@@ -19,9 +19,7 @@ class ActivityController extends Controller
         $activity = new Activity;
         $activity->action_plan_id = $request->ap_id;
         $activity->title = $request->a_title;
-        $activity->a_status = 'pending';
-        $activity->created_at = now();
-        $activity->updated_at = now();
+        $activity->a_status = Activity::ACTIVITY_PENDING;
         $activity->save();
 
         return redirect()->route('goal.show',$request->goal_id);
