@@ -87,7 +87,7 @@ class GoalController extends Controller
         $goal->last_viewed_at = now();
         $goal->created_at = now();
         $goal->updated_at = now();
-        $goal->action_plans = $request->action_plans;
+        $goal->actionPlans = $request->actionPlans;
         $goal->save();
         
         return redirect("/goal-board");
@@ -148,6 +148,7 @@ class GoalController extends Controller
         $goal->due_at = $request->due_at;
         $goal->smart_goal = $request->smart_goal;
         $goal->updated_at = now();
+        $goal-> actionPlans = $request -> actionPlans; 
         $goal->save();
         return redirect("/goal-board");
     }
