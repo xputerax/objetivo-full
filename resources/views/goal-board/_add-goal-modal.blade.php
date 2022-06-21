@@ -60,7 +60,7 @@
 
                         <hr>
 
-                        <!--Action Plan & Action Plan List Cards--> 
+                        <!--Action Plan & Action Plan List Cards
                             <section class="action-plan-section"> <strong>Action Plan</strong> <br>
                                 <div class="row">
                                     <div class="col-lg-12" >
@@ -71,7 +71,7 @@
                                             New Activity</button>
                                     </div>
                                 </div>
-                            </section>
+                            </section>--> 
                 </div> <!-- / .modal-body -->
 
                 <div class="modal-footer">
