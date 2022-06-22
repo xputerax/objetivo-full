@@ -95,10 +95,14 @@ class GoalController extends Controller
         $this->goalService->queryUpdateActivityStatus();
         $this->goalService->queryUpdateLastViewedAt($goalId);
 
+        $goal = $this->goalService->getGoalByID($goalId);
+
+        abort_unless($goal, 404);
+
         $user = auth()->user();
 
         $data = [
-            'goal' => $this->goalService->getGoalByID($goalId),
+            'goal' => $goal,
             'user' => $user,
             'actionPlans' => $this->goalService->getActionPlans($goalId),
             'activities' => $this->goalService->getActivities(),
@@ -120,6 +124,8 @@ class GoalController extends Controller
     public function update(UpdateGoalRequest $request, $id)
     {
         $goal = Goal::find($id);
+
+        abort_unless($goal, 404);
 
         $goal->title = $request->title;
         $goal->description = $request->description;
