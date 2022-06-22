@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->seedLearnGuitarGoal($user, $mentor);
         $this->seedReadBookGoal($user, $mentor2);
+        $this->seedTravelGoal($mentor, $user);
     }
 
     public function seedLearnGuitarGoal(User $user, $mentor)
@@ -151,6 +152,70 @@ class DatabaseSeeder extends Seeder
             ]),
             new Activity([
                 'title' => 'Part 5',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+        ]);
+    }
+
+    public function seedTravelGoal($user, $mentor)
+    {
+        $goal = new Goal([
+            'title' => 'Travel the whole world',
+            'description' => 'adventure time',
+            'g_status' => Goal::GOAL_NOT_STARTED,
+            'smart_goal' => 'Travel 1 country per month',
+            'due_at' => now()->addMonths(4),
+        ]);
+
+        $goal->user()->associate($user);
+        $goal->save();
+
+        app(MentorService::class)->setMentor($mentor->id, $goal->id);
+
+        $actionplan1 = new ActionPlan([
+            'title' => 'Asia bucket list',
+            'ap_status' => ActionPlan::ACTIONPLAN_NOT_STARTED,
+            'start_at' => now(),
+            'end_at' => now()->addMonths(4),
+        ]);
+        $actionplan1->goal()->associate($goal);
+        $actionplan1->save();
+
+        $actionplan1->activities()->saveMany([
+            new Activity([
+                'title' => 'Thailand',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+            new Activity([
+                'title' => 'Indonesia',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+            new Activity([
+                'title' => 'Philippines',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+            new Activity([
+                'title' => 'Japan',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+        ]);
+
+        $actionplan1 = new ActionPlan([
+            'title' => 'North America',
+            'ap_status' => ActionPlan::ACTIONPLAN_NOT_STARTED,
+            'start_at' => now()->addMonths(4),
+            'end_at' => now()->addMonths(6),
+        ]);
+        $actionplan1->goal()->associate($goal);
+        $actionplan1->save();
+
+        $actionplan1->activities()->saveMany([
+            new Activity([
+                'title' => 'USA USA USA',
+                'a_status' => Activity::ACTIVITY_PENDING,
+            ]),
+            new Activity([
+                'title' => 'Canada',
                 'a_status' => Activity::ACTIVITY_PENDING,
             ]),
         ]);
