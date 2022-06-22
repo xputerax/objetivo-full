@@ -109,38 +109,31 @@ class DashboardService implements DashboardServiceInterface
 
     public function getGoalNotStartedCount(): int
     {
-        // $apList = ActionPlan::select('ap_status')
-        //     ->join('goals', 'action_plans.goal_id', '=', 'goals.id')
-        //     ->join('users', 'goals.user_id', '=', 'users.id')
-        //     ->where('ap_status', '=', "not_started")
-        //     ->where('users.id', '=', auth()->id())
-        //     ->get();
-
-        $goalNotStartedList = Goal::select('g_status')
+        $goalNotStartedCount = Goal::select('g_status')
             ->where('g_status', '=', Goal::GOAL_NOT_STARTED)
             ->where('user_id', '=', $this->user->id)
             ->count();
 
-        return $goalNotStartedList;
+        return $goalNotStartedCount;
     }
 
     public function getGoalInProgressCount(): int
     {
-        $goalNotStartedList = Goal::select('g_status')
+        $goalInProgressCount = Goal::select('g_status')
             ->where('g_status', '=', Goal::GOAL_IN_PROGRESS)
             ->where('user_id', '=', $this->user->id)
             ->count();
 
-        return $goalNotStartedList;
+        return $goalInProgressCount;
     }
     public function getGoalCompletedCount(): int
     {
-        $goalNotStartedList = Goal::select('g_status')
+        $goalCompletedCount = Goal::select('g_status')
             ->where('g_status', '=', Goal::GOAL_COMPLETED)
             ->where('user_id', '=', $this->user->id)
             ->count();
 
-        return $goalNotStartedList;
+        return $goalCompletedCount;
     }
 
     public function getGoals()

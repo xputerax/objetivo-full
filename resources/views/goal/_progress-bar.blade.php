@@ -12,7 +12,7 @@
 
 <section id="progress-bar-section" class="progress-bar-section">
     <div class="progress-bar-title">Progress Bar</div>
-    <div class="progress">
+    <div class="progress"> 
         <span class="progress-bar bg-success" id="progress-bar-id" role="progressbar" aria-valuenow="0" aria-valuemin="0"
             aria-valuemax="100">
         </span>
@@ -25,20 +25,9 @@
         var $checkboxes = $('.checkbox');
         var total = $checkboxes.length;
         progressBar = document.getElementById('progress-bar-id');
-
-        // var checked = $checkboxes.filter(':checked').length;
-        // var progressWidth = Math.floor((checked / total) * 100);
         var progressWidth = {{ $percentageCompleted }};
 
         $('.progress-bar').css('width', progressWidth + '%').attr('aria-valuenow', progressWidth);
         progressBar.innerHTML = progressWidth + "%";
-
-        // $checkboxes.on('change', function() {
-        //     var checked = $checkboxes.filter(':checked').length;
-        //     // var progressWidth = Math.floor((checked / total) * 100);
-        //     var progressWidth = {{ $percentageCompleted }}
-        //     $('.progress-bar').css('width', progressWidth + '%').attr('aria-valuenow', progressWidth);
-        //     progressBar.innerHTML = progressWidth + "%";
-        // });
     });
 </script>
