@@ -169,26 +169,6 @@ class GoalService implements GoalServiceInterface
         return abs($minutes);
     }
 
-    // To update db in case user checks/unchecks any box
-    public function queryUpdateActivityStatus()
-    {
-        $activities = Activity::select('id', 'a_status')
-            ->get();
-
-        // foreach ($activities as $activity) {
-        //     if (Request::get('a_checkbox')) {
-        //         // Query to update db
-        //         Activity::select('id', 'a_status')
-        //             ->where('id', '=', $activity->id)
-        //             ->update(['a_status' => "completed"]);
-        //     } else {
-        //         Activity::select('id', 'a_status')
-        //             ->where('id', '=', $activity->id)
-        //             ->update(['a_status' => "pending"]); // Change back to 'pending' after test
-        //     }
-        // }
-    }
-
     // Returns -> A goal's percentage of completion
     // Param -> $goalId
     public static function getPercentageCompleted($goalId)
