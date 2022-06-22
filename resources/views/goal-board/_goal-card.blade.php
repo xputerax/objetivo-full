@@ -22,7 +22,7 @@ use App\Services\GoalService;
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#editGoal">
+                                    data-bs-target="#editGoal-{{ $goal->id }}">
                                     Edit
                                 </button>
                             </div>
@@ -82,7 +82,7 @@ use App\Services\GoalService;
 </script>
 
 <!-- Edit Goal Modal-->
-<div class="modal fade" id="editGoal" tabindex="-1">
+<div class="modal fade" id="editGoal-{{ $goal->id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="{{ route('goal-card.update', ['id' => $goal->id]) }}" method="post">
