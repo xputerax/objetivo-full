@@ -24,8 +24,4 @@
     @include('goal._action-plan-modal')
     
 </main>
-
-<!-- Template Main JS File -->
-<script src="{{ asset('/js/add_task1.js') }}"></script>
-<script src="{{ asset('/js/add_activity.js') }}"></script>
 @endsection
