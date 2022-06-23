@@ -16,10 +16,6 @@
         </div>
 
         <div class="col-2" align="right">
-            {{--
-            <img class="rounded-circle mx-1" width="35" height="35" alt="" src="{{ asset('/img/oyen.jpg') }}"
-                data-holder-rendered="true">
-            --}}
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mentorModal">
                 Manage Mentor
             </button>
