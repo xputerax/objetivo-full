@@ -107,54 +107,6 @@
         @endforeach
         {{-- End Action Plan Card --}}
 
-        <!-- 2nd card -->
-        <!-- <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">Strum practice</div>
-                <div class="card-body">
-                    <div class="task-input">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <i class="bi bi-list"></i>
-                            </div>
-                            <div class="col-10">
-                                <input class="form-control" type="text" placeholder="Add a new task">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="controls">
-                        <div class="filters">
-                            <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified"
-                                role="tablist">
-                                <li class="nav-item flex-fill" role="presentation">
-                                    <button id="all" class="nav-link w-100 active" id="home-tab"
-                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-home"
-                                        type="button" role="tab" aria-controls="home"
-                                        aria-selected="true">All</button>
-                                </li>
-                                <li class="nav-item flex-fill" role="presentation">
-                                    <button id="pending" class="nav-link w-100" id="profile-tab"
-                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-profile"
-                                        type="button" role="tab" aria-controls="profile"
-                                        aria-selected="false">Pending</button>
-                                </li>
-                                <li class="nav-item flex-fill" role="presentation">
-                                    <button id="completed" class="nav-link w-100" id="contact-tab"
-                                        data-bs-toggle="tab" data-bs-target="#bordered-justified-contact"
-                                        type="button" role="tab" aria-controls="contact"
-                                        aria-selected="false">Completed</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <ul class="mt-2" id="taskLists">
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-
-
-
         <!-- action plan modal -->
         <div class="col-4" style="padding-left: 0px;">
 
