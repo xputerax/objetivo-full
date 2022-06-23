@@ -12,8 +12,6 @@
         </div>
     </div>
     <div class="row">
-
-        <!-- 1st card -->
         {{-- Action Plan Card --}}
         @foreach ($actionPlans as $actionPlan)
         <div class="col-lg-4">
@@ -40,6 +38,7 @@
                     <p class="px-3">Due Date: {{ $actionPlan['end_at']->toFormattedDateString() }}</p>
                 </div>
                 <div class="card-body">
+                    <!-- Add Activity Section -->
                     <form action="{{ route('submit-activity.store') }}" method="post">
                         @csrf
                         <div class="row justify-content-center mt-3 mb-2">
@@ -52,7 +51,7 @@
                             </div>
                             <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
                         </div>
-                        </form>
+                    </form>
                     <!-- Activity List -->
                     <div class="row">
                         <div class="col-12">
@@ -107,7 +106,7 @@
         @endforeach
         {{-- End Action Plan Card --}}
 
-        <!-- action plan modal -->
+        <!-- Action plan modals -->
         <div class="col-4" style="padding-left: 0px;">
 
 
@@ -146,23 +145,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" value="{{ $goal->id }} " name="goal_id"/>
-
                                 <hr>
-
-                                <!--Action Plan & Action Plan List Cards-->
-                                <!-- <section class="action-plan-section">
-                                    <strong>Activities</strong> <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <input class="form-control mb-2" placeholder="Activity" type="text"
-                                                id="inputAction">
-                                            <ul id="actionPlans"></ul>
-                                            <button onclick="addAction()" class="btn btn-primary btn-sm w-100 mt-4">
-                                                + Add New Activity
-                                            </button>
-                                        </div>
-                                    </div>
-                                </section> -->
                             </div> <!-- / .modal-body -->
 
                             <div class="modal-footer">
