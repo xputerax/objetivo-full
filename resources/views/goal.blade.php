@@ -21,7 +21,6 @@
     @include('goal._action-plan-list')
     @include('goal._comment-section')
     @include('goal._mentor-modal')
-    @include('goal._action-plan-modal')
     
 </main>
 @endsection
