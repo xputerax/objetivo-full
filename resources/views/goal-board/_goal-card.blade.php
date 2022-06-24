@@ -30,7 +30,7 @@ use App\Services\GoalService;
                                 <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteGoal-{{ $goal->id }}">
                                     Delete
-                                </button> 
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ use App\Services\GoalService;
                         <label for="title" class="form-label">
                             <strong>Goal Title</strong>
                         </label>
-                        <input type="text" class="form-control" id="title" name="title "
+                        <input type="text" class="form-control" id="title" name="title"
                             value="{{ old('title') ?? $goal->title }}" required>
                     </div>
 
@@ -104,7 +104,7 @@ use App\Services\GoalService;
                         <label for="message-text" class="col-form-label">
                             <strong>Goal Description</strong>
                         </label>
-                        <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }} </textarea>
+                        <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }}</textarea>
                     </div>
 
                     <div class="mb-3">
@@ -157,7 +157,7 @@ use App\Services\GoalService;
                     @csrf
                     <button type="button" class="btn btn-danger">Delete</button>
                     @method('delete')
-                </form>   
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
