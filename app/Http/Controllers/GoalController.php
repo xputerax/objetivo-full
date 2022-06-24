@@ -37,13 +37,6 @@ class GoalController extends Controller
      */
     public function index(Request $request)
     {
-        // $actionPlans = DB::table('action_plans')
-        //     ->select('action_plans.id', 'action_plans.goal_id', 'action_plans.title')
-        //     ->get();
-        // $activities = DB::table('activities')
-        //     ->select('activities.id', 'activities.action_plan_id', 'activities.title')
-        //     ->get();
-
         $actionPlans = DB::select('SELECT * FROM action_plans WHERE goal_id < 6');
         $activities = DB::select('SELECT * FROM activities');
         $user = $request->user();
@@ -64,6 +57,15 @@ class GoalController extends Controller
      */
     public function store(StoreGoalRequest $request)
     {
+        $request->validate([
+
+            'title'=>'required',
+            'description'=>'required',
+            'smart_goal'=>'required',
+            'due_at'=>'required',
+
+        ]);
+        
         $goal = new Goal;
         $goal->user_id = $request->user_id;
         $goal->title = $request->title;
@@ -75,11 +77,6 @@ class GoalController extends Controller
         $goal->created_at = now();
         $goal->updated_at = now();
         $goal->save();
-
-        // $actionPlan = new actionPlan;
-        // $actionPlan->goal_id = $goal->id;
-        // $actionPlan->title = $request->title;
-        // $actionPlan->save();
 
         return redirect("/goal-board");
     }
