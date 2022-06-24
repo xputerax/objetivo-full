@@ -28,11 +28,10 @@
                             </button>
                         </div>
                         <div class="col-1">
-                            <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
-                                <button type="submit" class="btn card-desc-title"><i class="bi bi-trash"></i></button>
-                                @method('delete')
-                                @csrf
-                            </form>
+                            <button type="submit" class="btn card-desc-title" data-bs-toggle="modal"
+                                data-bs-target="#deleteActionPlanModal-{{ $actionPlan->id }}">
+                                <i class="bi bi-trash"></i>
+                            </button>                            
                         </div>
                     </div>
                     <p class="px-3">Due Date: {{ $actionPlan['end_at']->toFormattedDateString() }}</p>
@@ -87,12 +86,10 @@
                                                 </div>
                                             </div>
                                             <!-- Delete Activity -->
-                                            <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
-                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
-                                                @csrf
-                                                @method('delete')
-
-                                            </form>
+                                            <button type="submit" class="btn btn-danger btn-sm mt-2" data-bs-toggle="modal"
+                                                data-bs-target="#deleteActivityModal-{{ $activity->id }}">
+                                                Delete
+                                            </button>
                                             <!-- End Activity -->
                                         </li>
                                     @endif
@@ -211,6 +208,59 @@
             </div>
             <!-- / .modal -->
             @endif
+
+            <!-- Delete Action Plan Confirmation Modal -->
+            <div class="modal fade" id="deleteActionPlanModal-{{ $actionPlan->id }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Deleting an Action Plan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You have selected to delete the <strong>{{ $actionPlan->title }}</strong> action plan.</p>
+                            <p>Please confirm your deletion.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                @method('delete')
+                                @csrf
+                            </form>     
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Activity Confirmation Modal -->
+            <div class="modal fade" id="deleteActivityModal-{{ $activity->id }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Deleting an Activiy Plan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You have selected to delete the <strong>{{ $activity->title }}</strong> action plan.</p>
+                            <p>Please confirm your deletion.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm mt-2">Delete</button>
+                                @csrf
+                                @method('delete')
+                            </form>     
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 
         </div> <!-- / .col -->
     </div> <!-- / .row -->
