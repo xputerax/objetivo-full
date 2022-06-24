@@ -225,7 +225,7 @@
                         </div>
                         <div class="modal-footer">
                             <form action="{{ route('delete-action-plan.destroy', $actionPlan) }}" method="post">
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                                 @method('delete')
                                 @csrf
                             </form>     
@@ -251,7 +251,7 @@
                         </div>
                         <div class="modal-footer">
                             <form action="{{ route('delete-activity.destroy', $activity) }}" method="post">
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                                 @csrf
                                 @method('delete')
                             </form>     
