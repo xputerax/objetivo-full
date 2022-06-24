@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-1">
                             <button type="button" class="btn card-desc-title" data-bs-toggle="modal"
-                                data-bs-target="#editActionPlanModal">
+                                data-bs-target="#editActionPlanModal-{{ $actionPlan->id }}">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
                         </div>
@@ -162,7 +162,7 @@
 
             <!-- Edit action plan modal -->
             @if (isset($actionPlan))
-            <div class="modal fade" id="editActionPlanModal" tabindex="-1">
+            <div class="modal fade" id="editActionPlanModal-{{ $actionPlan->id }}" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <form action="{{ route('action-plan.update', $actionPlan['id']) }}" method="post">
