@@ -24,7 +24,10 @@ class UpdateGoalRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'description' => 'required',
+            'smart_goal' => 'required',
+            'due_at' => 'required',
         ];
     }
 }
