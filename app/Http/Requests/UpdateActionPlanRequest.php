@@ -24,7 +24,10 @@ class UpdateActionPlanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'goal_id'=>'required',
+            'title'=>'required',
+            'start_at'=>'required',
+            'end_at'=>'required',
         ];
     }
 }

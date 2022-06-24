@@ -15,14 +15,7 @@ class ActionPlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreActionPlanRequest $request)
-    {
-        $request->validate([
-            'goal_id'=>'required',
-            'title'=>'required',
-            'start_at'=>'required',
-            'end_at'=>'required',
-        ]);
-        
+    {   
         $goalActionPlan = new ActionPlan;
         $goalActionPlan->goal_id = $request->goal_id;
         $goalActionPlan->title = $request->title;
@@ -44,14 +37,7 @@ class ActionPlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateActionPlanRequest $request, $actionPlanID)
-    {
-        $request->validate([
-            'goal_id'=>'required',
-            'title'=>'required',
-            'start_at'=>'required',
-            'end_at'=>'required',
-        ]);
-        
+    {   
         $actionPlan = ActionPlan::find($actionPlanID);
 
         $actionPlan->title = $request->title;
