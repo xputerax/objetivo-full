@@ -122,6 +122,14 @@ class GoalController extends Controller
      */
     public function update(UpdateGoalRequest $request, $id)
     {
+        $request->validate([
+
+            'title'=>'required',
+            'description'=>'required',
+            'smart_goal'=>'required',
+            'due_at'=>'required',
+
+        ]);
         $goal = Goal::find($id);
 
         abort_unless($goal, 404);
@@ -130,7 +138,6 @@ class GoalController extends Controller
         $goal->description = $request->description;
         $goal->smart_goal = $request->smart_goal;
         $goal->due_at = $request->due_at;
-        $goal->smart_goal = $request->smart_goal;
         $goal->updated_at = now();
         $goal->save();
 

@@ -98,8 +98,8 @@ use App\Services\GoalService;
                         <label for="title" class="form-label">
                             <strong>Goal Title</strong>
                         </label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            value="{{ old('title') ?? $goal->title }}">
+                        <input type="text" class="form-control" id="title" name="title "
+                            value="{{ old('title') ?? $goal->title }}" required>
                     </div>
 
                     <div class="mb-3">
@@ -109,19 +109,12 @@ use App\Services\GoalService;
                         <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }} </textarea>
                     </div>
 
-                    <!-- <div class="mb-3">
-                    <label for="inputAddress" class="form-label">
-                    <strong>Mentor Email</strong>
-                    </label>
-                    <input type="email" class="form-control" id="inputAddress" value="{{ old('mentor_email') ?? $goal->mentor_email }}">
-                    </div> -->
-
                     <div class="mb-3">
                         <label for="inputTarget" class="form-label">
                             <strong>Specific and Measurable Target</strong>
                         </label>
                         <input type="text" class="form-control" id="inputTarget" name="smart_goal"
-                            value="{{ old('smart_goal') ?? $goal->smart_goal }}">
+                            value="{{ old('smart_goal') ?? $goal->smart_goal }}" required>
                     </div>
 
                     <div class="row">
@@ -130,7 +123,7 @@ use App\Services\GoalService;
                                 <strong>Due Date</strong>
                             </label>
                             <input type="date" class="form-control" id="due_at" name="due_at"
-                                value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}">
+                                value="{{ old('due_at', date('Y-m-d')) ?? $goal->due_at }}" required>
                         </div>
                     </div> <!-- / .row -->
 
