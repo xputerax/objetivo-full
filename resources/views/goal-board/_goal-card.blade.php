@@ -153,12 +153,12 @@ use App\Services\GoalService;
                 <p>Please confirm your deletion.</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
                     @csrf
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     @method('delete')
                 </form>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
