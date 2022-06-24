@@ -27,12 +27,10 @@ use App\Services\GoalService;
                                 </button>
                             </div>
                             <div class="col-6">
-                                <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                    @method('delete')
-
-                                </form>
+                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteGoal-{{ $goal->id }}">
+                                    Delete
+                                </button> 
                             </div>
                         </div>
                     </div>
@@ -139,3 +137,31 @@ use App\Services\GoalService;
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal -->
 </div> <!-- / .modal -->
+
+<!-- Delete Goal Modal -->
+<div class="modal fade" id="deleteGoal-{{ $goal->id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deleting an Goal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>You have selected to delete the <strong>{{ $goal->title }}</strong> goal.</p>
+                <p>Please confirm your deletion.</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    @method('delete')
+                </form>   
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
