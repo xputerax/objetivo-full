@@ -10,8 +10,8 @@
                         <form action="{{ route('submit-comment.store') }}" method="post">
                         @csrf
                             <textarea type="text" name="comment" class="form-control" style="height: 100px" placeholder="Type your comment..."></textarea>
-                            <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
-                            <input type="hidden" value="{{ $user->id }} " name="userid"/>
+                            <input type="hidden" value="{{ $goal->id }}" name="goalid"/>
+                            <input type="hidden" value="{{ $user->id }}" name="userid"/>
                             <input type="hidden" value=0 name="votetype"/>
                             <br>
                             <button type="submit" class="btn btn-outline-primary">Submit comment</button>
@@ -71,7 +71,7 @@
                                     @else
                                     <input type="hidden" value=1 name="votetype"/>
                                     @endif
-                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                                    <input type="hidden" value="{{ $goal->id }}" name="goalid"/>
                                     @method('put')
                                 </form>
                                 <form action="{{ route('vote-comment.update', $comment['commentvoteid']) }}" method="post">
@@ -88,7 +88,7 @@
                                     @else
                                     <input type="hidden" value=2 name="votetype"/>
                                     @endif
-                                    <input type="hidden" value="{{ $goal->id }} " name="goalid"/>
+                                    <input type="hidden" value="{{ $goal->id }}" name="goalid"/>
                                     @method('put')
                                 </form>
                             </div>

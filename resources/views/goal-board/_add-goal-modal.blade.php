@@ -10,7 +10,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div> <!-- / modal-header -->
-                
+
 
                 <div class="modal-body">
                         <div class="mb-3">
@@ -52,7 +52,7 @@
                     <button type="submit" class="btn btn-outline-primary">Save Changes</button>
                 </div> <!-- / .modal-footer -->
 
-                <input type="hidden" value="{{ $user->id }} " name="user_id"/>
+                <input type="hidden" value="{{ $user->id }}" name="user_id"/>
 
             </form>
         </div> <!-- / .modal-content -->

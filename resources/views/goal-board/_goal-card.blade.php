@@ -30,7 +30,7 @@ use App\Services\GoalService;
                                 <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteGoal-{{ $goal->id }}">
                                     Delete
-                                </button> 
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ use App\Services\GoalService;
                         <label for="title" class="form-label">
                             <strong>Goal Title</strong>
                         </label>
-                        <input type="text" class="form-control" id="title" name="title "
+                        <input type="text" class="form-control" id="title" name="title"
                             value="{{ old('title') ?? $goal->title }}" required>
                     </div>
 
@@ -104,7 +104,7 @@ use App\Services\GoalService;
                         <label for="message-text" class="col-form-label">
                             <strong>Goal Description</strong>
                         </label>
-                        <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }} </textarea>
+                        <textarea class="form-control" rows="3" id="message-text" name="description"> {{ old('description') ?? $goal->description }}</textarea>
                     </div>
 
                     <div class="mb-3">
@@ -143,8 +143,8 @@ use App\Services\GoalService;
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Deleting an Goal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title">Deleting a Goal</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -153,12 +153,12 @@ use App\Services\GoalService;
                 <p>Please confirm your deletion.</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form action="{{ route('delete-goal-card.destroy', $goal) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @method('delete')
-                </form>   
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
             </div>
         </div>
     </div>

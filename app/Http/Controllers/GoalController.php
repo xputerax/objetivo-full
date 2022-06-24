@@ -119,14 +119,6 @@ class GoalController extends Controller
      */
     public function update(UpdateGoalRequest $request, $id)
     {
-        $request->validate([
-
-            'title'=>'required',
-            'description'=>'required',
-            'smart_goal'=>'required',
-            'due_at'=>'required',
-
-        ]);
         $goal = Goal::find($id);
 
         abort_unless($goal, 404);

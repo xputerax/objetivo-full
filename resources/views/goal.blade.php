@@ -4,6 +4,10 @@
 
 @section('title', 'Goal')
 
+@php
+$highlighted_page = 'goals';
+@endphp
+
 @section('content')
 <main id="main" class="main">
     @if(session()->has('successmessage'))
@@ -21,6 +25,6 @@
     @include('goal._action-plan-list')
     @include('goal._comment-section')
     @include('goal._mentor-modal')
-    
+
 </main>
 @endsection
